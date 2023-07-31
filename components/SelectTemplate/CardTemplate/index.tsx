@@ -6,12 +6,11 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const { IDL } = useIDL()
 
     const exportProject = () => {
-        const options = {
-            method: 'POST',
-            body: `'{idl: ${JSON.stringify(IDL)}}'`
-        };
         console.log(IDL)
-        fetch(`https://soda.shuttleapp.rs/get_project_files/${indexTemplate}`, options)
+        fetch(`https://soda.shuttleapp.rs/get_project_files/${indexTemplate}`, {
+            method: "POST",
+            body: JSON.stringify({idl:IDL})
+        })
             .then(response => response.json())
             .then(response => console.log(response))
             .catch(err => console.error(err));
