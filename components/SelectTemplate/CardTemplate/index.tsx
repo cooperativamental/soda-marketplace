@@ -1,20 +1,52 @@
 import { useIDL } from "@/context/IDL";
+import JSZip from "jszip";
 import Image from "next/image"
 import { FC } from "react";
 
 const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const { IDL } = useIDL()
 
-    const exportProject = () => {
-        const options = {
-            method: 'POST',
-            body: `'{idl: ${JSON.stringify(IDL)}}'`
-        };
+    const exportProject = async () => {
         console.log(IDL)
-        fetch(`https://soda.shuttleapp.rs/get_project_files/${indexTemplate}`, options)
-            .then(response => response.json())
-            .then(response => console.log(response))
-            .catch(err => console.error(err));
+        const response = await fetch(`https://soda.shuttleapp.rs/get_project_files/${indexTemplate}`, {
+            method: "POST",
+            body: JSON.stringify({ idl: IDL })
+        })
+        const { files } = await response.json()
+
+        const zip = new JSZip();
+
+        // Iterate over each file in the response
+        files.forEach((file:any) => {
+            const {path, content} = file;
+
+            // Create folders and file in memory
+            const folders = path.split('/');
+            const fileName = folders.pop();
+
+            let folder = zip;
+            folders.forEach((folderName: any) => {
+                folder = folder.folder(folderName) as JSZip
+            });
+
+            // Set the content of the file
+            folder.file(fileName, content.String);
+        });
+
+        // Generate the zip file asynchronously
+        zip.generateAsync({ type: 'blob' }).then(blob => {
+            // Provide a way for the user to download the zip file
+            const url = URL.createObjectURL(blob);
+            // Example: Create a download link and trigger the click event
+            const downloadLink = document.createElement('a');
+            downloadLink.href = url;
+            downloadLink.download = `${IDL.name || " "}.zip`;
+            downloadLink.click();
+
+            // Clean up the created URL object
+            URL.revokeObjectURL(url);
+        });
+
     }
 
     return (
