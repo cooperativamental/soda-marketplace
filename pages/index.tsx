@@ -13,17 +13,14 @@ import {
 import JSONEditor from "@/components/JSONEditor";
 import { CodeBracketIcon } from "@heroicons/react/24/solid";
 import { useTemplates } from "@/context/templates";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 export default function Home() {
 
   const { IDL, setIDL } = useIDL()
   const { handlerPopUp } = useTemplates()
   const [selectedUI, setSelectedUI] = useState("cards")
-  const [baseFolder, setBaseFolder] = useState<any>(undefined);
-  //  const exportData = generateProjectFiles(IDL.name, templateFolder, setTemplateFolder, setBaseFolder);
   const newProject = cleanProject(setIDL);
-  //  const generateIDL = saveIDLFile(setBaseFolder, IDL.version, IDL.name, IDL.instructions, IDL.accounts, IDL.types, IDL.events, IDL.errors, IDL.metadata);
-  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [widthJson, setWidthJson] = useState(false)
   const [hiddenJson, setHiddenJson] = useState(true)
 
@@ -132,7 +129,7 @@ export default function Home() {
               className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
               onClick={handlerPopUp}
             >
-              <FolderArrowDownIcon className="h-5 w-5" aria-hidden="true" />Export
+              <FolderArrowDownIcon className="h-5oko w-5" aria-hidden="true" />Export
             </button>
           </div>
           <div className="text-chok flex gap-5">
@@ -140,6 +137,7 @@ export default function Home() {
             <button onClick={() => setSelectedUI("cards")} className={`${selectedUI === "cards" && "text-green-custom underline"}`}>cards</button>
             <button onClick={() => setSelectedUI("tables")} className={`${selectedUI === "tables" && "text-green-custom underline"}`}>tables</button>
             <button onClick={() => setSelectedUI("json")} className={`${selectedUI === "json" && "text-green-custom underline"}`}>JSON</button>
+            <WalletMultiButton className='!h-full !w-max !bg-[#FA9972] hover:!bg-slate-700 !rounded-3xl !font-thin'/>
 
           </div>
         </div>

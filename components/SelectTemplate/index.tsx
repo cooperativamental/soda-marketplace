@@ -30,6 +30,7 @@ const SelectTemplate: FC<any> = ({ templates, closePopUp }) => {
                             )
                         })
                     }
+                    
                 </div>
 
             </div>

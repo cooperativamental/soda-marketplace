@@ -13,7 +13,6 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             body: JSON.stringify({ idl: IDL })
         })
         const { files } = await response.json()
-
         const zip = new JSZip();
 
         // Iterate over each file in the response
