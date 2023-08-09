@@ -22,7 +22,7 @@ const SelectTemplate: FC<any> = ({ templates, closePopUp }) => {
                     </div>
                     <Image className="w-6 h-6" src={SolanaIcon} alt="back all project" />
                 </div>
-                <div className="p-4">
+                <div className="flex flex-wrap gap-4  p-4 overflow-y-auto">
                     {
                         templates.map((template: any, i: number) => {
                             return (

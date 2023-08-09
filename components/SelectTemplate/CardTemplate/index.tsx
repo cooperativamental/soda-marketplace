@@ -58,16 +58,15 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     }
 
     return (
-        <div className={` flex flex-col  bg-backg p-5 h-min w-60 rounded-3xl shadow-md shadow-black  text-white gap-6 justify-between items-center`}>
+        <div className={` flex flex-col max-h-80 bg-backg p-5 h-min w-52 rounded-3xl shadow-md shadow-black  text-white gap-3 justify-between items-center`}>
             <div className=" flex text-sm justify-between w-full">
                 <p>
                     {
                         !template?.price ?
-                            "Free "
+                            "Free Template"
                             :
                             `${template?.price?.toString()} ${template.currency} `
                     }
-                    Template
                 </p>
                 <p>v{template?.version}</p>
             </div>
@@ -76,10 +75,10 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                     template.icon &&
                     < Image className="h-10 w-10" src={template.icon} alt={template.name} />
                 }
-                <p>{template.name}</p>
+                <p className=" text-sm">{template.name}</p>
             </div>
             <div className="flex flex-col gap-2">
-                <p className=" text-xs">{template.description}</p>
+                <p className=" text-xs overflow-y-auto h-">{template.description}</p>
                 <p className=" text-sm">Brought to you by</p>
                 {
                     template.icon &&
