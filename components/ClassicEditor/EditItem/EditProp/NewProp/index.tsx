@@ -13,7 +13,7 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
       }
     }, {})
     setNewProperty(defaultProperty)
-  }, [])
+  }, [IDL])
 
   const handlerNewProperty = (e: any) => {
     setNewProperty({
@@ -22,8 +22,9 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
     })
   }
 
-  return (
+  console.log("state",newProperty)
 
+  return (
     <div
       className="flex flex-col justify-evenly p-2 h-full rounded-md items-start text-white font-medium ring-1 hover:ring-2 ring-border"
     >
@@ -34,6 +35,7 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
               <div key={name} className=' flex items-center gap-2 pl-4 pt-1'>
                 <label htmlFor={name}>{name}</label>
                 <input
+                  checked={newProperty[name]}
                   className='bg-inputs rounded-md cursor-pointer '
                   id={name}
                   type="checkbox"
@@ -48,7 +50,7 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
                 className='mt-2 bg-inputs rounded-md'
                 id={name}
                 disabled={disabled}
-                defaultValue={options[0]}
+                value={newProperty[name]}
                 onChange={handlerNewProperty}
               >
                 {
@@ -68,6 +70,7 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
           } else {
             return (
               <input
+                value={newProperty[name]}
                 key={name}
                 type='text'
                 id={name}

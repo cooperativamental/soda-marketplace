@@ -2,22 +2,25 @@ import { FC } from "react";
 import { TrashIcon } from "@heroicons/react/24/solid"
 import { useIDL } from "@/context/IDL";
 
-export const Card: FC<any> = ({ prop, item, onClick, index, setEdit }) => {
-  const { IDL, setIDL } = useIDL()
+export const Card: FC<any> = ({ prop, item, onClick, index }) => {
+  const { IDL, setIDL, handlerEditProp } = useIDL()
 
   const deleteItem = () => {
     const del = IDL[prop].toSpliced(index, 1)
-    setIDL({
-      ...IDL,
-      [prop]: del
-    })
+    if (confirm("Seguro que quiere eliminar?")) {
+      return setIDL({
+        ...IDL,
+        [prop]: del
+      })
+    }
+
   }
 
   return (
 
     <div
-      className="relative flex p-5 pt-7 m-5 border min-w-[10rem] h-[90%] rounded-lg border-border justify-center text-red font-medium hover:bg-backg hover:text-green-custom hover:border-green-custom cursor-pointer"
-      onClick={(e) => {setEdit({item, index})}}
+      className="relative flex p-5 pt-7 m-5 border min-w-[10rem] h-[90%] rounded-lg border-border justify-center text-red-custom font-medium hover:bg-backg hover:text-green-custom hover:border-green-custom cursor-pointer"
+      onClick={(e) => { handlerEditProp({ item, index }) }}
     >
       <TrashIcon onClick={(e) => {
         e.stopPropagation()

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import {  useState } from "react";
-import { cleanProject, openIDLFile, saveIDLFile } from "@/helpers";
+import { openIDLFile, saveIDLFile } from "@/helpers";
 import { useIDL } from "@/context/IDL";
 import { NewEditor } from "@/components/NewEditor/Editor";
 import ClassicEditor from "@/components/ClassicEditor/Editor";
@@ -17,45 +17,16 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 export default function Home() {
 
-  const { IDL, setIDL } = useIDL()
+  const { IDL, setIDL, cleanProject } = useIDL()
   const { handlerPopUp } = useTemplates()
   const [selectedUI, setSelectedUI] = useState("cards")
-  const newProject = cleanProject(setIDL);
   const [widthJson, setWidthJson] = useState(false)
   const [hiddenJson, setHiddenJson] = useState(true)
 
-  const navigation = [
-    {
-      name: 'Open IDL file',
-      href: '#',
-      //event: openIDL
-    },
-    {
-      name: 'New IDL',
-      href: '#',
-      event: newProject
-    },
-    {
-      name: 'Save IDL',
-      href: '#',
-      //      event: generateIDL
-    },
-    {
-      name: 'Select a template',
-      href: '#',
-      //     event: handleTemplateFolder
-    },
-    {
-      name: 'Create Project',
-      href: '#',
-      //      event: exportData
-    },
-  ]
-
   const render = () => {
     const view = {
-      cards: <ClassicEditor exportData={() => { }/*exportData*/} />,
-      tables: <NewEditor generateIDL={() => { }/*generateIDL*/} />
+      cards: <ClassicEditor />,
+      tables: <NewEditor />
     }
 
     if (selectedUI !== "json") {
@@ -105,7 +76,7 @@ export default function Home() {
             <button
               type="button"
               className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-              onClick={newProject}
+              onClick={cleanProject}
             >
               <PlusIcon className="h-5 w-5" aria-hidden="true" />New
             </button>
@@ -113,7 +84,6 @@ export default function Home() {
             <label
               htmlFor="file"
               className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-
             >
               <FolderOpenIcon className="h-5 w-5" aria-hidden="true" />Open
             </label>
@@ -138,7 +108,6 @@ export default function Home() {
             <button onClick={() => setSelectedUI("tables")} className={`${selectedUI === "tables" && "text-green-custom underline"}`}>tables</button>
             <button onClick={() => setSelectedUI("json")} className={`${selectedUI === "json" && "text-green-custom underline"}`}>JSON</button>
             <WalletMultiButton className='!h-full !w-max !bg-[#FA9972] hover:!bg-slate-700 !rounded-3xl !font-thin'/>
-
           </div>
         </div>
         <main className=" h-[calc(100%_-_5rem)] bg-backg ">

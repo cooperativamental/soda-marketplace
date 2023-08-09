@@ -3,8 +3,10 @@ import { NewItem } from "../NewItem";
 import { Card } from "../card";
 import EditItem from "../EditItem";
 import { EditProp } from "../EditItem/EditProp";
+import { useIDL } from "@/context/IDL";
 
 export const Section: FC<any> = ({ instruction, content, initExpanded = false, deleteItem }) => {
+  const { selectPropEdit } = useIDL()
   const [expanded, setExpanded] = useState(initExpanded);
   const [edit, setEdit] = useState<any>()
   const [isModalOpen, setIsModalOpen] = useState<string | boolean>(false);
@@ -28,7 +30,7 @@ export const Section: FC<any> = ({ instruction, content, initExpanded = false, d
       </div>
       <div className={`flex w-full mini-scrollbar transition-all duration-500 overflow-y-hidden ${expanded ? "overflow-x-auto h-80" : " overflow-x-hidden h-0"}`}>
         {
-          instruction !== "errors" && !edit ?
+          instruction !== "errors" && !selectPropEdit ?
             <>
               <NewItem
                 isModalOpen={isModalOpen}
@@ -43,7 +45,6 @@ export const Section: FC<any> = ({ instruction, content, initExpanded = false, d
                     item={item}
                     index={index}
                     setIsModalOpen={setIsModalOpen}
-                    setEdit={setEdit}
                   />
                 ))
               }

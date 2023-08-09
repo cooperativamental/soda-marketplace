@@ -12,11 +12,15 @@ import { invoke } from "@tauri-apps/api/tauri";
 import { message } from "@tauri-apps/api/dialog";
 
 const IDLContext = createContext<any>({
-  instructions: [],
-  accounts: [],
-  types: [],
-  events: [],
-  errors: [],
+  IDL: {
+    instructions: [],
+    accounts: [],
+    types: [],
+    events: [],
+    errors: [],
+  },
+  cleanProject: () => { }
+
 });
 
 const IDLProvider = ({ children }: { children: ReactNode }) => {
@@ -30,11 +34,30 @@ const IDLProvider = ({ children }: { children: ReactNode }) => {
     errors: [],
     metadata: undefined,
   });
+  const [selectPropEdit, handlerEditProp] = useState<any>()
+
+  const cleanProject = () => {
+    if (confirm('Are you sure? This will close your previus project')) {
+      setIDL({
+        name: "",
+        version: "0.1.0",
+        instructions: [],
+        accounts: [],
+        types: [],
+        events: [],
+        errors: [],
+        metadata: undefined
+      })
+      handlerEditProp(false)
+    };
+  }
+
+
+
 
 
   return (
-    <IDLContext.Provider value={{ IDL, setIDL }}>
-      
+    <IDLContext.Provider value={{ IDL, setIDL, cleanProject, handlerEditProp, selectPropEdit }}>
       {children}
     </IDLContext.Provider>
   );

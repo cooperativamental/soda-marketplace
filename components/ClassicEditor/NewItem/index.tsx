@@ -21,6 +21,7 @@ export const NewItem: FC<any> = ({ prop, setIsModalOpen, isModalOpen }) => {
         ]
       })
     }
+    setNewIntructionName("")
   }
 
   return (
@@ -31,10 +32,11 @@ export const NewItem: FC<any> = ({ prop, setIsModalOpen, isModalOpen }) => {
       <input
         placeholder={`Add ${prop.charAt(0).toUpperCase() + prop.slice(1)}'s name`}
         autoFocus
+        value={newInstructionName}
         onChange={(e) => setNewIntructionName(e.target.value)}
-        className="w-full text-center h-16 bg-inputs text-red rounded-md ring-1 ring-border"
+        className="w-full text-center h-16 bg-inputs text-red-custom rounded-md ring-1 ring-border"
       />
-      <button
+      <button 
         className="p-2 text-green-custom font-bold hover:bg-green-custom rounded-md hover:text-inputs"
         onClick={() => {
           setIsModalOpen(false)

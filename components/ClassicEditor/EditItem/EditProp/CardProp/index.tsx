@@ -18,8 +18,9 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
           }
         })
       }
-
-      return setIDL(del)
+      if (confirm("Seguro que quiere eliminar?")){
+        return setIDL(del)
+      }
     }
     const del = {
       ...IDL,
@@ -48,7 +49,9 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
         return inst
       })
     }
-    setIDL(del)
+    if (confirm("Seguro que quiere eliminar?")){
+      return setIDL(del)
+    }
   }
 
   const editProperty = (e: any) => {
