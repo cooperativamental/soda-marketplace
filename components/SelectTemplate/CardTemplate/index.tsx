@@ -10,7 +10,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const { connection } = useConnection()
     const wallet = useAnchorWallet();
     const exportProject = async () => {
-        if (checkNFT(connection , wallet)) {
+        if (await checkNFT(connection, wallet)) {
         const response = await fetch(`https://soda.shuttleapp.rs/get_project_files/${indexTemplate}`, {
             method: "POST",
             body: JSON.stringify({ idl: IDL })
@@ -32,7 +32,11 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             });
 
             // Set the content of the file
-            folder.file(fileName, content.String);
+            if (typeof content.String != "undefined") {
+                folder.file(fileName, content.String);
+            }else{
+                folder.file(fileName, content.Vec)
+            }
         });
 
         // Generate the zip file asynchronously
