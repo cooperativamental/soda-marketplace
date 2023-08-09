@@ -32,7 +32,11 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             });
 
             // Set the content of the file
-            folder.file(fileName, content.String);
+            if (typeof content.String != "undefined") {
+                folder.file(fileName, content.String);
+            }else{
+                folder.file(fileName, content.Vec)
+            }
         });
 
         // Generate the zip file asynchronously
