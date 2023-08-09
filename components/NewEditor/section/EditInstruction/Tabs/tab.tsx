@@ -1,19 +1,21 @@
 import { useIDL } from '@/context/IDL'
 import { FC, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { isProperty } from './verifyType'
-import { TrashIcon } from '@heroicons/react/24/solid'
+import { TrashIcon, CheckIcon } from '@heroicons/react/24/solid'
+
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
 const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteItem }) => {
+  const { IDL } = useIDL()
   const [newProperty, setNewProperty] = useState<any>({})
-  const [ stateElements, setStateElements] = useState<any>()
+  const [stateElements, setStateElements] = useState<any>()
 
-  useEffect(()=> {
+  useEffect(() => {
     setStateElements(elements)
-  },[elements])
+  }, [elements])
 
   useEffect(() => {
     const defaultProperty = objConfig.reduce((acc: any, prop: any) => {
@@ -23,7 +25,7 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
       }
     }, {})
     setNewProperty(defaultProperty)
-  }, [])
+  }, [IDL])
 
 
 
@@ -69,6 +71,7 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                           <input
                             className='bg-inputs rounded-md'
                             id={name}
+                            checked={newProperty[name]}
                             type="checkbox"
                             onChange={handlerNewProperty}
                           />
@@ -81,7 +84,7 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                             className='bg-inputs rounded-md'
                             id={name}
                             disabled={disabled}
-                            defaultValue={options[0]}
+                            value={newProperty[name]}
                             onChange={handlerNewProperty}
                           >
                             {
@@ -108,8 +111,9 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                           <input
                             type='text'
                             id={name}
+                            value={newProperty[name]}
                             disabled={disabled}
-                            className='bg-inputs rounded-md pl-5'
+                            className={`bg-inputs rounded-md pl-5 ${disabled ? "bg-transparent border-none" : ""}`}
                             onChange={handlerNewProperty}
                           />
                         </td>
@@ -118,12 +122,10 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                   })
                 }
                 <td className="whitespace-nowrap w-24 text-center text-sm font-medium">
-                  <button
+                  <CheckIcon
                     onClick={() => addProperty(newProperty)}
-                    className="text-chok hover:text-green-custom p-2"
-                  >
-                    Add Property
-                  </button>
+                    className="text-chok w-6 hover:text-green-custom"
+                  />
                 </td>
               </tr>
               {
@@ -132,10 +134,12 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                     {
                       objConfig.map(({ disabled, name, options }: any) => {
                         if (options === "boolean") {
+                          console.log(property[name])
                           return (
                             <td key={name} className='w-min px-5'>
                               <input
                                 id={name}
+                                defaultChecked={property[name]}
                                 type='checkbox'
                                 onChange={(e) => editProperty(e, index)}
                               />
@@ -166,7 +170,6 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                             </td>
                           )
                         } else {
-                          console.log(property?.[name])
                           return (
                             <td
                               key={property?.[name]}

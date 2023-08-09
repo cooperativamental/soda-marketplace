@@ -1,4 +1,5 @@
 import { useIDL } from "@/context/IDL";
+import { CheckIcon } from '@heroicons/react/24/solid'
 import { FC, useEffect, useState } from "react";
 
 export const NewItem: FC<any> = ({ prop, setIsModalOpen, isModalOpen }) => {
@@ -36,15 +37,13 @@ export const NewItem: FC<any> = ({ prop, setIsModalOpen, isModalOpen }) => {
         onChange={(e) => setNewIntructionName(e.target.value)}
         className="w-full text-center h-16 bg-inputs text-red-custom rounded-md ring-1 ring-border"
       />
-      <button 
-        className="p-2 text-green-custom font-bold hover:bg-green-custom rounded-md hover:text-inputs"
+      <CheckIcon
+        className=" self-end text-green-custom w-6 font-bold hover:bg-green-custom rounded-md hover:text-inputs"
         onClick={() => {
           setIsModalOpen(false)
           save()
         }}
-      >
-        Save
-      </button>
+      />
     </div>
   )
 }

@@ -83,7 +83,6 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
           if (index === indexItem) {
             if (!inst?.[nameConfig]?.find((prop: any) => prop[e.target.value])) {
               if (nameInstruction === "instructions") {
-                console.log(nameConfig, e.target.id, e.target.checked)
                 return {
                   ...inst,
                   [nameConfig]: inst?.[nameConfig].map((prop: any, i: number) => {
@@ -201,12 +200,10 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
                   type='text'
                   id={name}
                   disabled={disabled}
-                  className='bg-backg w-min text-left text-red rounded-md border-none font-bold ring-1 hover:bg-inputs'
+                  className={`bg-backg w-min text-left text-red rounded-md border-none font-bold ring-1 hover:bg-inputs`}
                   placeholder={name}
                   defaultValue={property?.[name]}
-                  // ref={inputRef}
                   onChange={(e) => {
-                    // setItem(property)
                     editProperty(e)
                   }}
                 />

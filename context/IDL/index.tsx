@@ -2,11 +2,7 @@ import {
   ReactNode,
   createContext,
   useContext,
-  useEffect,
-  SetStateAction,
   useState,
-  Dispatch,
-  useRef,
 } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import { message } from "@tauri-apps/api/dialog";
@@ -34,7 +30,7 @@ const IDLProvider = ({ children }: { children: ReactNode }) => {
     errors: [],
     metadata: undefined,
   });
-  const [selectPropEdit, handlerEditProp] = useState<any>()
+  const [clear, setClear] = useState(false)
 
   const cleanProject = () => {
     if (confirm('Are you sure? This will close your previus project')) {
@@ -48,16 +44,14 @@ const IDLProvider = ({ children }: { children: ReactNode }) => {
         errors: [],
         metadata: undefined
       })
-      handlerEditProp(false)
     };
+    setClear(true)
   }
 
 
 
-
-
   return (
-    <IDLContext.Provider value={{ IDL, setIDL, cleanProject, handlerEditProp, selectPropEdit }}>
+    <IDLContext.Provider value={{ IDL, setIDL, cleanProject, setClear, clear }}>
       {children}
     </IDLContext.Provider>
   );

@@ -4,6 +4,7 @@ import saveIDLFile from "./saveIDLFile";
 import about from "./about";
 import nameSetter from "./nameSetter";
 import handleBaseFolder from "./handleBaseFolder";
+import checkNFT from "./checkNFT";
 
 export {
     generateProjectFiles,
@@ -12,4 +13,5 @@ export {
     about,
     nameSetter,
     handleBaseFolder,
+    checkNFT,
 };

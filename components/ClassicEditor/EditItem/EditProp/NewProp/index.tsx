@@ -1,4 +1,5 @@
 import { useIDL } from "@/context/IDL";
+import { CheckIcon } from '@heroicons/react/24/solid'
 import { FC, useEffect, useState } from "react";
 
 export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
@@ -21,8 +22,6 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
       [e.target.id]: e.target.type === "checkbox" ? e.target.checked : e.target.value
     })
   }
-
-  console.log("state",newProperty)
 
   return (
     <div
@@ -76,21 +75,19 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
                 id={name}
                 placeholder={name}
                 disabled={disabled}
-                className='text-center w-min bg-inputs rounded-md mt-2'
+                className={`text-center w-min bg-inputs rounded-md mt-2 ${disabled ? "bg-transparent border-none" : ""}`}
                 onChange={handlerNewProperty}
               />
             )
           }
         })
       }
-      <button
-        className="p-2 text-green-custom hover:bg-green-custom hover:text-inputs rounded-md self-end"
+      <CheckIcon
+        className="w-6 text-green-custom hover:bg-green-custom hover:text-inputs rounded-md self-end"
         onClick={() => {
           addProperty(newProperty)
         }}
-      >
-        Save
-      </button>
+      />
     </div>
   )
 }

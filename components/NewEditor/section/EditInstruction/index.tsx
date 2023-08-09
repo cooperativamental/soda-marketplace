@@ -35,7 +35,7 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
             ...IDL,
             [instruction]: IDL[instruction].map((inst: any, index: number) => {
                 if (index === indexItem) {
-                    if (instruction === "instructions" && !inst?.[tabConfig]?.includes(newProperty)) {
+                    if (instruction === "instructions" && !inst?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
                         return {
                             ...inst,
                             [tabConfig]: [
@@ -44,7 +44,7 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
                             ]
                         }
                     }
-                    if (instruction === "events" && !inst?.[tabConfig]?.includes(newProperty)) {
+                    if (instruction === "events" && !inst?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
                         return {
                             ...inst,
                             fields: [
@@ -53,7 +53,7 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
                             ]
                         }
                     }
-                    if (!inst?.types?.[tabConfig]?.includes(newProperty)) {
+                    if (!inst?.types?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
                         return {
                             ...inst,
                             type: {

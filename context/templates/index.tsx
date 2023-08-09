@@ -22,8 +22,6 @@ const TemplatesProvider = ({ children }: { children: ReactNode }) => {
             .catch(err => console.error(err));
     }, [])
 
-    console.log(templates)
-
     return (
         <TemplateContext.Provider value={{ templates, handlerPopUp: () => {setPopUpTemplates(!popUpTemplates)}, popUpTemplates }}>
             {

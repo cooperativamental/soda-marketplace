@@ -28,7 +28,7 @@ export const Section: FC<any> = ({ instruction }) => {
             />
             <div className="flex gap-2">
               <CheckIcon
-                className="w-5 h-5 text-white hover:text-green-custom"
+                className="w-5 text-white hover:text-green-custom"
                 onClick={() => {
                   if (!IDL[instruction].find((inst: any) => inst.name === newInstructionName)) {
                     setIDL({
@@ -38,6 +38,7 @@ export const Section: FC<any> = ({ instruction }) => {
                         { name: newInstructionName }
                       ]
                     })
+                    setEditingItem(IDL[instruction].length)
                   }
                 }
                 }
@@ -48,8 +49,6 @@ export const Section: FC<any> = ({ instruction }) => {
         {
           instruction !== "errors" &&
           <div className=" flex flex-col gap-2 max-h-full w-80 pr-4 overflow-y-auto">
-
-
             {
               IDL[instruction]?.map(({ name }: { name: string; }, index: number) => {
                 return ( 

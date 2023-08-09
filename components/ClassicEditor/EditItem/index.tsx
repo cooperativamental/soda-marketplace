@@ -4,21 +4,19 @@ import { useIDL } from "@/context/IDL"
 import { EditProp } from "./EditProp"
 import { ArrowLeftIcon } from "@heroicons/react/24/solid"
 
-const EditItem: FC<any> = ({ instruction, setEdit }) => {
-    const { IDL, setIDL, selectPropEdit, handlerEditProp } = useIDL()
+const EditItem: FC<any> = ({ indexItem, instruction, setEdit }) => {
+    const { IDL, setIDL } = useIDL()
     const [tabConfig, setTab] = useState("accounts")
     const [kind, setKind] = useState("")
 
 
     useEffect(() => {
-        if (IDL?.[instruction]?.[selectPropEdit?.index]?.type) {
-            setKind(IDL?.[instruction]?.[selectPropEdit?.index]?.type?.kind)
+        if (IDL?.[instruction]?.[indexItem]?.type) {
+            setKind(IDL?.[instruction]?.[indexItem]?.type?.kind)
         } else {
             setKind("")
         }
-    }, [selectPropEdit?.index])
-
-
+    }, [indexItem])
 
     const addProperty = (newProperty: any) => {
         if (instruction === "errors") {
@@ -37,8 +35,8 @@ const EditItem: FC<any> = ({ instruction, setEdit }) => {
         setIDL({
             ...IDL,
             [instruction]: IDL[instruction].map((inst: any, index: number) => {
-                if (index === selectPropEdit?.index) {
-                    if (instruction === "instructions" && !inst?.[tabConfig]?.includes(newProperty)) {
+                if (index === indexItem) {
+                    if (instruction === "instructions" && !inst?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
                         return {
                             ...inst,
                             [tabConfig]: [
@@ -47,7 +45,7 @@ const EditItem: FC<any> = ({ instruction, setEdit }) => {
                             ]
                         }
                     }
-                    if (instruction === "events" && !inst?.[tabConfig]?.includes(newProperty)) {
+                    if (instruction === "events" && !inst?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
                         return {
                             ...inst,
                             fields: [
@@ -56,7 +54,7 @@ const EditItem: FC<any> = ({ instruction, setEdit }) => {
                             ]
                         }
                     }
-                    if (!inst?.types?.[tabConfig]?.includes(newProperty)) {
+                    if (!inst?.types?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
                         return {
                             ...inst,
                             type: {
@@ -77,7 +75,7 @@ const EditItem: FC<any> = ({ instruction, setEdit }) => {
 
     const render = {
         instructions: (
-            IDL?.[instruction]?.[selectPropEdit?.index] &&
+            IDL?.[instruction]?.[indexItem] &&
             <>
                 <div className="flex w-full h-12 mt-4 text-center -space-x-1">
                     {
@@ -106,9 +104,9 @@ const EditItem: FC<any> = ({ instruction, setEdit }) => {
                     <EditProp
                         instruction={instruction}
                         nameConfig={tabConfig}
-                        index={selectPropEdit?.index}
+                        indexItem={indexItem}
                         addProperty={addProperty}
-                        elements={IDL?.[instruction]?.[selectPropEdit?.index]?.[tabConfig]}
+                        elements={IDL?.[instruction]?.[indexItem]?.[tabConfig]}
                         objConfig={[{ name: "name" }, { name: "isMut", options: "boolean" }, { name: "isSigner", options: "boolean" }]}
                     />
                 }
@@ -117,9 +115,9 @@ const EditItem: FC<any> = ({ instruction, setEdit }) => {
                     <EditProp
                         instruction={instruction}
                         nameConfig={tabConfig}
-                        index={selectPropEdit?.index}
+                        indexItem={indexItem}
                         addProperty={addProperty}
-                        elements={IDL?.[instruction]?.[selectPropEdit?.index]?.[tabConfig]}
+                        elements={IDL?.[instruction]?.[indexItem]?.[tabConfig]}
                         objConfig={[{ name: "name" }, { name: "type", options: type_args }]}
                     />
                 }
@@ -129,7 +127,7 @@ const EditItem: FC<any> = ({ instruction, setEdit }) => {
             <>
                 <EditProp
                     instruction={instruction}
-                    index={selectPropEdit?.index}
+                    indexItem={indexItem}
                     addProperty={addProperty}
                     elements={IDL?.[instruction]}
                     objConfig={[{ disabled: true, name: "code" }, { name: "name" }, { name: "msg" }]}
@@ -137,13 +135,13 @@ const EditItem: FC<any> = ({ instruction, setEdit }) => {
             </>
         ),
         events: (
-            IDL?.[instruction]?.[selectPropEdit?.index] &&
+            IDL?.[instruction]?.[indexItem] &&
             <>
                 <EditProp
                     instruction={instruction}
-                    index={selectPropEdit?.index}
+                    indexItem={indexItem}
                     addProperty={addProperty}
-                    elements={IDL?.[instruction]?.[selectPropEdit?.index]?.fields}
+                    elements={IDL?.[instruction]?.[indexItem]?.fields}
                     objConfig={[{ name: "name" }, { name: "type", options: type_args }, { name: "index", options: "boolean" }]}
                 />
             </>
@@ -159,10 +157,10 @@ const EditItem: FC<any> = ({ instruction, setEdit }) => {
                 >
                     <ArrowLeftIcon
                         className="w-5 h-5 text-chok cursor-pointer hover:text-green-custom"
-                        onClick={() => handlerEditProp(false)}
+                        onClick={() => setEdit(false)}
                     />
                     <p className="ml-2 font-bold"> 
-                        {`${IDL?.[instruction]?.[selectPropEdit?.index]?.name?.charAt(0).toUpperCase() + IDL?.[instruction]?.[selectPropEdit?.index]?.name?.slice(1)}`}
+                        {`${IDL?.[instruction]?.[indexItem]?.name?.charAt(0).toUpperCase() + IDL?.[instruction]?.[indexItem]?.name?.slice(1)}`}
                     </p>
                 </div>
             }
@@ -171,7 +169,7 @@ const EditItem: FC<any> = ({ instruction, setEdit }) => {
                 ||
                 <div className="mt-4 ml-2">
                     {
-                        !IDL?.[instruction]?.[selectPropEdit?.index]?.type ?
+                        !IDL?.[instruction]?.[indexItem]?.type ?
                             <select
                                 className='bg-inputs rounded-md text-chok'
                                 defaultValue={0}
@@ -198,27 +196,27 @@ const EditItem: FC<any> = ({ instruction, setEdit }) => {
                             :
                             <p className="text-chok ml-2">
                                 {
-                                    `Kind: ${IDL?.[instruction]?.[selectPropEdit?.index]?.type.kind}`
+                                    `Kind: ${IDL?.[instruction]?.[indexItem]?.type.kind}`
                                 }
                             </p>
                     }
                     {
                         kind === "enum" &&
                         <EditProp
-                            elements={IDL?.[instruction]?.[selectPropEdit?.index]?.type?.variants}
+                            elements={IDL?.[instruction]?.[indexItem]?.type?.variants}
                             objConfig={[{ name: "name" }]}
                             instruction={instruction}
                             addProperty={addProperty}
-                            index={selectPropEdit?.index}
+                            indexItem={indexItem}
                         />
                     }
                     {
                         kind === "struct" &&
                         <EditProp
                             addProperty={addProperty}
-                            index={selectPropEdit?.index}
+                            indexItem={indexItem}
                             instruction={instruction}
-                            elements={IDL?.[instruction]?.[selectPropEdit?.index]?.type?.fields}
+                            elements={IDL?.[instruction]?.[indexItem]?.type?.fields}
                             objConfig={[{ name: "name" }, { name: "type", options: type_args }, { name: "index", options: "boolean" }]}
                         />
                     }
