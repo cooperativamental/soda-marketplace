@@ -1,13 +1,16 @@
 import { useIDL } from "@/context/IDL";
+import { checkNFT } from "@/helpers";
+import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
 import JSZip from "jszip";
 import Image from "next/image"
 import { FC } from "react";
 
 const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const { IDL } = useIDL()
-
+    const { connection } = useConnection()
+    const wallet = useAnchorWallet();
     const exportProject = async () => {
-        console.log(IDL)
+        if (checkNFT(connection , wallet)) {
         const response = await fetch(`https://soda.shuttleapp.rs/get_project_files/${indexTemplate}`, {
             method: "POST",
             body: JSON.stringify({ idl: IDL })
@@ -45,7 +48,9 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             // Clean up the created URL object
             URL.revokeObjectURL(url);
         });
-
+    }else{
+        alert("need to be coneected with a wallet with the Soda NFT")
+    }
     }
 
     return (
