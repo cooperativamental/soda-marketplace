@@ -36,9 +36,6 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
     })
   }
 
-
-
-
   return (
     <div className="flex flex-col gap-4 w-full overflow-x-auto h-full  overflow-y-auto">
       <div className="inline-block w-full align-middle">
