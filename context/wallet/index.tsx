@@ -18,6 +18,7 @@ const WalletContextProvider: FC<any> = ({ children }) => {
     ],
     []
   );
+  
   return (
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
