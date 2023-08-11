@@ -134,7 +134,6 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                     {
                       objConfig.map(({ disabled, name, options }: any) => {
                         if (options === "boolean") {
-                          console.log(property[name])
                           return (
                             <td key={name} className='w-min px-5'>
                               <input
