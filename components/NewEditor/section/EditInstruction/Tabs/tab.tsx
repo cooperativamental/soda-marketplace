@@ -135,6 +135,7 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                             <td key={name} className='w-min px-5'>
                               <input
                                 id={name}
+                                className='bg-inputs rounded-md'
                                 defaultChecked={property[name]}
                                 type='checkbox'
                                 onChange={(e) => editProperty(e, index)}

@@ -19,14 +19,19 @@ export const Card: FC<any> = ({ prop, item, onClick, index, setEdit }) => {
   return (
 
     <div
-      className="relative flex p-5 pt-7 m-5 border min-w-[10rem] h-[90%] rounded-lg border-border justify-center text-red-custom font-medium hover:bg-backg hover:text-green-custom hover:border-green-custom cursor-pointer"
+      className="relative flex flex-col items-center justify-around h-[90%] border min-w-[10rem] w-40 rounded-lg border-border text-red-custom font-medium hover:bg-backg hover:text-green-custom hover:border-green-custom cursor-pointer"
       onClick={(e) => { setEdit({ item, index }) }}
     >
       <TrashIcon onClick={(e) => {
         e.stopPropagation()
         deleteItem()
       }} className="absolute z-20 text-border bottom-2 right-2 w-4 h-4 hover:text-yellow-custom" />
-      <p className="overflow-hidden text-justify mt-2 break-words">{item.name}</p>
+      <div className=" flex flex-col justify-around h-[80%] w-11/12">
+        <p className="text-justify text-2xl break-words">{item.name}</p>
+        <p className="overflow-y-auto mini-scrollbar">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi nulla, impedit repellendus optio corporis quam similique nostrum quasi porro odit praesentium obcaecati fugiat? Quos autem adipisci doloribus error dignissimos unde.
+        </p>
+      </div>
     </div>
   )
 }

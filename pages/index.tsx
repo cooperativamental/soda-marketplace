@@ -18,7 +18,7 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 export default function Home() {
 
   const { IDL, setIDL, cleanProject } = useIDL()
-  const { handlerPopUp } = useTemplates()
+  const { handlerPopUpTemplate } = useTemplates()
   const [selectedUI, setSelectedUI] = useState("cards")
   const [widthJson, setWidthJson] = useState(false)
   const [hiddenJson, setHiddenJson] = useState(true)
@@ -90,14 +90,14 @@ export default function Home() {
             <button
               type="button"
               className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-            // onClick={generateIDL}
+              onClick={()=>saveIDLFile(IDL)}
             >
               <ArrowDownTrayIcon className="h-5 w-5" aria-hidden="true" />Save
             </button>
             <button
               type="button"
               className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-              onClick={handlerPopUp}
+              onClick={handlerPopUpTemplate}
             >
               <FolderArrowDownIcon className="h-5oko w-5" aria-hidden="true" />Export
             </button>

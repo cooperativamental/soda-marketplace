@@ -12,7 +12,7 @@ export const NewItem: FC<any> = ({ prop, setIsModalOpen, isModalOpen }) => {
   }, [isModalOpen])
 
   const save = () => {
-    if (!IDL[prop].find((inst: any) => inst.name === newInstructionName)) {
+    if (!IDL[prop].find((inst: any) => inst.name === newInstructionName) && newInstructionName  ) {
 
       setIDL({
         ...IDL,

@@ -9,6 +9,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const { IDL } = useIDL()
     const { connection } = useConnection()
     const wallet = useAnchorWallet();
+    
     const exportProject = async () => {
         if (await checkNFT(connection, wallet)) {
         const response = await fetch(`https://soda.shuttleapp.rs/get_project_files/${indexTemplate}`, {

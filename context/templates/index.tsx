@@ -23,7 +23,7 @@ const TemplatesProvider = ({ children }: { children: ReactNode }) => {
     }, [])
 
     return (
-        <TemplateContext.Provider value={{ templates, handlerPopUp: () => {setPopUpTemplates(!popUpTemplates)}, popUpTemplates }}>
+        <TemplateContext.Provider value={{ templates, handlerPopUpTemplate: () => {setPopUpTemplates(!popUpTemplates)}, popUpTemplates }}>
             {
                 popUpTemplates &&
                 <SelectTemplate templates={templates} closePopUp={()=>setPopUpTemplates(false)} />
