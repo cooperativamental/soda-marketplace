@@ -30,7 +30,7 @@ export const Section: FC<any> = ({ instruction }) => {
               <CheckIcon
                 className="w-5 text-white hover:text-green-custom"
                 onClick={() => {
-                  if (!IDL[instruction].find((inst: any) => inst.name === newInstructionName)) {
+                  if (!IDL[instruction].find((inst: any) => inst.name === newInstructionName) && newInstructionName) {
                     setIDL({
                       ...IDL,
                       [instruction]: [

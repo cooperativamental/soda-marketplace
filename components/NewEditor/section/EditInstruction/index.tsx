@@ -18,58 +18,60 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
     }, [indexItem])
 
     const addProperty = (newProperty: any) => {
-        if (instruction === "errors") {
-            const errProperty = {
-                ...newProperty,
-                code: 6000 + (IDL[instruction].length)
+        if(newProperty.name) {
+            if (instruction === "errors") {
+                const errProperty = {
+                    ...newProperty,
+                    code: 6000 + (IDL[instruction].length)
+                }
+                return setIDL({
+                    ...IDL,
+                    [instruction]: [
+                        ...IDL[instruction],
+                        errProperty
+                    ]
+                })
             }
-            return setIDL({
+            setIDL({
                 ...IDL,
-                [instruction]: [
-                    ...IDL[instruction],
-                    errProperty
-                ]
-            })
-        }
-        setIDL({
-            ...IDL,
-            [instruction]: IDL[instruction].map((inst: any, index: number) => {
-                if (index === indexItem) {
-                    if (instruction === "instructions" && !inst?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
-                        return {
-                            ...inst,
-                            [tabConfig]: [
-                                ...inst?.[tabConfig] || [],
-                                newProperty
-                            ]
-                        }
-                    }
-                    if (instruction === "events" && !inst?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
-                        return {
-                            ...inst,
-                            fields: [
-                                ...inst?.fields || [],
-                                newProperty
-                            ]
-                        }
-                    }
-                    if (!inst?.types?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
-                        return {
-                            ...inst,
-                            type: {
-                                kind: kind,
-                                [kind === "struct" ? "fields" : "variants"]: [
-                                    ...inst?.type?.[kind === "struct" ? "fields" : "variants"] || [],
+                [instruction]: IDL[instruction].map((inst: any, index: number) => {
+                    if (index === indexItem) {
+                        if (instruction === "instructions" && !inst?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
+                            return {
+                                ...inst,
+                                [tabConfig]: [
+                                    ...inst?.[tabConfig] || [],
                                     newProperty
                                 ]
-
+                            }
+                        }
+                        if (instruction === "events" && !inst?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
+                            return {
+                                ...inst,
+                                fields: [
+                                    ...inst?.fields || [],
+                                    newProperty
+                                ]
+                            }
+                        }
+                        if (!inst?.types?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
+                            return {
+                                ...inst,
+                                type: {
+                                    kind: kind,
+                                    [kind === "struct" ? "fields" : "variants"]: [
+                                        ...inst?.type?.[kind === "struct" ? "fields" : "variants"] || [],
+                                        newProperty
+                                    ]
+    
+                                }
                             }
                         }
                     }
-                }
-                return inst
+                    return inst
+                })
             })
-        })
+        }
     }
 
     const editProperty = (e: any, indexProperty: number) => {
