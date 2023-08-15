@@ -92,7 +92,7 @@ export default function Home() {
               className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
               onClick={()=>saveIDLFile(IDL)}
             >
-              <ArrowDownTrayIcon className="h-5 w-5" aria-hidden="true" />Save
+              <ArrowDownTrayIcon className="h-5 w-5" aria-hidden="true" /> Download IDL
             </button>
             <button
               type="button"
