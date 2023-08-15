@@ -85,8 +85,9 @@ export default function Home() {
               htmlFor="file"
               className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
             >
-              <FolderOpenIcon className="h-5 w-5" aria-hidden="true" />Open
+              <FolderOpenIcon className="h-5 w-5" aria-hidden="true" /> Open
             </label>
+            
             <button
               type="button"
               className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
