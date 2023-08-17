@@ -35,7 +35,7 @@ export const NewItem: FC<any> = ({ prop, setIsModalOpen, isModalOpen }) => {
         autoFocus
         value={newInstructionName}
         onChange={(e) => setNewIntructionName(e.target.value)}
-        className="w-full text-center h-16 bg-inputs text-red-custom rounded-md ring-1 ring-border"
+        className="w-full text-center h-16 p-4 bg-inputs text-red-custom rounded-md ring-1 ring-border"
       />
       <CheckIcon
         className=" self-end text-green-custom w-6 font-bold hover:bg-green-custom rounded-md hover:text-inputs"

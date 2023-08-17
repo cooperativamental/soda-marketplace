@@ -32,7 +32,7 @@ export default function Home() {
     if (selectedUI !== "json") {
       return (
         <div className="flex h-full ">
-          <div className="h-full w-full overflow-auto">
+          <div className="relative h-full w-full overflow-auto">
             <CodeBracketIcon
               onClick={() => {
                 if (widthJson) {
@@ -48,7 +48,7 @@ export default function Home() {
 
                 }
               }}
-              className="sticky ml-auto mr-2 top-2 w-6 h-6 text-white z-20 cursor-pointer hover:text-green-customn "
+              className="absolute top-2 right-2 w-6 h-6 text-white z-20 cursor-pointer hover:text-green-customn "
             />
             {view[selectedUI as keyof typeof render]}
           </div>

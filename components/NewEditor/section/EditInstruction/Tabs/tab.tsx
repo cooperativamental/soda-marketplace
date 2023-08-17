@@ -194,7 +194,7 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                           e.stopPropagation()
                           deleteItem(index)
                         }}
-                        className="z-20 text-chokw-4 h-4 hover:text-red"
+                        className="z-20 text-chokw-4 h-4 hover:text-red cursor-pointer"
                       />
                     </td>
                   </tr>

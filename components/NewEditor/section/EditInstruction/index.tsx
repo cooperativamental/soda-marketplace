@@ -159,58 +159,62 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
     }
 
     const deleteItem = (indexProperty: number) => {
-        if (instruction === "errors") {
+        console.log("delete?")
+        if(confirm("Seguro que desea eliminar?")){
+            if (instruction === "errors") {
+                const del = {
+                    ...IDL,
+                    [instruction]: IDL[instruction].filter((e: any, i: any) => i !== indexProperty).map((error: any, i: any) => {
+                        return {
+                            ...error,
+                            code: 6000 + i
+                        }
+                    })
+                }
+                setIDL(del)
+                return 
+            }
             const del = {
                 ...IDL,
-                [instruction]: IDL[instruction].filter((e: any, i: any) => i !== indexProperty).map((error: any, i: any) => {
-                    return {
-                        ...error,
-                        code: 6000 + i
+                [instruction]: IDL[instruction].map((inst: any, index: number) => {
+                    if (index === indexItem) {
+                        if (instruction === "instructions") {
+                            return {
+                                ...inst,
+                                [tabConfig]: inst[tabConfig].filter((e: any, i: any) => i !== indexProperty)
+                            }
+                        }
+                        if (instruction === "events") {
+                            return {
+                                ...inst,
+                                fields: inst?.fields.filter((e: any, i: any) => i !== indexProperty)
+                            }
+                        }
+                        return {
+                            ...inst,
+                            type: {
+                                ...inst.type,
+                                [inst?.type?.kind === "struct" ? "fields" : "variants"]: inst?.type?.[inst?.type?.kind === "struct" ? "fields" : "variants"].filter((e: any, i: any) => i !== indexProperty)
+                            }
+                        }
                     }
+                    return inst
                 })
             }
             setIDL(del)
-            return 
         }
-        const del = {
-            ...IDL,
-            [instruction]: IDL[instruction].map((inst: any, index: number) => {
-                if (index === indexItem) {
-                    if (instruction === "instructions") {
-                        return {
-                            ...inst,
-                            [tabConfig]: inst[tabConfig].filter((e: any, i: any) => i !== indexProperty)
-                        }
-                    }
-                    if (instruction === "events") {
-                        return {
-                            ...inst,
-                            fields: inst?.fields.filter((e: any, i: any) => i !== indexProperty)
-                        }
-                    }
-                    return {
-                        ...inst,
-                        type: {
-                            ...inst.type,
-                            [inst?.type?.kind === "struct" ? "fields" : "variants"]: inst?.type?.[inst?.type?.kind === "struct" ? "fields" : "variants"].filter((e: any, i: any) => i !== indexProperty)
-                        }
-                    }
-                }
-                return inst
-            })
-        }
-        setIDL(del)
     }
+
     const render = {
         instructions: (
             IDL?.[instruction]?.[indexItem] &&
-            <div className="flex flex-col overflow-x-auto gap-4 h-full bg-backg rounded-md shadow-md shadow-inputs mt-20">
+            <div className="flex flex-col overflow-x-auto gap-4 w-10/12 h-full bg-backg rounded-md shadow-md shadow-inputs">
                 <div className="flex w-full h-12 text-center -space-x-1 shadow-inner shadow-inputs bg-backg">
                     {
                         ["accounts", "args"].map((name, index) => {
                             return (
                                 <div
-                                    className={` ${tabConfig === name ? "z-20" : ""} self-end w-full`}
+                                    className={` ${tabConfig === name ? "z-20" : ""} self-end w-1/2`}
                                     key={name}
                                 >
                                     <div
@@ -277,7 +281,7 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
     if (render[instruction as keyof typeof render]) return render[instruction as keyof typeof render]
     return (
         IDL?.[instruction]?.[indexItem] &&
-        <div className="flex flex-col overflow-x-auto gap-4 h-full mt-20">
+        <div className="flex flex-col overflow-x-auto gap-4 h-full w-full">
             {
                 !IDL?.[instruction]?.[indexItem]?.type ?
                     <select
