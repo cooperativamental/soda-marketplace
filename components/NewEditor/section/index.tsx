@@ -34,6 +34,7 @@ export const Section: FC<any> = ({ instruction }) => {
                       { name: newInstructionName }
                     ]
                   })
+                  setNewIntructionName("")
                   setEditingItem(IDL[instruction].length)
                 }
               }
