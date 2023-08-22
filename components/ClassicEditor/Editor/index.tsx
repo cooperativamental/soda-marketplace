@@ -20,7 +20,6 @@ const ClassicEditor: FC<any> = ({ exportData }) => {
             name: "accounts",
             item: IDL.accounts,
             initExpanded: false,
-
         },
         {
             name: "types",

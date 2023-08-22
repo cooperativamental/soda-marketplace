@@ -24,6 +24,8 @@ export const Section: FC<any> = ({ instruction, content, initExpanded = false })
     setEdit(false)
   },[clear])
 
+  console.log(edit)
+
   return (
     <section className={`flex p-5 m-5 border border-border bg-backg rounded-md relative`}>
       <div
@@ -43,6 +45,7 @@ export const Section: FC<any> = ({ instruction, content, initExpanded = false })
               {
                 content.map((item: any, index: number) => (
                   <Card
+                    explanationText={"Add errors"}
                     prop={instruction}
                     key={item.name}
                     item={item}

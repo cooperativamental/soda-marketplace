@@ -12,6 +12,7 @@ const PopUp: FC<any> = ({ children, title, closePopUp, icon, iconClassName }) =>
     useEffect(() => {
         const handleClickOutside = (event: any) => {
             if (popUpRef.current && !popUpRef.current.contains(event.target)) {
+                console.log("close")
                 closePopUp()
             }
         };
@@ -21,10 +22,8 @@ const PopUp: FC<any> = ({ children, title, closePopUp, icon, iconClassName }) =>
         };
     }, [popUpRef]);
 
-    console.log(icon)
-
     return (
-        <div className="fixed z-50  h-screen w-full backdrop-blur-[.5px] bg-white/30 ">
+        <div className="fixed z-50 top-0 left-0  h-screen w-full backdrop-blur-[.5px] bg-white/30 ">
             <div ref={popUpRef} className=" flex flex-col absolute max-w-7xl max-h-[80vh] top-10 -translate-x-1/2 left-1/2 overflow-auto rounded-3xl bg-[#242f34] [&::-webkit-scrollbar]:hidden">
                 <div className="flex bg-[#0c1f3f] p-3 justify-between gap-2 w-full items-center">
                     <Image src={ArrowBack} alt="back all project" className="w-4 h-4 cursor-pointer" onClick={closePopUp} />

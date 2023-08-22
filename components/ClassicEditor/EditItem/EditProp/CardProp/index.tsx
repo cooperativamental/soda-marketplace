@@ -1,11 +1,16 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { TrashIcon } from "@heroicons/react/24/solid"
 import { useIDL } from "@/context/IDL";
+import PopUp from "@/components/PopUp";
 
 export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem, indexProperty, objConfig, nameConfig }) => {
   const { IDL, setIDL } = useIDL()
   const timeOutediting = useRef<NodeJS.Timeout>()
+  const [confirmation, setConfirmation] = useState(false)
 
+  const cancelDelete = () => {
+    setConfirmation(false)
+  }
 
   const deleteItem = () => {
     if (nameInstruction === "errors") {
@@ -18,9 +23,7 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
           }
         })
       }
-      if (confirm("Seguro que quiere eliminar?")){
-        return setIDL(del)
-      }
+      return setIDL(del)
     }
     const del = {
       ...IDL,
@@ -49,9 +52,7 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
         return inst
       })
     }
-    if (confirm("Seguro que quiere eliminar?")){
-      return setIDL(del)
-    }
+    return setIDL(del)
   }
 
   const editProperty = (e: any) => {
@@ -62,7 +63,7 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
         const editing = {
           ...IDL,
           [nameInstruction]: IDL[nameInstruction].map((prop: any, i: number) => {
-            
+
             if (indexProperty === i) {
               return {
                 ...prop,
@@ -73,7 +74,7 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
             }
           })
         }
-       
+
         return setIDL(editing)
       }
 
@@ -141,77 +142,102 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
   }
 
   return (
-
-    <div
-      className="relative flex p-5 border w-32 min-w-min h-full rounded-lg border-border justify-evenly text-yellow-custom font-thin hover:bg-backg hover:text-green-custom hover:border-green-custom"
-      onClick={(e) => { }}
-    >
-      <TrashIcon
-        onClick={(e) => {
-          e.stopPropagation()
-          deleteItem()
-        }}
-        className="absolute z-20 text-border bottom-2 right-2 w-4 h-4 hover:text-red cursor-pointer"
-      />
-      <div key={prop?.name} className='flex flex-col w-max items-start left-2'>
-        {
-          objConfig.map(({ disabled, name, options }: any) => {
-            if (options === "boolean") {
-              return (
-                <div key={name} className="flex gap-2 text-green-custom items-center pl-4 pt-2">
-                  <label htmlFor={name} >{name}</label>
-                  <input
-                    defaultChecked={property[name]}
+    <>
+      <div
+        className="relative flex p-5 border w-32 min-w-min h-full rounded-lg border-border justify-evenly text-yellow-custom font-thin hover:bg-backg hover:text-green-custom hover:border-green-custom"
+        onClick={(e) => { }}
+      >
+        <TrashIcon
+          onClick={(e) => {
+            e.stopPropagation()
+            setConfirmation(true)
+          }}
+          className="absolute z-20 text-border bottom-2 right-2 w-4 h-4 hover:text-red cursor-pointer"
+        />
+        <div key={prop?.name} className='flex flex-col w-max items-start left-2'>
+          {
+            objConfig.map(({ disabled, name, options }: any) => {
+              if (options === "boolean") {
+                return (
+                  <div key={name} className="flex gap-2 text-green-custom items-center pl-4 pt-2">
+                    <label htmlFor={name} >{name}</label>
+                    <input
+                      defaultChecked={property[name]}
+                      id={name}
+                      type='checkbox'
+                      className='bg-inputs rounded-md cursor-pointer'
+                      onChange={(e) => editProperty(e)}
+                    />
+                  </div>
+                )
+              } else if (options?.length) {
+                return (
+                  <select
+                    key={name}
+                    className='bg-backg rounded-md mt-2 border-none cursor-pointer hover:bg-inputs ring-1'
                     id={name}
-                    type='checkbox'
-                    className='bg-inputs rounded-md cursor-pointer'
+                    defaultValue={property[name]}
+                    disabled={disabled}
                     onChange={(e) => editProperty(e)}
-                  />
-                </div>
-              )
-            } else if (options?.length) {
-              return (
-                <select
-                  key={name}
-                  className='bg-backg rounded-md mt-2 border-none cursor-pointer hover:bg-inputs ring-1'
-                  id={name}
-                  defaultValue={property[name]}
-                  disabled={disabled}
-                  onChange={(e) => editProperty(e)}
-                >
-                  {
-                    options?.map((op: any) => {
-                      return (
-                        <option key={op}>
-                          {
-                            op
-                          }
-                        </option>
-                      )
-                    })
-                  }
-                </select>
-              )
-            } else {
-              return (
+                  >
+                    {
+                      options?.map((op: any) => {
+                        return (
+                          <option key={op}>
+                            {
+                              op
+                            }
+                          </option>
+                        )
+                      })
+                    }
+                  </select>
+                )
+              } else {
+                return (
 
-                <input
-                  key={property?.[name]}
-                  type='text'
-                  id={name}
-                  disabled={disabled}
-                  className={`bg-backg w-min text-left text-red rounded-md border-none font-bold ring-1 hover:bg-inputs`}
-                  placeholder={name}
-                  defaultValue={property?.[name]}
-                  onChange={(e) => {
-                    editProperty(e)
-                  }}
-                />
-              )
-            }
-          })
-        }
+                  <input
+                    key={property?.[name]}
+                    type='text'
+                    id={name}
+                    disabled={disabled}
+                    className={`bg-backg w-min text-left text-red rounded-md border-none font-bold ring-1 hover:bg-inputs`}
+                    placeholder={name}
+                    defaultValue={property?.[name]}
+                    onChange={(e) => {
+                      editProperty(e)
+                    }}
+                  />
+                )
+              }
+            })
+          }
+        </div>
       </div>
-    </div>
+      {
+        confirmation &&
+        <PopUp
+          closePopUp={cancelDelete}
+        >
+          <div className="flex flex-col p-5 items-center gap-5">
+            <p className="text-white">Are you sure you want to delete?</p>
+            <div className="flex gap-4">
+              <button
+                onClick={cancelDelete}
+                className="text-white bg-red-600 px-5 rounded-xl h-10"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={deleteItem}
+                className="text-white bg-[#387847] px-5 rounded-xl h-10"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </PopUp>
+      }
+    </>
   )
 }

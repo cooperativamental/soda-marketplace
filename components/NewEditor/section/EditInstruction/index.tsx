@@ -18,7 +18,7 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
     }, [indexItem])
 
     const addProperty = (newProperty: any) => {
-        if(newProperty.name) {
+        if (newProperty.name) {
             if (instruction === "errors") {
                 const errProperty = {
                     ...newProperty,
@@ -36,7 +36,7 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
                 ...IDL,
                 [instruction]: IDL[instruction].map((inst: any, index: number) => {
                     if (index === indexItem) {
-                        if (instruction === "instructions" && !inst?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
+                        if (instruction === "instructions" && !inst?.[tabConfig]?.find((obj: any) => obj.name === newProperty.name)) {
                             return {
                                 ...inst,
                                 [tabConfig]: [
@@ -45,7 +45,7 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
                                 ]
                             }
                         }
-                        if (instruction === "events" && !inst?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
+                        if (instruction === "events" && !inst?.[tabConfig]?.find((obj: any) => obj.name === newProperty.name)) {
                             return {
                                 ...inst,
                                 fields: [
@@ -54,7 +54,7 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
                                 ]
                             }
                         }
-                        if (!inst?.types?.[tabConfig]?.find((obj:any) => obj.name === newProperty.name)) {
+                        if (!inst?.types?.[tabConfig]?.find((obj: any) => obj.name === newProperty.name)) {
                             return {
                                 ...inst,
                                 type: {
@@ -63,7 +63,7 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
                                         ...inst?.type?.[kind === "struct" ? "fields" : "variants"] || [],
                                         newProperty
                                     ]
-    
+
                                 }
                             }
                         }
@@ -159,50 +159,48 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
     }
 
     const deleteItem = (indexProperty: number) => {
-        console.log("delete?")
-        if(confirm("Seguro que desea eliminar?")){
-            if (instruction === "errors") {
-                const del = {
-                    ...IDL,
-                    [instruction]: IDL[instruction].filter((e: any, i: any) => i !== indexProperty).map((error: any, i: any) => {
-                        return {
-                            ...error,
-                            code: 6000 + i
-                        }
-                    })
-                }
-                setIDL(del)
-                return 
-            }
+        console.log("delete")
+        if (instruction === "errors") {
             const del = {
                 ...IDL,
-                [instruction]: IDL[instruction].map((inst: any, index: number) => {
-                    if (index === indexItem) {
-                        if (instruction === "instructions") {
-                            return {
-                                ...inst,
-                                [tabConfig]: inst[tabConfig].filter((e: any, i: any) => i !== indexProperty)
-                            }
-                        }
-                        if (instruction === "events") {
-                            return {
-                                ...inst,
-                                fields: inst?.fields.filter((e: any, i: any) => i !== indexProperty)
-                            }
-                        }
-                        return {
-                            ...inst,
-                            type: {
-                                ...inst.type,
-                                [inst?.type?.kind === "struct" ? "fields" : "variants"]: inst?.type?.[inst?.type?.kind === "struct" ? "fields" : "variants"].filter((e: any, i: any) => i !== indexProperty)
-                            }
-                        }
+                [instruction]: IDL[instruction].filter((e: any, i: any) => i !== indexProperty).map((error: any, i: any) => {
+                    return {
+                        ...error,
+                        code: 6000 + i
                     }
-                    return inst
                 })
             }
             setIDL(del)
+            return
         }
+        const del = {
+            ...IDL,
+            [instruction]: IDL[instruction].map((inst: any, index: number) => {
+                if (index === indexItem) {
+                    if (instruction === "instructions") {
+                        return {
+                            ...inst,
+                            [tabConfig]: inst[tabConfig].filter((e: any, i: any) => i !== indexProperty)
+                        }
+                    }
+                    if (instruction === "events") {
+                        return {
+                            ...inst,
+                            fields: inst?.fields.filter((e: any, i: any) => i !== indexProperty)
+                        }
+                    }
+                    return {
+                        ...inst,
+                        type: {
+                            ...inst.type,
+                            [inst?.type?.kind === "struct" ? "fields" : "variants"]: inst?.type?.[inst?.type?.kind === "struct" ? "fields" : "variants"].filter((e: any, i: any) => i !== indexProperty)
+                        }
+                    }
+                }
+                return inst
+            })
+        }
+        setIDL(del)
     }
 
     const render = {
@@ -258,6 +256,7 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
                 <Tab
                     editProperty={editProperty}
                     addProperty={addProperty}
+                    instruction={instruction}
                     deleteItem={deleteItem}
                     elements={IDL?.[instruction]}
                     objConfig={[{ disabled: true, name: "code" }, { name: "name" }, { name: "msg" }]}
