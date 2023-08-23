@@ -33,8 +33,8 @@ const PopUp: FC<any> = ({ children, title, closePopUp, icon, iconClassName, aler
 
     return (
         <div className="fixed z-50 top-0 left-0  h-screen w-full backdrop-blur-[.5px] bg-white/30 ">
-            <div ref={popUpRef} className=" flex flex-col absolute max-w-7xl max-h-[80vh] top-10 -translate-x-1/2 left-1/2 overflow-auto rounded-3xl bg-backg [&::-webkit-scrollbar]:hidden">
-                <div className="flex bg-backg p-3 justify-between gap-2 w-full items-center">
+            <div ref={popUpRef} className=" flex flex-col absolute top-10 -translate-x-1/2 left-1/2 overflow-auto rounded-3xl bg-backg [&::-webkit-scrollbar]:hidden">
+                <div className="flex h-5 bg-backg p-3 justify-between gap-2 w-full items-center">
                     <Image src={ArrowBack} alt="back all project" className="w-4 h-4 cursor-pointer" onClick={closePopUp} />
 
                     <div className="flex text-white gap-4 font-semibold w-full items-center overflow-hidden">

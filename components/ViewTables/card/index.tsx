@@ -60,7 +60,7 @@ export const Card: FC<any> = ({ name, onClick, instruction, index, selected }) =
           showOptions &&
           <div className="flex">
             <TrashIcon
-              onClick={deleteItem}
+              onClick={()=>setConfirmation(true)}
               className="text-red w-4 h-4"
             />
           </div>

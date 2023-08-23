@@ -2,8 +2,8 @@ import Head from "next/head";
 import {  useState } from "react";
 import { openIDLFile, saveIDLFile } from "@/helpers";
 import { useIDL } from "@/context/IDL";
-import { NewEditor } from "@/components/NewEditor/Editor";
-import ClassicEditor from "@/components/ClassicEditor/Editor";
+import { NewEditor } from "@/components/ViewTables/Editor";
+import ClassicEditor from "@/components/ViewCards/Editor";
 import {
   PlusIcon,
   FolderOpenIcon,

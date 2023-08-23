@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Section } from "@/components/NewEditor/section";
+import { Section } from "@/components/ViewTables/section";
 import { useIDL } from "@/context/IDL";
 
 export const NewEditor: FC<any> = ({ generateIDL }) => {
