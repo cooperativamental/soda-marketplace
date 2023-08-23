@@ -104,7 +104,7 @@ export default function Home() {
             </button>
           </div>
           <div className="text-chok flex gap-5">
-            <p className="text-border">Views:</p>
+            <p className="text-border">select view:</p>
             <button onClick={() => setSelectedUI("cards")} className={`${selectedUI === "cards" && "text-green-custom underline"}`}>cards</button>
             <button onClick={() => setSelectedUI("tables")} className={`${selectedUI === "tables" && "text-green-custom underline"}`}>tables</button>
             <button onClick={() => setSelectedUI("json")} className={`${selectedUI === "json" && "text-green-custom underline"}`}>JSON</button>

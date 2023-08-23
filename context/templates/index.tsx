@@ -31,13 +31,13 @@ const TemplatesProvider = ({ children }: { children: ReactNode }) => {
                 popUpTemplates &&
                 <PopUp title="Templates" templates={templates} icon={"/solana.svg"} iconClassName={"h-5 w-32"} closePopUp={() => setPopUpTemplates(false)} >
                     <div className=" flex flex-wrap p-4 gap-4 h-70 overflow-y-auto mini-scrollbar">
-                        <div className={` flex flex-col h-96 bg-backg p-5 w-52 rounded-3xl shadow-md shadow-black  text-white gap-3 justify-around items-center`}>
-                                <p>Add Template</p>
+                        <div className={` flex flex-col h-96 border border-border p-5 w-52 rounded-3xl shadow-md shadow-black  text-chok text-center gap-3 justify-around items-center cursor-pointer hover:bg-inputs`}>
+                                <p>add bubbles</p>
                                 <p className=" text-2xl">
-                                    Dev Templates
+                                    dev a template
                                 </p>
                                 <p>
-                                    Become a Contributor Partner. We hace a revenue share proposal for Devs building temlpates for the Template dApp Store.
+                                    and become a Contributor Partner: We have a revenue share proposal for templates builders.
                                 </p>
                         </div>
                         {

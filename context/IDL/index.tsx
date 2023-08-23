@@ -59,13 +59,13 @@ const IDLProvider = ({ children }: { children: ReactNode }) => {
           closePopUp={() => setConfirmation(false)}
         >
           <div className="flex flex-col p-5 items-center gap-5">
-            <p className="text-white">Are you sure you want to delete?</p>
+            <p className="text-white">Sure to delete?</p>
             <div className="flex gap-4">
               <button
                 onClick={() => setConfirmation(
                   false
                 )}
-                className="text-white bg-red-600 px-5 rounded-xl h-10"
+                className="text-white bg-red-custom px-5 rounded-xl h-10"
               >
                 Cancel
               </button>
@@ -74,9 +74,9 @@ const IDLProvider = ({ children }: { children: ReactNode }) => {
                   cleanProject()
                   setConfirmation(false)
                 }}
-                className="text-white bg-[#387847] px-5 rounded-xl h-10"
+                className="text-white bg-green-custom px-5 rounded-xl h-10"
               >
-                Confirm
+                Yes
               </button>
             </div>
           </div>

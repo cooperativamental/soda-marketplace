@@ -220,7 +220,7 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
           closePopUp={cancelDelete}
         >
           <div className="flex flex-col p-5 items-center gap-5">
-            <p className="text-white">Are you sure you want to delete?</p>
+            <p className="text-white">delete?</p>
             <div className="flex gap-4">
               <button
                 onClick={cancelDelete}
