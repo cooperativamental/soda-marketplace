@@ -32,12 +32,12 @@ const TemplatesProvider = ({ children }: { children: ReactNode }) => {
                 <PopUp title="Templates" templates={templates} icon={"/solana.svg"} iconClassName={"h-5 w-32"} closePopUp={() => setPopUpTemplates(false)} >
                     <div className=" flex flex-wrap p-4 gap-4 h-70 overflow-y-auto mini-scrollbar">
                         <div className={` flex flex-col h-96 border border-border p-5 w-52 rounded-3xl shadow-md shadow-black  text-chok text-center gap-3 justify-around items-center cursor-pointer hover:bg-inputs`}>
-                                <p>add bubbles</p>
+                                <p>Got Soda?</p>
                                 <p className=" text-2xl">
-                                    dev a template
+                                    get your can for access
                                 </p>
                                 <p>
-                                    and become a Contributor Partner: We have a revenue share proposal for templates builders.
+                                    claim your free soda, buy standard Soda NFT or Soda Collections full access full life.
                                 </p>
                         </div>
                         {
