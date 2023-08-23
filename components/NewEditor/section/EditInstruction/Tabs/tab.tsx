@@ -223,34 +223,21 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
             ...confirmation,
             status: false
           })}
-        >
-          <div className="flex flex-col p-5 items-center gap-5">
-            <p className="text-white">Are you sure you want to delete?</p>
-            <div className="flex gap-4">
-              <button
-                onClick={() => setConfirmation({
-                  ...confirmation,
-                  status: false
-                })}
-                className="text-white bg-red-600 px-5 rounded-xl h-10"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={(e) => {
-                  deleteItem(confirmation.index)
-                  setConfirmation({
-                    ...confirmation,
-                    status: false
-                  })
-                }}
-                className="text-white bg-[#387847] px-5 rounded-xl h-10"
-              >
-                Confirm
-              </button>
-            </div>
-          </div>
-        </PopUp>
+          alert={{
+            cancel:() => setConfirmation({
+              ...confirmation,
+              status: false
+            }),
+            confirm: (e: any) => {
+              deleteItem(confirmation.index)
+              setConfirmation({
+                ...confirmation,
+                status: false
+              })
+            },
+            text: "Are you sure you want to delete?"
+          }}
+        />
       }
     </>
   )

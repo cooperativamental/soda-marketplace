@@ -40,25 +40,12 @@ export const Card: FC<any> = ({ prop, item, onClick, index, setEdit, explanation
         confirmation &&
         <PopUp
           closePopUp={cancelDelete}
-        >
-          <div className="flex flex-col p-5 items-center gap-5">
-            <p className="text-white">Delete?</p>
-            <div className="flex gap-4">
-              <button
-                onClick={cancelDelete}
-                className="text-chok hover:bg-red-custom px-5 rounded-xl h-10"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={deleteItem}
-                className="text-chok hover:bg-green-custom hover:text-inputs px-5 rounded-xl h-10"
-              >
-                Yes
-              </button>
-            </div>
-          </div>
-        </PopUp>
+          alert={{
+            text: "Delete?",
+            confirm: deleteItem,
+            cancel: cancelDelete
+          }}
+        />
       }
     </>
   )

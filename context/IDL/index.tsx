@@ -7,6 +7,7 @@ import {
 import { invoke } from "@tauri-apps/api/tauri";
 import { message } from "@tauri-apps/api/dialog";
 import PopUp from "@/components/PopUp";
+import EventEmitter from "events";
 
 const IDLContext = createContext<any>({
   IDL: {
@@ -57,30 +58,17 @@ const IDLProvider = ({ children }: { children: ReactNode }) => {
         confirmation &&
         <PopUp
           closePopUp={() => setConfirmation(false)}
-        >
-          <div className="flex flex-col p-5 items-center gap-5">
-            <p className="text-white">Sure to delete?</p>
-            <div className="flex gap-4">
-              <button
-                onClick={() => setConfirmation(
-                  false
-                )}
-                className="text-white bg-red-custom px-5 rounded-xl h-10"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={(e) => {
-                  cleanProject()
-                  setConfirmation(false)
-                }}
-                className="text-white bg-green-custom px-5 rounded-xl h-10"
-              >
-                Yes
-              </button>
-            </div>
-          </div>
-        </PopUp>
+          alert={{
+            text: "Sure to delete?",
+            cancel: () => setConfirmation(
+              false
+            ),
+            confirm: (e: EventEmitter) => {
+              cleanProject()
+              setConfirmation(false)
+            }
+          }}
+        />
       }
 
     </IDLContext.Provider>

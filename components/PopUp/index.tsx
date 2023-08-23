@@ -1,12 +1,21 @@
 import ArrowBack from "@/public/ArrowBack.png"
 
-import Image from "next/image";
-import { useRouter } from "next/router";
-import { useTemplates } from "@/context/templates";
-import { FC, useEffect, useRef } from "react";
+import Image, { StaticImageData } from "next/image";
+import { FC, PropsWithChildren, useEffect, useRef } from "react";
 
+type props = {
+    title: string,
+    closePopUp: () => void,
+    icon?: StaticImageData,
+    iconClassName?: string,
+    alert?: {
+        text: string,
+        confirm: () => void,
+        cancel: () => void
+    }
+}
 
-const PopUp: FC<any> = ({ children, title, closePopUp, icon, iconClassName }) => {
+const PopUp: FC<any> = ({ children, title, closePopUp, icon, iconClassName, alert }: PropsWithChildren<props>) => {
     const popUpRef = useRef<any>()
 
     useEffect(() => {
@@ -31,12 +40,49 @@ const PopUp: FC<any> = ({ children, title, closePopUp, icon, iconClassName }) =>
                     <div className="flex text-white gap-4 font-semibold w-full items-center overflow-hidden">
                         {title}
                     </div>
-                    <Image className={iconClassName} width={1} height={1} src={icon} alt="SolanaFoundation" />
+                    {
+                        icon &&
+                        <Image className={iconClassName} width={1} height={1} src={icon} alt="SolanaFoundation" />
+                    }
                 </div>
-                {children}
+                {
+                    !alert ?
+                        children
+                        :
+                        <Alert text={alert?.text} confirm={alert?.confirm} cancel={alert?.cancel} />
+                }
             </div>
         </div>
     )
 }
 
 export default PopUp
+
+type propsAlert = {
+    text: string,
+    confirm: () => void,
+    cancel: () => void
+}
+
+const Alert = ({ text, confirm, cancel }: propsAlert) => {
+
+    return (
+        <div className="flex flex-col p-5 items-center gap-5">
+            <p className="text-white">{text}</p>
+            <div className="flex gap-4">
+                <button
+                    onClick={cancel}
+                    className="text-white bg-red-600 px-5 rounded-xl h-10"
+                >
+                    Cancel
+                </button>
+                <button
+                    onClick={confirm}
+                    className="text-white bg-[#387847] px-5 rounded-xl h-10"
+                >
+                    Confirm
+                </button>
+            </div>
+        </div>
+    )
+}

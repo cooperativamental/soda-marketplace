@@ -218,25 +218,12 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
         confirmation &&
         <PopUp
           closePopUp={cancelDelete}
-        >
-          <div className="flex flex-col p-5 items-center gap-5">
-            <p className="text-white">delete?</p>
-            <div className="flex gap-4">
-              <button
-                onClick={cancelDelete}
-                className="text-white bg-red-600 px-5 rounded-xl h-10"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={deleteItem}
-                className="text-white bg-[#387847] px-5 rounded-xl h-10"
-              >
-                Confirm
-              </button>
-            </div>
-          </div>
-        </PopUp>
+          alert={{
+            text:"delete?",
+            cancel: cancelDelete,
+            confirm: deleteItem
+          }}
+        />
       }
     </>
   )
