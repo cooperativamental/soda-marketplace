@@ -27,6 +27,9 @@ const Layout: FC<any> = ({ children, openIDL, newProject, generateIDL, handleTem
                             <PencilSquareIcon className="h-5oko w-5" aria-hidden="true" />Editor
                         </button>
                     }
+                    <svg className="animate-spin stroke-white h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+                       
+                    </svg>
                     <button
                         type="button"
                         className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
@@ -45,7 +48,7 @@ const Layout: FC<any> = ({ children, openIDL, newProject, generateIDL, handleTem
                     <button
                         type="button"
                         className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                        // onClick={() => saveIDLFile(IDL)}
+                    // onClick={() => saveIDLFile(IDL)}
                     >
                         <ArrowDownTrayIcon className="h-5 w-5" aria-hidden="true" /> Download IDL
                     </button>
