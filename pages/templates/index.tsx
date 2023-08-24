@@ -40,7 +40,7 @@ const Templates = () => {
                         </div>
                 }
                 {
-                    [templates,].map((template: any, i: number) => {
+                    templates.map((template: any, i: number) => {
                         return (
                             <CardTemplate key={template.name} template={template} indexTemplate={i} />
                         )
