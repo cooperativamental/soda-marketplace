@@ -159,7 +159,6 @@ const EditInstructions: FC<any> = ({ indexItem, instruction }) => {
     }
 
     const deleteItem = (indexProperty: number) => {
-        console.log("delete")
         if (instruction === "errors") {
             const del = {
                 ...IDL,

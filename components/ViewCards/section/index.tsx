@@ -24,8 +24,6 @@ export const Section: FC<any> = ({ instruction, content, initExpanded = false })
     setEdit(false)
   },[clear])
 
-  console.log(edit)
-
   return (
     <section className={`flex p-5 m-5 border border-border bg-backg rounded-md relative`}>
       <div

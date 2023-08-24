@@ -12,7 +12,7 @@ const Templates = () => {
     const { connection } = useConnection()
 
     return (
-        <div className="flex flex-col justify-between overflow-y-auto">
+        <div className="flex flex-col h-full justify-between overflow-y-auto">
             <h1 className="text-2xl text-white font-bold ml-5">{ IDL.name || "Edit IDL or Import IDL"}</h1>
             <div className=" flex flex-wrap p-4 gap-4  h-[70vh] rounded-3xl overflow-y-auto border-border mini-scrollbar">
 
@@ -40,7 +40,7 @@ const Templates = () => {
                         </div>
                 }
                 {
-                    [...templates, ...templates].map((template: any, i: number) => {
+                    [templates,].map((template: any, i: number) => {
                         return (
                             <CardTemplate key={template.name} template={template} indexTemplate={i} />
                         )
