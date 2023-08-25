@@ -59,7 +59,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     }
     
     return (
-        <div className={` flex flex-col h-96 bg-backg p-5 w-52 rounded-3xl shadow-md shadow-black  text-white gap-3 justify-between items-center`}>
+        <div className={` flex flex-col h-96 bg-backg p-5 w-52 rounded-3xl shadow-sm border border-border shadow-black  text-white gap-3 justify-between items-center hover:bg-inputs`}>
             <div className=" flex text-sm justify-between w-full">
                 <p>
                     {
@@ -73,8 +73,8 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             </div>
             <div className=" flex flex-col w-full items-center justify-around">
                 < Image className="h-20 w-20" width={5} height={2} src={template.image || "/soda.svg"} alt={template.name} />
-                <p className=" text-sm">{template.name}</p>
-                <p className=" text-xs overflow-y-auto h-">{template.description}</p>
+                <p className=" text-2xl text-center">{template.name}</p>
+                <p className=" text-xs overflow-y-auto mt-6 text-center">{template.description}</p>
             </div>
             {/* <div className="flex flex-col gap-2 ">
                 <p className=" text-sm">Brought to you by</p>
@@ -84,7 +84,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                 </div>
             </div> */}
             <button
-                className="text-white bg-[#387847] px-5 rounded-xl h-10"
+                className="text-chok px-5 rounded h-10 rounded-md border border-border hover:bg-inputs hover:border-2 hover:shadow-lg hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                 onClick={exportProject}
             >
                 Export
