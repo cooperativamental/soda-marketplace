@@ -152,7 +152,7 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
             e.stopPropagation()
             setConfirmation(true)
           }}
-          className="absolute z-20 text-border bottom-2 right-2 w-4 h-4 hover:text-red cursor-pointer"
+          className="absolute z-20 text-border bottom-2 right-2 w-4 h-4 hover:text-green-custom cursor-pointer"
         />
         <div key={prop?.name} className='flex flex-col w-max items-start left-2'>
           {

@@ -38,7 +38,7 @@ export const NewItem: FC<any> = ({ prop, setIsModalOpen, isModalOpen }) => {
         className="w-full text-center h-16 p-4 bg-inputs text-red-custom rounded-md ring-1 ring-border"
       />
       <CheckIcon
-        className=" self-end text-green-custom w-6 font-bold hover:bg-green-custom rounded-md hover:text-inputs"
+        className=" self-end text-green-custom w-6 font-bold hover:bg-green-custom rounded-md hover:text-inputs cursor-pointer"
         onClick={() => {
           setIsModalOpen(false)
           save()

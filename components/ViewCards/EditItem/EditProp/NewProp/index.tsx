@@ -25,7 +25,7 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
 
   return (
     <div
-      className="flex flex-col justify-evenly p-2 h-full rounded-md items-start text-white font-medium ring-1 hover:ring-2 ring-border"
+      className="flex flex-col p-2 h-full rounded-md items-start text-white font-medium ring-1 hover:ring-2 ring-border"
     >
       {
         objConfig.map(({ disabled, name, options }: any) => {
@@ -83,7 +83,7 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
         })
       }
       <CheckIcon
-        className="w-6 text-green-custom hover:bg-green-custom hover:text-inputs rounded-md self-end"
+        className="absolute w-6 bottom-8 text-green-custom hover:bg-green-custom hover:text-inputs rounded-md self-end cursor-pointer"
         onClick={() => {
           addProperty(newProperty)
         }}

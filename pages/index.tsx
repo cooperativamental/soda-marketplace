@@ -64,7 +64,7 @@ export default function Home() {
 
   return (
     <div className='h-screen'>
-      <div className="sticky top-0 z-40 h-20 flex items-center justify-between gap-x-6 bg-backg  shadow-sm px-6">
+      <div className="sticky top-0 h-20 flex items-center justify-between gap-x-6 bg-backg  shadow-sm px-6">
         <div className="flex items-center text-chok gap-5 ">
           <p className="text-border">select view:</p>
           <button onClick={() => setSelectedUI("cards")} className={`${selectedUI === "cards" && "text-green-custom underline"}`}>cards</button>
