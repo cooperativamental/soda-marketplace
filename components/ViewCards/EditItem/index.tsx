@@ -162,7 +162,7 @@ const EditItem: FC<any> = ({ indexItem, instruction, setEdit }) => {
                         className="w-5 h-5 text-chok cursor-pointer hover:text-green-custom"
                         onClick={() => setEdit(false)}
                     />
-                    <p className="ml-2 font-bold">
+                    <p className="ml-2 font-medium text-xl">
                         {`${IDL?.[instruction]?.[indexItem]?.name?.charAt(0).toUpperCase() + IDL?.[instruction]?.[indexItem]?.name?.slice(1)}`}
                     </p>
                 </div>

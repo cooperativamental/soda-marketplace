@@ -17,9 +17,9 @@ export const NewEditor: FC<any> = () => {
                     name: e.target.value
                 })
                 }
-                className="w-3/12 bg-inputs h-16 text-center text-chok text-base rounded-xl hover:shadow-md hover:shadow-border hover:text-green-custom"
+                className="w-3/12 bg-inputs p-5 h-16 text-left text-chok text-base rounded-md hover:shadow-md hover:shadow-border hover:text-green-custom"
             />
-            <div className="flex flex-col h-full border border-border gap-2 rounded-xl overflow-hidden">
+            <div className="flex flex-col h-full border border-border gap-2 rounded-md overflow-hidden">
 
                 <div className="flex w-full text-center -space-x-1 h-12">
                     {

@@ -32,14 +32,14 @@ const Layout: FC<any> = ({ children }) => {
                         className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                         onClick={cleanProject}
                     >
-                        <PlusIcon className="h-5 w-5" aria-hidden="true" />New
+                        <PlusIcon className="h-5 w-5" aria-hidden="true" />New IDL
                     </button>
                     <input type="file" id="file" onChange={(e) => openIDLFile(e, setIDL)} className="hidden" />
                     <label
                         htmlFor="file"
                         className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                     >
-                        <FolderOpenIcon className="h-5 w-5" aria-hidden="true" /> Open
+                        <FolderOpenIcon className="h-5 w-5" aria-hidden="true" /> Open IDL
                     </label>
 
                     <button
@@ -58,9 +58,11 @@ const Layout: FC<any> = ({ children }) => {
                     >
                         <FolderArrowDownIcon className="h-5oko w-5" aria-hidden="true" />Export
                     </button>
-
+                    <svg className="animate-spin stroke-white h-5 w-5 mr-3" viewBox="0 0 24 24">
+                       
+                       </svg>
                 </div>
-                <WalletMultiButton className='!h-full !w-max !bg-[#FA9972] hover:!bg-slate-700 !rounded-3xl !font-thin' />
+                <WalletMultiButton className='!z-10 !h-full !w-max !bg-[#FA9972] hover:!bg-slate-700 !rounded-md !font-thin' />
             </div>
             <main className=" h-[calc(100%-5rem)] mini-scroll overflow-y-auto bg-backg">
                 {children}

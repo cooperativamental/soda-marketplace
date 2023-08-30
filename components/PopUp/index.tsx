@@ -1,5 +1,4 @@
-import ArrowBack from "@/public/ArrowBack.png"
-
+import { ArrowLeftIcon } from "@heroicons/react/24/solid"
 import Image, { StaticImageData } from "next/image";
 import { FC, PropsWithChildren, useEffect, useRef } from "react";
 
@@ -33,9 +32,10 @@ const PopUp: FC<any> = ({ children, title, closePopUp, icon, iconClassName, aler
 
     return (
         <div className="fixed z-50 top-0 left-0  h-screen w-full backdrop-blur-[.5px] bg-white/30 ">
-            <div ref={popUpRef} className=" flex flex-col absolute top-10 -translate-x-1/2 left-1/2 overflow-auto rounded-3xl bg-backg [&::-webkit-scrollbar]:hidden">
+            <div ref={popUpRef} className=" flex flex-col absolute top-10 -translate-x-1/2 left-1/2 overflow-auto rounded-md bg-backg [&::-webkit-scrollbar]:hidden">
                 <div className="flex h-5 bg-backg p-3 justify-between gap-2 w-full items-center">
-                    <Image src={ArrowBack} alt="back all project" className="w-4 h-4 cursor-pointer" onClick={closePopUp} />
+                    <ArrowLeftIcon
+                        className="w-5 h-5 mt-2 cursor-pointer text-chok cursor-pointer hover:text-green-custom" onClick={closePopUp} />
 
                     <div className="flex text-white gap-4 font-semibold w-full items-center overflow-hidden">
                         {title}
@@ -72,13 +72,13 @@ const Alert = ({ text, confirm, cancel }: propsAlert) => {
             <div className="flex gap-4">
                 <button
                     onClick={cancel}
-                    className="text-white bg-red-600 px-5 rounded-xl h-10"
+                    className="text-red-custom border border-border px-5 rounded-md hover:bg-inputs h-10"
                 >
                     Cancel
                 </button>
                 <button
                     onClick={confirm}
-                    className="text-white bg-[#387847] px-5 rounded-xl h-10"
+                    className="text-green-custom border border-border px-5 rounded-md hover:bg-inputs h-10"
                 >
                     Confirm
                 </button>

@@ -43,7 +43,7 @@ export const Card: FC<any> = ({ name, onClick, instruction, index, selected }) =
   return (
     <>
       <div
-        className={`flex h-12 min-h-[3rem] items-center justify-between px-4 rounded-xl bg-inputs border border-border cursor-pointer ${selected ? "text-green-custom shadow-sm shadow-green-custom" : "text-yellow-custom"}`}
+        className={`flex h-12 min-h-[3rem] items-center justify-between px-4 rounded-md bg-inputs border border-border cursor-pointer ${selected ? "text-green-custom shadow-sm shadow-green-custom" : "text-yellow-custom"}`}
         onClick={onClick}
         onMouseOver={() => { setShowOptions(true) }}
         onMouseOut={() => { setShowOptions(false) }}

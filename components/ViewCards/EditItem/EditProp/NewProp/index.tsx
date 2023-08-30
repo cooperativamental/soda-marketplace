@@ -25,13 +25,13 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
 
   return (
     <div
-      className="flex flex-col justify-evenly p-2 h-full rounded-md items-start text-white font-medium ring-1 hover:ring-2 ring-border"
+      className="flex flex-col p-2 h-full rounded-md items-start text-white font-medium ring-1 hover:ring-2 ring-border"
     >
       {
         objConfig.map(({ disabled, name, options }: any) => {
           if (options === "boolean") {
             return (
-              <div key={name} className=' flex items-center gap-2 pl-4 pt-1'>
+              <div key={name} className=' flex items-center gap-2 pl-3 pt-4'>
                 <label htmlFor={name}>{name}</label>
                 <input
                   checked={newProperty[name]}
@@ -83,7 +83,7 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
         })
       }
       <CheckIcon
-        className="w-6 text-green-custom hover:bg-green-custom hover:text-inputs rounded-md self-end"
+        className="relative top-4s mt-4 left w-6 text-green-custom hover:bg-green-custom hover:text-inputs rounded-md self-end cursor-pointer"
         onClick={() => {
           addProperty(newProperty)
         }}

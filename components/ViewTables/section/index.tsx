@@ -15,7 +15,7 @@ export const Section: FC<any> = ({ instruction }) => {
         {
           instruction !== "errors" &&
           <div
-            className=" flex bg-inputs h-14 justify-between w-80 rounded-xl py-4 px-6 text-chok cursor-pointer"
+            className=" flex bg-inputs h-14 justify-between w-80 rounded-md py-4 px-6 text-chok cursor-pointer"
           >
             <input
               placeholder={`Add ${instruction}`}

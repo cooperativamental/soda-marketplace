@@ -152,14 +152,14 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
             e.stopPropagation()
             setConfirmation(true)
           }}
-          className="absolute z-20 text-border bottom-2 right-2 w-4 h-4 hover:text-red cursor-pointer"
+          className="absolute z-20 text-border bottom-2 right-2 w-4 h-4 hover:text-green-custom cursor-pointer"
         />
         <div key={prop?.name} className='flex flex-col w-max items-start left-2'>
           {
             objConfig.map(({ disabled, name, options }: any) => {
               if (options === "boolean") {
                 return (
-                  <div key={name} className="flex gap-2 text-green-custom items-center pl-4 pt-2">
+                  <div key={name} className="flex gap-2 text-green-custom items-center pl-3 pt-2">
                     <label htmlFor={name} >{name}</label>
                     <input
                       defaultChecked={property[name]}
@@ -174,7 +174,7 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
                 return (
                   <select
                     key={name}
-                    className='bg-backg rounded-md mt-2 border-none cursor-pointer hover:bg-inputs ring-1'
+                    className='bg-backg rounded-md mt-2 border-none cursor-pointer hover:bg-inputs'
                     id={name}
                     defaultValue={property[name]}
                     disabled={disabled}
@@ -201,7 +201,7 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
                     type='text'
                     id={name}
                     disabled={disabled}
-                    className={`bg-backg w-min text-left text-red rounded-md border-none font-bold ring-1 hover:bg-inputs`}
+                    className={`bg-backg w-min text-left text-red rounded-md border-none font-bold hover:bg-inputs`}
                     placeholder={name}
                     defaultValue={property?.[name]}
                     onChange={(e) => {

@@ -78,7 +78,7 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                         )
                       } else if (options?.length) {
                         return (
-                          <td key={name} className='w-min pl-5'>
+                          <td key={name} className='w-min'>
                             <select
                               className='bg-inputs rounded-md'
                               id={name}
@@ -123,7 +123,7 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                   <td className="whitespace-nowrap w-24 text-center text-sm font-medium">
                     <CheckIcon
                       onClick={() => addProperty(newProperty)}
-                      className="text-chok w-6 hover:text-green-custom"
+                      className="text-chok w-6 hover:text-green-custom cursor-pointer"
                     />
                   </td>
                 </tr>
@@ -148,7 +148,7 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                             return (
                               <td key={name} className='w-min'>
                                 <select
-                                  className='bg-inputs rounded-md'
+                                  className='bg-backg border-none rounded-md'
                                   id={name}
                                   defaultValue={property[name]}
                                   disabled={disabled}
@@ -178,7 +178,7 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                                   type='text'
                                   id={name}
                                   disabled={disabled}
-                                  className='bg-inputs border-none pl-5'
+                                  className='bg-backg border-none rounded-md pl-5'
                                   defaultValue={property?.[name]}
                                   // value={property?.[name]}
                                   onChange={(e) => {
