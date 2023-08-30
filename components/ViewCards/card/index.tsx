@@ -18,7 +18,7 @@ export const Card: FC<any> = ({ prop, item, onClick, index, setEdit, explanation
   const cancelDelete = () => {
     setConfirmation(false)
   }
-
+  
   return (
     <>
       <div
