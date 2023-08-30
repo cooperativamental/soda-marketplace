@@ -31,7 +31,7 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
         objConfig.map(({ disabled, name, options }: any) => {
           if (options === "boolean") {
             return (
-              <div key={name} className=' flex items-center gap-2 pl-4 pt-1'>
+              <div key={name} className=' flex items-center gap-2 pl-3 pt-4'>
                 <label htmlFor={name}>{name}</label>
                 <input
                   checked={newProperty[name]}
@@ -83,7 +83,7 @@ export const NewProp: FC<any> = ({ nameConfig, addProperty, objConfig }) => {
         })
       }
       <CheckIcon
-        className="absolute w-6 bottom-8 text-green-custom hover:bg-green-custom hover:text-inputs rounded-md self-end cursor-pointer"
+        className="relative top-4s mt-4 left w-6 text-green-custom hover:bg-green-custom hover:text-inputs rounded-md self-end cursor-pointer"
         onClick={() => {
           addProperty(newProperty)
         }}

@@ -48,7 +48,7 @@ export default function Home() {
 
                 }
               }}
-              className="absolute top-2 right-2 w-6 h-6 text-white z-20 cursor-pointer hover:text-green-customn "
+              className="absolute top-2 right-0 w-12 h-12 bg-[#1e1e1e] text-chok hover:bg-inputs border-y rounded-l-md border-l border-border p-2 z-20 cursor-pointer hover:text-green-custom "
             />
             {view[selectedUI as keyof typeof render]}
           </div>
@@ -64,12 +64,12 @@ export default function Home() {
 
   return (
     <div className='h-screen'>
-      <div className="sticky top-0 h-20 flex items-center justify-between gap-x-6 bg-backg  shadow-sm px-6">
-        <div className="flex items-center text-chok gap-5 ">
+      <div className="sticky top-0 h-20 flex items-center text-center gap-x-6 px-6">
+        <div className="flex items-center text-border gap-5 ">
           <p className="text-border">select view:</p>
-          <button onClick={() => setSelectedUI("cards")} className={`${selectedUI === "cards" && "text-green-custom underline"}`}>cards</button>
-          <button onClick={() => setSelectedUI("tables")} className={`${selectedUI === "tables" && "text-green-custom underline"}`}>tables</button>
-          <button onClick={() => setSelectedUI("json")} className={`${selectedUI === "json" && "text-green-custom underline"}`}>JSON</button>
+          <button onClick={() => setSelectedUI("cards")} className={`hover:underline ${selectedUI === "cards" && "underline text-chok"}`}>cards</button>
+          <button onClick={() => setSelectedUI("tables")} className={`hover:underline ${selectedUI === "tables" && "underline text-chok"}`}>tables</button>
+          <button onClick={() => setSelectedUI("json")} className={`hover:underline ${selectedUI === "json" && "underline text-chok"}`}>JSON</button>
         </div>
       </div>
       <div className=" h-[calc(100%_-_5rem)] bg-backg ">
