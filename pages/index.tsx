@@ -1,24 +1,10 @@
-import Head from "next/head";
 import { useState } from "react";
-import { openIDLFile, saveIDLFile } from "@/helpers";
-import { useIDL } from "@/context/IDL";
 import { NewEditor } from "@/components/ViewTables/Editor";
 import ClassicEditor from "@/components/ViewCards/Editor";
-import {
-  PlusIcon,
-  FolderOpenIcon,
-  ArrowDownTrayIcon,
-  FolderArrowDownIcon
-} from '@heroicons/react/24/outline'
 import JSONEditor from "@/components/JSONEditor";
 import { CodeBracketIcon } from "@heroicons/react/24/solid";
-import { useTemplates } from "@/context/templates";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 export default function Home() {
-
-  const { IDL, setIDL, cleanProject } = useIDL()
-  const { handlerPopUpTemplate } = useTemplates()
   const [selectedUI, setSelectedUI] = useState("cards")
   const [widthJson, setWidthJson] = useState(false)
   const [hiddenJson, setHiddenJson] = useState(true)

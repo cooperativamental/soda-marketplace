@@ -1,9 +1,8 @@
-import { FC, useState, useEffect } from "react";
-import { ArrowRightIcon, CheckIcon } from "@heroicons/react/24/solid"
+import { FC, useState } from "react";
+import { CheckIcon } from "@heroicons/react/24/solid"
 import { Card } from "../card";
 import EditInstructions from "./EditInstruction";
 import { useIDL } from "@/context/IDL";
-import PopUp from "@/components/PopUp";
 
 export const Section: FC<any> = ({ instruction }) => {
   const { IDL, setIDL } = useIDL()
@@ -19,7 +18,7 @@ export const Section: FC<any> = ({ instruction }) => {
             className=" flex bg-inputs h-14 justify-between w-80 rounded-xl py-4 px-6 text-chok cursor-pointer"
           >
             <input
-              placeholder={`Add ${instruction}'s Name`}
+              placeholder={`Add ${instruction}`}
               value={newInstructionName}
               onChange={(e) => setNewIntructionName(e.target.value)}
               className=" w-full bg-inputs focus:outline-none"

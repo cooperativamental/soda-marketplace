@@ -1,12 +1,8 @@
 import { useIDL } from '@/context/IDL'
-import { FC, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { isProperty } from './verifyType'
+import { FC, useEffect, useState } from 'react'
 import { TrashIcon, CheckIcon } from '@heroicons/react/24/solid'
 import PopUp from '@/components/PopUp'
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
-}
 
 const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteItem }) => {
   const { IDL } = useIDL()

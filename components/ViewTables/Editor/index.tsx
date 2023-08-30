@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { Section } from "@/components/ViewTables/section";
 import { useIDL } from "@/context/IDL";
 
-export const NewEditor: FC<any> = ({ generateIDL }) => {
+export const NewEditor: FC<any> = () => {
 
     const [select, setSelect] = useState("instructions")
     const { IDL, setIDL } = useIDL()
@@ -10,7 +10,7 @@ export const NewEditor: FC<any> = ({ generateIDL }) => {
     return (
         <div className="flex flex-col h-full p-5 gap-5 font-mono">
             <input
-                placeholder="Add project's name"
+                placeholder="Add project name"
                 value={IDL.name}
                 onChange={(e) => setIDL({
                     ...IDL,
