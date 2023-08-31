@@ -51,11 +51,11 @@ export default function Home() {
   return (
     <div className='h-screen'>
       <div className="sticky top-0 h-20 flex items-center text-center gap-x-6 px-6">
-        <div className="flex items-center text-border gap-5 ">
+        <div className="flex items-center text-border gap-5">
           <p className="text-border">select view:</p>
-          <button onClick={() => setSelectedUI("cards")} className={`hover:underline ${selectedUI === "cards" && "underline text-chok"}`}>cards</button>
-          <button onClick={() => setSelectedUI("tables")} className={`hover:underline ${selectedUI === "tables" && "underline text-chok"}`}>tables</button>
-          <button onClick={() => setSelectedUI("json")} className={`hover:underline ${selectedUI === "json" && "underline text-chok"}`}>JSON</button>
+          <button onClick={() => setSelectedUI("cards")} className={`hover:underline bg-inputs p-1 border-md ${selectedUI === "cards" && "underline text-chok"}`}>cards</button>
+          <button onClick={() => setSelectedUI("tables")} className={`hover:underline bg-inputs p-1 border-md ${selectedUI === "tables" && "underline text-chok"}`}>tables</button>
+          <button onClick={() => setSelectedUI("json")} className={`hover:underline bg-inputs p-1 border-md ${selectedUI === "json" && "underline text-chok"}`}>JSON</button>
         </div>
       </div>
       <div className=" h-[calc(100%_-_5rem)] bg-backg ">
