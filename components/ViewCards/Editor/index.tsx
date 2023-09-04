@@ -41,7 +41,7 @@ const ClassicEditor: FC<any> = ({ exportData }) => {
         <div className="flex flex-col justify-center font-mono">
             <div className="flex justify-between">
                 <input
-                    placeholder="Add project name"
+                    placeholder="project name"
                     value={IDL.name}
                     onChange={(e) => setIDL({ ...IDL, name: e.target.value })}
                     className="p-5 mb-5 m-5 w-3/12 h-16 bg-inputs text-chok text-base rounded-md hover:shadow-md hover:shadow-border hover:text-green-custom"

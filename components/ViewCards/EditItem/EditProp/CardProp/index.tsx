@@ -219,7 +219,7 @@ export const CardsProp: FC<any> = ({ prop, property, nameInstruction, indexItem,
         <PopUp
           closePopUp={cancelDelete}
           alert={{
-            text:"delete?",
+            text:"Delete",
             cancel: cancelDelete,
             confirm: deleteItem
           }}

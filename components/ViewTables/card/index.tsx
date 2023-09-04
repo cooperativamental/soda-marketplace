@@ -74,7 +74,7 @@ export const Card: FC<any> = ({ name, onClick, instruction, index, selected }) =
         <PopUp
           closePopUp={cancelDelete}
           alert={{
-            text: "Are you sure you want to delete?",
+            text: "Delete",
             cancel: cancelDelete,
             confirm: deleteItem
           }}

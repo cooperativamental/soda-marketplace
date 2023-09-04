@@ -59,7 +59,7 @@ const IDLProvider = ({ children }: { children: ReactNode }) => {
         <PopUp
           closePopUp={() => setConfirmation(false)}
           alert={{
-            text: "Sure to delete?",
+            text: "Overwrite IDL?",
             cancel: () => setConfirmation(
               false
             ),
