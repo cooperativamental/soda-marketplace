@@ -53,7 +53,7 @@ const Templates = () => {
                         }
                     </div>
                     <div
-                        className={`grid grid-cols-4 gap-4 ${!templates.length ? "!flex items-center justify-center w-full" : "" } w-full h-[48%] rounded-t-2xl overflow-y-auto border-2 p-4 mini-scrollbar`}
+                        className={`grid grid-cols-4 gap-4 ${!templates.length ? "!flex items-center justify-center w-full" : "" } w-full h-[48%] rounded-b-2xl overflow-y-auto border-2 p-4 mini-scrollbar`}
                         >
                         {
                             templates.length ?
