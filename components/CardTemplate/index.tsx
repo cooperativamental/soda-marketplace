@@ -3,12 +3,13 @@ import { checkNFT } from "@/helpers";
 import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
 import JSZip from "jszip";
 import Image from "next/image"
-import { FC } from "react";
+import { FC, useState } from "react";
 
 const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const { IDL } = useIDL()
     const { connection } = useConnection()
     const wallet = useAnchorWallet();
+    const [hoverCard, setHover] = useState(false)
 
     const exportProject = async () => {
         if (await checkNFT(connection, wallet)) {
@@ -57,37 +58,62 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             alert("need to be coneected with a wallet with the Soda NFT")
         }
     }
-    
-    return (
-        <div className={` flex flex-col h-96 bg-backg p-5 w-52 rounded-3xl shadow-sm border border-border shadow-black  text-white gap-3 justify-between items-center hover:bg-inputs`}>
-            <div className=" flex text-sm justify-between w-full">
-                <p>
-                    {
-                        !template?.price ?
-                            "Free Template"
-                            :
-                            `${template?.price?.toString()} ${template.currency} `
-                    }
-                </p>
-                <p>v{template?.version}</p>
-            </div>
-            <div className=" flex flex-col w-full items-center justify-around">
-                < Image className="h-20 w-20" width={5} height={2} src={template.image || "/soda.svg"} alt={template.name} />
-                <p className=" text-2xl text-center">{template.name}</p>
-                <p className=" text-xs overflow-y-auto mt-6 text-center">{template.description}</p>
-            </div>
-            {/* <div className="flex flex-col gap-2 ">
-                <p className=" text-sm">Brought to you by</p>
 
-                <div className="flex bg-[#183a5c] justify-center items-center h-10 w-full py-2 p-4 rounded-3xl">
-                    <Image className="" src={template.icon || ""} alt={template.name} />
+    return (
+        <div
+            className="flex flex-col items-center gap-4 h-min"
+            onMouseOver={() => { setHover(true) }}
+            onMouseOut={() => { setHover(false) }}
+        >
+            <div
+                className="relative h-96 w-52 flex justify-center"
+            >
+                <Image
+                    className={`absolute h-full w-full ${hoverCard ? "blur-sm" : ""} transition-all duration-200`}
+                    unoptimized
+                    src='/strawberry_can.png'
+                    alt="can"
+                    width={5}
+                    height={10}
+                />
+                <div
+                    className={`absolute flex flex-col ${hoverCard ? "" : "hidden"} h-96 p-5 w-52 rounded-3xl text-white gap-3 justify-between items-center`}
+                >
+                    <div className=" flex text-sm justify-between w-full">
+                        <p>
+                            {
+                                !template?.price ?
+                                    "Free Template"
+                                    :
+                                    `${template?.price?.toString()} ${template.currency} `
+                            }
+                        </p>
+                        <p>v{template?.version}</p>
+                    </div>
+                    < Image className="h-20 w-20" width={5} height={2} src={template.image || "/soda.svg"} alt={template.name} />
+                    <div className=" flex flex-col w-full items-center justify-around">
+                        <p className=" text-2xl text-center">{template.name}</p>
+                        <p className=" text-xs overflow-y-auto mt-6 text-center">{template.description}</p>
+                    </div>
+                    {/* <div className="flex flex-col gap-2 ">
+                        <p className=" text-sm">Brought to you by</p>
+
+                        <div className="flex bg-[#183a5c] justify-center items-center h-10 w-full py-2 p-4 rounded-3xl">
+                            <Image className="" src={template.icon || ""} alt={template.name} />
+                        </div>
+                    </div> */}
                 </div>
-            </div> */}
+            </div>
             <button
-                className="text-chok px-5 rounded h-10 rounded-md border border-border hover:bg-inputs hover:border-2 hover:shadow-lg hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
+                className="text-chok px-5 h-min rounded-md border border-border hover:bg-inputs hover:border-2 hover:shadow-lg hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                 onClick={exportProject}
             >
-                Export
+                {
+                    hoverCard ?
+                        "Export"
+                        :
+                        template.name
+                }
             </button>
         </div>
     )

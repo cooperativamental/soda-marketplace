@@ -4,8 +4,11 @@ import ClassicEditor from "@/components/ViewCards/Editor";
 import JSONEditor from "@/components/JSONEditor";
 import { ArrowDownTrayIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { CodeBracketIcon } from "@heroicons/react/24/solid";
+import { useIDL } from "@/context/IDL";
+import { saveIDLFile } from "@/helpers";
 
 export default function Home() {
+  const { IDL, cleanProject } = useIDL()
   const [selectedUI, setSelectedUI] = useState("cards")
   const [widthJson, setWidthJson] = useState(false)
   const [hiddenJson, setHiddenJson] = useState(true)
@@ -56,14 +59,14 @@ export default function Home() {
                     <button
                         type="button"
                         className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                        // onClick={cleanProject}
+                        onClick={cleanProject}
                     >
                         <PlusIcon className="h-5 w-5" aria-hidden="true" />New IDL
                     </button>
                     <button
                         type="button"
                         className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                        // onClick={() => saveIDLFile(IDL)}
+                        onClick={() => saveIDLFile(IDL)}
                     >
                         <ArrowDownTrayIcon className="h-5 w-5" aria-hidden="true" /> Download IDL
                     </button>

@@ -12,9 +12,9 @@ const Templates = () => {
     const { connection } = useConnection()
 
     return (
-        <div className="flex flex-col h-full justify-between overflow-y-auto">
+        <div className="flex flex-col h-full ">
             <h1 className="text-2xl text-white font-bold ml-5">{ IDL.name || "Edit IDL or Import IDL"}</h1>
-            <div className=" flex flex-wrap p-4 gap-4  h-[70vh] rounded-3xl overflow-y-auto border-border mini-scrollbar">
+            <div className=" flex gap-4 px-4 w-full h-[calc(100%-6rem)] rounded-3xl border-border">
 
                 {
                     (!connection || !wallet) ?
@@ -30,22 +30,33 @@ const Templates = () => {
                         />
                         :
                         <div className="!flex-col h-96 !border !border-border !p-5 !w-52 !shadow-md !shadow-black  !text-chok !text-center !gap-3 !items-center !cursor-pointer !hover:bg-inputs hover:!bg-slate-700 !rounded-3xl !font-thin">
-                            <p>Got Soda?</p>
-                            <p>
-                                Get your can for access
-                            </p>
-                            <p>
-                                Claim your free soda, buy standard Soda NFT or Soda Collections full access full life.
-                            </p>
+                            QR
                         </div>
                 }
-                {
-                    templates.map((template: any, i: number) => {
-                        return (
-                            <CardTemplate key={template.name} template={template} indexTemplate={i} />
-                        )
-                    })
-                }
+                <div className="flex flex-col w-full justify-between">
+                    <div
+                        className="grid grid-cols-4 gap-4 w-full h-[48%] rounded-t-2xl overflow-y-auto border-2 p-4 mini-scrollbar"
+                    >
+                        {
+                            templates.map((template: any, i: number) => {
+                            return (
+                                    <CardTemplate key={template.name} template={template} indexTemplate={i} />
+                                )
+                            })
+                        }
+                    </div>
+                    <div
+                        className="grid grid-cols-4 gap-4 w-full h-[48%] rounded-b-2xl overflow-y-auto border-2 p-4 mini-scrollbar"
+                    >
+                        {
+                            [...templates, ...templates, ...templates].map((template: any, i: number) => {
+                                return (
+                                    <CardTemplate key={template.name} template={template} indexTemplate={i} />
+                                )
+                            })
+                        }
+                    </div>
+                </div>
             </div>
             <div className="self-center text-xs text-white p-5">
                 Dev a Template
