@@ -71,7 +71,7 @@ export default function Home() {
             <ArrowDownTrayIcon className="h-5 w-5" aria-hidden="true" /> Download IDL
           </button>
         </div>
-        <div className="flex flex-col text-border gap-1">
+        <div className="flex items-center text-border gap-1">
           <p className="text-border">select view:</p>
           <div className="flex">
             <button onClick={() => setSelectedUI("cards")} className={`hover:underline p-1 border-md ${selectedUI === "cards" && "underline text-chok"}`}>cards</button>

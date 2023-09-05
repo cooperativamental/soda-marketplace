@@ -19,7 +19,7 @@ const Layout: FC<any> = ({ children }) => {
                         <input type="file" id="file" onChange={(e) => openIDLFile(e, setIDL)} className="hidden" />
                         <label
                             htmlFor="file"
-                            className="-m-2.5 p-2.5 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border cursor-pointer"
+                            className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border cursor-pointer"
                         >
                             <FolderOpenIcon className="h-5 w-5" aria-hidden="true" /> Import IDL
                         </label>
@@ -27,7 +27,7 @@ const Layout: FC<any> = ({ children }) => {
                             router.asPath !== "/templates" ?
                                 <button
                                     type="button"
-                                    className="-m-2.5 p-2.5 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
+                                    className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                                     onClick={() => {
                                         router.push("/templates")
                                     }}
@@ -38,7 +38,7 @@ const Layout: FC<any> = ({ children }) => {
 
                                 <button
                                     type="button"
-                                    className="-m-2.5 p-2.5 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
+                                    className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                                     onClick={() => {
                                         router.push("/")
                                     }}
@@ -50,7 +50,7 @@ const Layout: FC<any> = ({ children }) => {
                     </div>
 
                 </div>
-                <WalletMultiButton className='!z-10 !h-full !w-max !bg-[#FA9972] hover:!bg-slate-700 !rounded-md !font-thin' />
+                <WalletMultiButton className='!z-10 !h-full !w-max !bg-[#1e1e1e] hover:!bg-backg !rounded-full !font-thin' />
             </div>
             <main className=" h-[calc(100%-6rem)] mini-scroll overflow-y-auto bg-backg">
                 {children}

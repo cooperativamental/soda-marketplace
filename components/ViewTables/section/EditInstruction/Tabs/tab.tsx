@@ -231,7 +231,7 @@ const Tab: FC<any> = ({ addProperty, objConfig, elements, editProperty, deleteIt
                 status: false
               })
             },
-            text: "Are you sure you want to delete?"
+            text: "Delete"
           }}
         />
       }
