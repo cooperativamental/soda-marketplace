@@ -4,15 +4,19 @@ import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
 import JSZip from "jszip";
 import Image from "next/image"
 import { FC, useState } from "react";
+import { Bubbles } from "../Bubbles";
 
 const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const { IDL } = useIDL()
     const { connection } = useConnection()
     const wallet = useAnchorWallet();
     const [hoverCard, setHover] = useState(false)
+    const [download, setDownload] = useState(false)
 
     const exportProject = async () => {
+
         if (await checkNFT(connection, wallet)) {
+            setDownload(true)
             const response = await fetch(`https://soda.shuttleapp.rs/get_project_files/${indexTemplate}`, {
                 method: "POST",
                 body: JSON.stringify({ idl: IDL })
@@ -54,6 +58,10 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                 // Clean up the created URL object
                 URL.revokeObjectURL(url);
             });
+            
+            setTimeout(()=>{
+                setDownload(false)
+            }, 2000)
         } else {
             alert("need to be coneected with a wallet with the Soda NFT")
         }
@@ -95,13 +103,6 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                         <p className=" text-2xl text-center">{template.name}</p>
                         <p className=" text-xs overflow-y-auto mt-6 text-center">{template.description}</p>
                     </div>
-                    {/* <div className="flex flex-col gap-2 ">
-                        <p className=" text-sm">Brought to you by</p>
-
-                        <div className="flex bg-[#183a5c] justify-center items-center h-10 w-full py-2 p-4 rounded-3xl">
-                            <Image className="" src={template.icon || ""} alt={template.name} />
-                        </div>
-                    </div> */}
                 </div>
             </div>
             <button
@@ -115,6 +116,10 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                         template.name
                 }
             </button>
+            {
+              download &&
+              <Bubbles />
+            }
         </div>
     )
 }
