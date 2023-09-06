@@ -74,10 +74,10 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             onMouseOut={() => { setHover(false) }}
         >
             <div
-                className="relative h-96 w-52 flex justify-center"
+                className={`relative h-96 w-52 flex justify-center  ${ download && "animate-[rotateCan_2s_ease-in-out]"}`}
             >
                 <Image
-                    className={`absolute h-full w-full ${hoverCard ? "blur-sm" : ""} transition-all duration-200`}
+                    className={`absolute h-full w-full ${hoverCard ? "blur-sm" : ""} transition-all duration-200 ${ download ? "fixed z-50 blur-none": ""} `}
                     unoptimized
                     src='/strawberry_can.png'
                     alt="can"
@@ -110,16 +110,12 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                 onClick={exportProject}
             >
                 {
-                    hoverCard ?
+                    hoverCard && !download ?
                         "Export"
                         :
                         template.name
                 }
             </button>
-            {
-              download &&
-              <Bubbles />
-            }
         </div>
     )
 }

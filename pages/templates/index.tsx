@@ -42,7 +42,7 @@ const Templates = () => {
                     {
                         templates.length ?
                             <div
-                                className={`grid grid-cols-4 gap-4 w-full h-[48%] rounded-t-2xl overflow-y-auto border-2 p-4 mini-scrollbar`}
+                                className={`grid grid-cols-4 gap-4 w-full h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar`}
                             >
                                 {
 
@@ -54,12 +54,12 @@ const Templates = () => {
                                 }
                             </div>
                             :
-                            <div className=" flex justify-center items-center w-full h-[48%] rounded-t-2xl overflow-y-auto border-2 p-4 mini-scrollbar">
+                            <div className=" flex justify-center items-center w-full h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar">
                                 <Loading />
                             </div>
                     }
-                    {
-                        !templates.length ?
+                    {/* {
+                        templates.length ?
                             <div
                                 className={`grid grid-cols-4 gap-4 w-full h-[48%] rounded-b-2xl overflow-y-auto border-2 p-4 mini-scrollbar`}
                             >
@@ -76,7 +76,7 @@ const Templates = () => {
                             <div className=" flex justify-center items-center w-full h-[48%] rounded-b-2xl overflow-y-auto border-2 p-4 mini-scrollbar">
                                 <Loading />
                             </div>
-                    }
+                    } */}
                 </div>
             </div>
             <div className="self-center text-xs text-white p-5">
