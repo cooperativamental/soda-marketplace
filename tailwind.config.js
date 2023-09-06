@@ -43,7 +43,11 @@ module.exports = {
           '0%': { transform: 'rotate(0deg)', "--tw-blur": "blur(0px)" },
           '30%': { transform: 'rotate(25deg)' },
           '100%': { transform: 'translate(10px, 100vh)' },
-          
+        },
+        slide: {
+          '0%': { transform: 'rotate(0deg)', "--tw-blur": "blur(0px)" },
+          '30%': { transform: 'rotate(25deg)' },
+          '100%': { transform: 'translate(10px, 100vh)' },
         }
       },
       animationDelay: {

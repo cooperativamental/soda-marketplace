@@ -83,8 +83,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                     alt="can"
                     width={5}
                     height={10}
-                />
-                
+                /> 
                 <div
                     className={`absolute flex flex-col ${hoverCard ? "" : "hidden"} h-96 p-5 w-52 rounded-3xl text-white gap-3 justify-between items-center`}
                 >
