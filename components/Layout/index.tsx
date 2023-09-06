@@ -5,18 +5,30 @@ import { ArrowDownTrayIcon, FolderArrowDownIcon, FolderOpenIcon, PencilSquareIco
 import { openIDLFile, saveIDLFile } from "@/helpers";
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useRouter } from 'next/router';
+import { Bubbles } from '../Bubbles';
 
 const Layout: FC<any> = ({ children }) => {
     const router = useRouter()
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { IDL, setIDL, cleanProject } = useIDL()
-
+    const [upload, setUpload] = useState(false)
     return (
         <div className='h-screen'>
             <div className="sticky top-0 z-40 h-24 flex items-center justify-between gap-x-6 bg-backg  shadow-sm px-6">
                 <div className="flex gap-8 justify-center items-center">
                     <div className="absolute flex left-[40%] gap-8">
-                        <input type="file" id="file" onChange={(e) => openIDLFile(e, setIDL)} className="hidden" />
+                        <input
+                            type="file"
+                            id="file"
+                            onChange={(e) => {
+                                setUpload(true)
+                                openIDLFile(e, setIDL)
+                                setTimeout(()=>{
+                                    setUpload(false)
+                                },3000)
+                            }}
+                            className="hidden"
+                        />
                         <label
                             htmlFor="file"
                             className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border cursor-pointer"
@@ -52,9 +64,14 @@ const Layout: FC<any> = ({ children }) => {
                 </div>
                 <WalletMultiButton className='!z-10 !h-full !w-max !bg-[#1e1e1e] hover:!bg-backg !rounded-full !font-thin' />
             </div>
+            
             <main className=" h-[calc(100%-6rem)] mini-scroll overflow-y-auto bg-backg">
                 {children}
             </main>
+            {
+                upload &&
+                <Bubbles/>
+            }
         </div>
     )
 }

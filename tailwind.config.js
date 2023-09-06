@@ -36,8 +36,14 @@ module.exports = {
       },
       keyframes: {
         bubble: {
-          '0%': { backgroundPosition: "0 1000px" },
+          '0%': { backgroundPosition: "0 100vh" },
           '100%': { backgroundPosition: '0 0' },
+        },
+        rotateCan: {
+          '0%': { transform: 'rotate(0deg)', "--tw-blur": "blur(0px)" },
+          '30%': { transform: 'rotate(25deg)' },
+          '100%': { transform: 'translate(10px, 100vh)' },
+          
         }
       },
       animationDelay: {
