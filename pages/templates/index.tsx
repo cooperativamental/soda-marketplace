@@ -1,5 +1,5 @@
 import CardTemplate from "@/components/CardTemplate"
-import { Carousel } from "@/components/Carrousel"
+import { Carousel } from "@/components/Carousel"
 import { Loading } from "@/components/Loading"
 import { useIDL } from "@/context/IDL"
 import { useTemplates } from "@/context/templates"
@@ -21,7 +21,7 @@ const Templates = () => {
                 
             </div>
             <div className=" flex gap-4 px-4 w-full h-[calc(100%-6rem)] rounded-3xl border-border">
-                <div className="flex flex-col gap-10 w-2/uuu12">
+                <div className="flex flex-col gap-10 w-2/12">
                     <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-center !gap-3 !items-center !cursor-pointer !rounded-3xl !font-thin">
                         {
                             (!connection || !wallet) ?
