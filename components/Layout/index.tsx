@@ -6,9 +6,15 @@ import { openIDLFile, saveIDLFile } from "@/helpers";
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useRouter } from 'next/router';
 import { Bubbles } from '../Bubbles';
+import { Tooltip } from '@material-tailwind/react';
+import Image from 'next/image';
 
 const Layout: FC<any> = ({ children }) => {
     const router = useRouter()
+    const [tooltip, setTooltip] = useState<{ type: string | false, content: string }>({
+        type: false,
+        content: ""
+    })
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { IDL, setIDL, cleanProject } = useIDL()
     const [upload, setUpload] = useState(false)
@@ -16,6 +22,8 @@ const Layout: FC<any> = ({ children }) => {
         <div className='h-screen'>
             <div className="sticky top-0 z-40 h-24 flex items-center justify-between gap-x-6 bg-backg  shadow-sm px-6">
                 <div className="flex gap-8 justify-center items-center">
+                    <Image className="h-20 w-20" width={5} height={2} src={"/soda.svg"} alt="soda app" />
+
                     <div className="absolute flex left-[40%] gap-8">
                         <input
                             type="file"
@@ -23,31 +31,23 @@ const Layout: FC<any> = ({ children }) => {
                             onChange={(e) => {
                                 setUpload(true)
                                 openIDLFile(e, setIDL)
-                                setTimeout(()=>{
+                                setTimeout(() => {
                                     setUpload(false)
-                                },3000)
+                                }, 3000)
                             }}
                             className="hidden"
                         />
-                        <label
-                            htmlFor="file"
-                            className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border cursor-pointer"
-                        >
-                            <FolderOpenIcon className="h-5 w-5" aria-hidden="true" /> Import IDL
-                        </label>
-                        {
-                            router.asPath !== "/templates" ?
-                                <button
-                                    type="button"
-                                    className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                                    onClick={() => {
-                                        router.push("/templates")
-                                    }}
-                                >
-                                    <FolderArrowDownIcon className="h-5oko w-5" aria-hidden="true" />Export project
-                                </button>
-                                :
 
+                        {
+                            router.asPath === "/templates" &&
+                            <Tooltip
+                                content="IDL Generator"
+                                className=" bg-black p-2"
+                                animate={{
+                                    mount: { scale: 1, y: 0, zIndex: 100 },
+                                    unmount: { scale: 0, y: 25, zIndex: 100 },
+                                }}
+                            >
                                 <button
                                     type="button"
                                     className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
@@ -57,20 +57,62 @@ const Layout: FC<any> = ({ children }) => {
                                 >
                                     <PencilSquareIcon className="h-5oko w-5" aria-hidden="true" />IDL Generator
                                 </button>
+                            </Tooltip>
+                        }
+                        <Tooltip
+                            content="Import IDL"
+                            className=" bg-black p-2"
+                            animate={{
+                                mount: { scale: 1, y: 0, zIndex: 100 },
+                                unmount: { scale: 0, y: 25, zIndex: 100 },
+                            }}
+                        >
+                            <label
+                                htmlFor="file"
+                                className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border cursor-pointer"
+                            >
+                                <FolderOpenIcon className="h-5 w-5" aria-hidden="true" />
+                                Import IDL
+                            </label>
+                        </Tooltip>
+                        {
+                            router.asPath !== "/templates" &&
+                            <Tooltip
+                                content="Export Project"
+                                className=" bg-black p-2"
+                                animate={{
+                                    mount: { scale: 1, y: 0, zIndex: 100 },
+                                    unmount: { scale: 0, y: 25, zIndex: 100 },
+                                }}
+                            >
+                                <button
+                                    type="button"
+                                    className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
+                                    onClick={() => {
+                                        router.push("/templates")
+                                    }}
+                                    onMouseOver={() => { setTooltip({ type: "EXPORT_PROJECT", content: "Export Project" }) }}
+                                    onMouseOut={() => { setTooltip({ type: false, content: "" }) }}
+                                >
+                                    <FolderArrowDownIcon className="h-5oko w-5" aria-hidden="true" />
+                                    Export project
+                                </button>
+
+                            </Tooltip>
                         }
 
-                    </div>
+                        </div>
 
                 </div>
                 <WalletMultiButton className='!z-10 !h-full !w-max !bg-[#1e1e1e] hover:!bg-backg !rounded-full !font-thin' />
             </div>
-            
+
             <main className=" h-[calc(100%-6rem)] mini-scroll overflow-y-auto bg-backg">
                 {children}
             </main>
             {
                 upload &&
-                <Bubbles/>
+                <Bubbles />
             }
         </div>
     )

@@ -13,6 +13,8 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const [hoverCard, setHover] = useState(false)
     const [download, setDownload] = useState(false)
 
+console.log(template)
+
     const exportProject = async () => {
 
         if (await checkNFT(connection, wallet)) {
@@ -77,9 +79,9 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                 className={`relative h-96 w-52 flex justify-center  ${ download && "animate-[rotateCan_2s_ease-in-out]"}`}
             >
                 <Image
-                    className={`absolute h-full w-full ${hoverCard ? "blur-sm" : ""} transition-all duration-200 ${ download ? "fixed z-50 blur-none": ""} `}
+                    className={`absolute h-full w-full ${hoverCard ? "blur-sm" : ""} transition-all duration-200 ${ download ? "fixed z-50 !blur-none": ""} `}
                     unoptimized
-                    src='/strawberry_can.png'
+                    src={template.image}
                     alt="can"
                     width={5}
                     height={10}
@@ -99,7 +101,6 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                         </p>
                         <p>v{template?.version}</p>
                     </div>
-                    < Image className="h-20 w-20" width={5} height={2} src={template.image || "/soda.svg"} alt={template.name} />
                     <div className=" flex flex-col w-full items-center justify-around">
                         <p className=" text-2xl text-center">{template.name}</p>
                         <p className=" text-xs overflow-y-auto mt-6 text-center">{template.description}</p>
