@@ -5,16 +5,25 @@ import WalletContextProvider from '@/context/wallet'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import Script from "next/script"
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
         <title>Soda</title>
-        <meta name="description" content="Generate Solana projects from an UI" />
+        <meta name="description" content="Solana dApp Generator" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-EJB99T5E0X"></Script>
+        <Script>
+          {`window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-EJB99T5E0X');`}
+        </Script>
       <WalletContextProvider>
         <IDLProvider>
           <TemplatesProvider>
