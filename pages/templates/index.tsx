@@ -18,11 +18,10 @@ const Templates = () => {
             <div className="h-20">
             <h4 className="text-md text-chok text-center font-light ml-5">Export project:</h4>
             <h1 className="text-2xl text-chok text-center font-bold ml-5">{IDL.name || "Import or create IDL"}</h1>
-                
             </div>
             <div className=" flex gap-4 px-4 w-full h-[calc(100%-6rem)] rounded-3xl border-border">
                 <div className="flex flex-col gap-10 w-2/12">
-                    <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-center !gap-3 !items-center !cursor-pointer !rounded-3xl !font-thin">
+                    <div className="flex flex-col h-96 w-full !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-center !gap-3 !items-center !cursor-pointer !rounded-3xl !font-thin">
                         {
                             (!connection || !wallet) ?
                                 <WalletMultiButton
@@ -40,7 +39,7 @@ const Templates = () => {
                                 "Get a soda for your template. Use this QR to mint your sodas"
                         }
                     </div>
-                    <div className="flex flex-col justify-center">
+                    <div className="flex flex-col w-full justify-center">
                         <p className="text-white text-xl text-center">Full Access NFT</p>
                         <Carousel />
                     </div>
