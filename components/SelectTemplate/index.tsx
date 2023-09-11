@@ -5,11 +5,21 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTemplates } from "@/context/templates";
 import CardTemplate from "./CardTemplate";
-import { FC } from "react";
-
+import { FC, useEffect } from "react";
+import checkNFTaccess from "@/helpers/checkNFTaccess";
+import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
 
 const SelectTemplate: FC<any> = ({ templates, closePopUp }) => {
     const router = useRouter()
+    const { connection } = useConnection()
+    const wallet = useAnchorWallet();
+    
+    useEffect(() => {
+        (async () => {
+            const accessNFTs = await checkNFTaccess(connection, wallet);
+            console.log(accessNFTs)
+        })()
+    }, [])
 
     return (
         <div className="fixed z-50  h-screen w-full flex items-center justify-center backdrop-blur-sm bg-white/30 ">
@@ -30,7 +40,7 @@ const SelectTemplate: FC<any> = ({ templates, closePopUp }) => {
                             )
                         })
                     }
-                    
+
                 </div>
 
             </div>

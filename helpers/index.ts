@@ -5,6 +5,7 @@ import about from "./about";
 import nameSetter from "./nameSetter";
 import handleBaseFolder from "./handleBaseFolder";
 import checkNFT from "./checkNFT";
+import checkNFTaccess from "./checkNFTaccess";
 
 export {
     generateProjectFiles,
@@ -14,4 +15,5 @@ export {
     nameSetter,
     handleBaseFolder,
     checkNFT,
+    checkNFTaccess,
 };
