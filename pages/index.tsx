@@ -72,8 +72,8 @@ export default function Home() {
           </button>
         </div>
         <div className="flex items-center text-border gap-1">
-          <p className="text-border">select view:</p>
-          <div className="flex">
+          <p className="text-border">view:</p>
+          <div className="flex border-1 rounded-md bg-inputs p-2">
             <button onClick={() => setSelectedUI("cards")} className={`hover:underline p-1 border-md ${selectedUI === "cards" && "underline text-chok"}`}>cards</button>
             <button onClick={() => setSelectedUI("tables")} className={`hover:underline p-1 border-md ${selectedUI === "tables" && "underline text-chok"}`}>tables</button>
             <button onClick={() => setSelectedUI("json")} className={`hover:underline p-1 border-md ${selectedUI === "json" && "underline text-chok"}`}>JSON</button>

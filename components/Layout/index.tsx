@@ -31,7 +31,7 @@ const Layout: FC<any> = ({ children }) => {
                         />
                         <label
                             htmlFor="file"
-                            className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border cursor-pointer"
+                            className="-m-2.5 p-4 h-16 text-blue-custom text-sm inline-flex items-center gap-x-1.5 rounded-lg shadow-md shadow-blue-custom border border-border bg-green-custom hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:shadow-lg active:shadow-export duration-200 cursor-pointer"
                         >
                             <FolderOpenIcon className="h-5 w-5" aria-hidden="true" /> Import IDL
                         </label>
@@ -39,7 +39,7 @@ const Layout: FC<any> = ({ children }) => {
                             router.asPath !== "/templates" ?
                                 <button
                                     type="button"
-                                    className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
+                                    className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 bg-export shadow-md shadow-blue-custom rounded-lg border border-border hover:bg-sky hover:text-export hover:shadow-md hover:shadow-export  focus:bg-inputs active:shadow-lg active:shadow-export duration-200"
                                     onClick={() => {
                                         router.push("/templates")
                                     }}
