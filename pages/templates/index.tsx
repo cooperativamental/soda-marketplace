@@ -2,8 +2,10 @@ import CardTemplate from "@/components/CardTemplate"
 import { Loading } from "@/components/Loading"
 import { useIDL } from "@/context/IDL"
 import { useTemplates } from "@/context/templates"
-import { useConnection, useWallet } from "@solana/wallet-adapter-react"
+import checkNFTaccess from "@/helpers/checkNFTaccess"
+import { useAnchorWallet, useConnection, useWallet } from "@solana/wallet-adapter-react"
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
+import { useEffect } from "react"
 
 
 const Templates = () => {
@@ -11,7 +13,15 @@ const Templates = () => {
     const { templates } = useTemplates()
     const { wallet } = useWallet()
     const { connection } = useConnection()
-
+    const anchorwallet = useAnchorWallet();
+    
+    useEffect(() => {
+        (async () => {
+            const accessNFTs = await checkNFTaccess(connection, anchorwallet);
+            console.log(accessNFTs)
+        })()
+    }, [])
+    
     return (
         <div className="flex flex-col h-full ">
             <div className="h-20">
