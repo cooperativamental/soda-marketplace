@@ -30,7 +30,7 @@ const Templates = () => {
                 
             </div>
             <div className=" flex gap-4 px-4 w-full h-[calc(100%-6rem)] rounded-3xl border-border">
-                <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-center !gap-3 !items-center !cursor-pointer !rounded-3xl !font-thin">
+                <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-sky  !text-chok !text-center !gap-3 !items-center !cursor-pointer !rounded-3xl !font-thin">
                     {
                         (!connection || !wallet) ?
                             <WalletMultiButton
@@ -52,7 +52,7 @@ const Templates = () => {
                     {
                         templates.length ?
                             <div
-                                className={`grid grid-cols-4 gap-4 w-full h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar`}
+                                className={`grid grid-cols-4 gap-4 w-full h-full rounded-3xl shadow-sm shadow-sky overflow-y-auto border border-border p-4 mini-scrollbar`}
                             >
                                 {
 

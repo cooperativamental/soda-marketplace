@@ -38,7 +38,7 @@ export default function Home() {
 
                 }
               }}
-              className="absolute top-2 right-0 w-12 h-12 bg-[#1e1e1e] text-chok hover:bg-inputs border-y rounded-l-md border-l border-border p-2 z-20 cursor-pointer hover:text-green-custom "
+              className="absolute top-2 right-0 w-12 h-12 bg-[#1e1e1e] text-chok hover:bg-inputs border-y rounded-l-2xl border-l border-border p-2 z-20 cursor-pointer hover:text-green-custom "
             />
             {view[selectedUI as keyof typeof render]}
           </div>
