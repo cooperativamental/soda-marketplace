@@ -37,7 +37,6 @@ const Layout: FC<any> = ({ children }) => {
                             }}
                             className="hidden"
                         />
-
                         {
                             router.asPath === "/templates" &&
                             <Tooltip
@@ -111,7 +110,7 @@ const Layout: FC<any> = ({ children }) => {
                 {children}
             </main>
             {
-                upload &&
+                !upload &&
                 <Bubbles />
             }
         </div>
