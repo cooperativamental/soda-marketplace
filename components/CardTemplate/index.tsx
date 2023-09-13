@@ -58,8 +58,8 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                 // Clean up the created URL object
                 URL.revokeObjectURL(url);
             });
-            
-            setTimeout(()=>{
+
+            setTimeout(() => {
                 setDownload(false)
             }, 2000)
         } else {
@@ -74,17 +74,17 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             onMouseOut={() => { setHover(false) }}
         >
             <div
-                className={`relative h-96 w-52 flex justify-center  ${ download && "animate-[rotateCan_2s_ease-in-out]"}`}
+                className={`relative h-96 w-52 flex justify-center  ${download && "animate-[rotateCan_2s_ease-in-out]"}`}
             >
                 <Image
-                    className={`absolute h-full w-full ${hoverCard ? "blur-sm" : ""} transition-all duration-200 ${ download ? "fixed z-50 blur-none": ""} `}
+                    className={`absolute h-full w-full ${hoverCard ? "blur-sm" : ""} transition-all duration-200 ${download ? "fixed z-50 !blur-none" : ""} `}
                     unoptimized
-                    src='/strawberry_can.png'
+                    src={template.image}
                     alt="can"
                     width={5}
                     height={10}
                 />
-                
+
                 <div
                     className={`absolute flex flex-col ${hoverCard ? "" : "hidden"} h-96 p-5 w-52 rounded-3xl text-white gap-3 justify-between items-center`}
                 >
@@ -99,24 +99,41 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                         </p>
                         <p>v{template?.version}</p>
                     </div>
-                    < Image className="h-20 w-20" width={5} height={2} src={template.image || "/soda.svg"} alt={template.name} />
                     <div className=" flex flex-col w-full items-center justify-around">
                         <p className=" text-2xl text-center">{template.name}</p>
                         <p className=" text-xs overflow-y-auto mt-6 text-center">{template.description}</p>
                     </div>
                 </div>
             </div>
-            <button
-                className="text-chok px-5 h-min rounded-md border border-border hover:bg-inputs hover:border-2 hover:shadow-lg hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                onClick={exportProject}
-            >
-                {
-                    hoverCard && !download ?
-                        "Export"
-                        :
-                        template.name
-                }
-            </button>
+            {
+                template.includeWallet ?
+
+                    <button
+                        className="text-chok px-5 h-min rounded-md border border-border hover:bg-inputs hover:border-2 hover:shadow-lg hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
+                        onClick={exportProject}
+                    >
+                        {
+                            hoverCard && !download ?
+                                "Export"
+
+                                :
+                                template.name
+                        }
+                    </button>
+                    :
+                    <button
+                        className="text-chok px-5 h-min rounded-md border border-border hover:bg-inputs hover:border-2 hover:shadow-lg hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
+                    >
+                        {
+                            hoverCard ?
+                                "Mint NFT"
+
+                                :
+                                template.name
+                        }
+
+                    </button>
+            }
         </div>
     )
 }
