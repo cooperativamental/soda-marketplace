@@ -21,7 +21,7 @@ const Templates = () => {
     const [ templateIncludesWallet, setTemplateIncludesWallet ] = useState<NFTAccess[]>()
     
     useEffect(() => {
-        (async () => {ç
+        (async () => {
             const accessNFTs = await checkNFTaccess(connection, anchorwallet);
             setTemplateIncludesWallet(accessNFTs)
         })()
