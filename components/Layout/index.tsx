@@ -110,7 +110,7 @@ const Layout: FC<any> = ({ children }) => {
                 {children}
             </main>
             {
-                !upload &&
+                upload &&
                 <Bubbles />
             }
         </div>
