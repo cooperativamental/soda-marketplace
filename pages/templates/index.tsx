@@ -6,6 +6,7 @@ import checkNFTaccess from "@/helpers/checkNFTaccess"
 import { useAnchorWallet, useConnection, useWallet } from "@solana/wallet-adapter-react"
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
 import { useEffect, useState } from "react"
+import Link from 'next/link'
 
 type NFTAccess = {
     address: string,
@@ -55,20 +56,27 @@ const Templates = () => {
 
                                 />
                                 :
-                                "Mint a soda can NFTs for unlock export. Each of these NFTs on your wallet grants you permission to export in that specific template. Pick one or pick them all! (Free for limited time only)"
+                                <div>
+                                <h2 className="text-3xl font-bold leading-7 mb-4">Mint a soda can NFT for unlock export services.</h2>
+                                <p className="text-lg leading-5 mb-4">
+                                Each of these NFTs on your wallet grants you permission to export in that specific template. Pick one or pick them all!
+                                </p>
+                                <p className="text-xs"> (Free for limited time only)
+                                </p>
+                                </div>
                         }
                     </div>
                     <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-left justify-center  !rounded-3xl !font-thin">
                         <div>
-                            <h5 className="font-bold">Download Soda Desktop app.</h5>
+                        <Link href="https://github.com/Web3-Builders-Alliance/soda/tags"  target="_blank"><h5 className="font-bold hover:text-green-custom">Download Soda Desktop app.</h5></Link>
                             <p>Free for students and community courses</p>
                         </div>
                         <div>
-                            <h5 className="font-bold">Soda is open-source.</h5>
-                            <p>Contribute here.</p>
+                        <h5 className="font-bold">Soda is open-source.</h5>
+                        <Link href="https://github.com/Web3-Builders-Alliance/soda/"  target="_blank"> <p className="hover:text-green-custom">Contribute here.</p></Link>
                         </div>
                         <div>
-                            <h5 className="font-bold">Send us your feedback</h5>
+                        <Link href="https://x.com/use_soda"  target="_blank"><h5 className="font-bold hover:text-green-custom">Send us your feedback</h5></Link>
                             <p>Your experience using Soda is a valuable asset for our dev team.</p>
                         </div>
                     </div>

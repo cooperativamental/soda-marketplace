@@ -6,7 +6,8 @@ import { ArrowDownTrayIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { CodeBracketIcon } from "@heroicons/react/24/solid";
 import { useIDL } from "@/context/IDL";
 import { saveIDLFile } from "@/helpers";
-import { Tooltip } from "@material-tailwind/react";
+import { Tooltip, Typography } from "@material-tailwind/react";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
   const { IDL, cleanProject } = useIDL()
@@ -98,6 +99,30 @@ export default function Home() {
             >
               <ArrowDownTrayIcon className="h-5 w-5" aria-hidden="true" /> Download IDL
             </button>
+          </Tooltip>
+          <Tooltip
+            content={
+              <div className="w-80">
+                <Typography color="white" className="font-medium leading-5 mb-2">
+                Solana IDLs provide a standardized way for applications to communicate with Solana programs.
+                </Typography>
+                <Typography
+                  variant="small"
+                  color="white"
+                  className="font-normal opacity-80"
+                >
+                  An Interface Definition Language (IDL) specifies a program's public interface. It defines a Solana program's account structures, instructions, and error codes. IDLs are .json files used to generate client-side code, allowing users to easily interact with a Solana program.
+                </Typography>
+              </div>
+            }
+            className=" bg-border p-2"
+            animate={{
+              mount: { scale: 1, y: 0, zIndex: 100 },
+              unmount: { scale: 0, y: 25, zIndex: 100 },
+            }}
+            placement="left-end"
+          >
+          <InformationCircleIcon className="h-6 w-6 text-border hover:text-chok" />
           </Tooltip>
         </div>
    

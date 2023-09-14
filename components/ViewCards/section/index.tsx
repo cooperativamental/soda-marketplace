@@ -29,7 +29,7 @@ export const Section: FC<any> = ({ instruction, content, initExpanded = false })
       <div
         className="absolute flex left-5 top-0 transform -translate-y-1/2 text-chok justify-center items-center font-mono font-thin"
       >
-        {`${instruction.charAt(0).toUpperCase() + instruction.slice(1)}`}
+        {`${instruction.charAt(0).toUpperCase() + instruction.slice(1)}`} 
       </div>
       <div className={`flex items-center w-full mini-scrollbar transition-all duration-500 overflow-y-hidden ${expanded ? "overflow-x-auto h-80" : " overflow-x-hidden h-0"}`}>
         {
