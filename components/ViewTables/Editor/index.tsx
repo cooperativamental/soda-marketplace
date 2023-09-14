@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { Section } from "@/components/ViewTables/section";
 import { useIDL } from "@/context/IDL";
+import { Tooltip } from '@material-tailwind/react';
 
 export const NewEditor: FC<any> = () => {
 
@@ -9,8 +10,16 @@ export const NewEditor: FC<any> = () => {
 
     return (
         <div className="flex flex-col h-full p-5 gap-5 font-mono">
+              <Tooltip
+                content="project name"
+                className=" bg-border p-2"
+                animate={{
+                    mount: { scale: 1, y: 0, zIndex: 100 },
+                    unmount: { scale: 0, y: 25, zIndex: 100 },
+                }}
+            >
             <input
-                placeholder="Add project name"
+                placeholder="project name"
                 value={IDL.name}
                 onChange={(e) => setIDL({
                     ...IDL,
@@ -19,6 +28,7 @@ export const NewEditor: FC<any> = () => {
                 }
                 className="w-3/12 bg-inputs p-5 h-16 text-left text-chok text-base rounded-md hover:shadow-md hover:shadow-border hover:text-green-custom"
             />
+            </Tooltip>
             <div className="flex flex-col h-full border border-border gap-2 rounded-md overflow-hidden">
 
                 <div className="flex w-full text-center -space-x-1 h-12">

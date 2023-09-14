@@ -109,7 +109,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                 template.includeWallet ?
 
                     <button
-                        className="text-chok px-5 h-min rounded-md border border-border hover:bg-inputs hover:border-2 hover:shadow-lg hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
+                        className="text-chok p-5 h-min rounded-full border border-border hover:bg-inputs hover:border-2 hover:shadow-lg hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                         onClick={exportProject}
                     >
                         {
@@ -122,7 +122,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                     </button>
                     :
                     <button
-                        className="text-chok px-5 h-min rounded-md border border-border hover:bg-inputs hover:border-2 hover:shadow-lg hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
+                        className="text-chok p-5 h-min rounded-full border border-border hover:bg-inputs hover:border-2 hover:shadow-lg hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                     >
                         {
                             hoverCard ?
