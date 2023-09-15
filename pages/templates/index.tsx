@@ -34,7 +34,7 @@ const Templates = () => {
     return (
         <div className="flex flex-col h-full ">
             <div className="h-20 ml-6 flex align-center items-center">
-                <h4 className="text-md text-chok text-left font-light ml-5">Ready to export:</h4>
+                <h4 className="text-md text-chok text-left font-light ml-5">Export project:</h4>
                 <h1 className="text-2xl text-red-custom text-left font-bold ml-5">{IDL.name || "Import or create IDL"}</h1>
 
             </div>
@@ -78,6 +78,18 @@ const Templates = () => {
                         <div>
                         <Link href="https://x.com/use_soda"  target="_blank"><h5 className="font-bold hover:text-green-custom">Send us your feedback</h5></Link>
                             <p>Your experience using Soda is a valuable asset for our dev team.</p>
+                        </div>
+                    </div>
+                    <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-left justify-center  !rounded-3xl !font-thin">
+                        <div>
+                        <Link href="https://solana.stackexchange.com/"  target="_blank"><h5 className="font-bold hover:text-green-custom">Questions?</h5>
+                            <p>solana.stackexchange.com</p>
+                            </Link>
+                        </div>
+                        
+                        <div>
+                        <Link href="https://github.com/solana-developers/solana-tools"  target="_blank"><h5 className="font-bold hover:text-green-custom">Solana Tools</h5></Link>
+                            <p>🦀 List of all Solana dev tools 🪓</p>
                         </div>
                     </div>
                 </div>
