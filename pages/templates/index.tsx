@@ -20,17 +20,17 @@ const Templates: FC<any> = ({ images }) => {
     const { connection } = useConnection()
     const [canCollection, setCanCollection] = useState()
     const anchorwallet = useAnchorWallet();
-    const [ templateIncludesWallet, setTemplateIncludesWallet ] = useState<NFTAccess[]>()
-    
+    const [templateIncludesWallet, setTemplateIncludesWallet] = useState<NFTAccess[]>()
+
     useEffect(() => {
         (async () => {
             const accessNFTs = await checkNFTaccess(connection, anchorwallet);
             setTemplateIncludesWallet(accessNFTs)
         })()
     }, [connection, anchorwallet])
-    
 
-    console.log("template",templateIncludesWallet)
+
+    console.log("template", templateIncludesWallet)
 
     return (
         <div className="flex flex-col h-full ">
@@ -39,8 +39,8 @@ const Templates: FC<any> = ({ images }) => {
                 <h1 className="text-2xl text-chok text-center font-bold ml-5">{IDL.name || "Import or create IDL"}</h1>
             </div>
             <div className=" flex gap-4 px-4 w-full h-[calc(100%-6rem)] rounded-3xl border-border">
-                <div className="flex flex-col gap-10 w-2/12">
-                    <div className="flex flex-col h-1/2 w-full !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-center !gap-3 !items-center !cursor-pointer !rounded-3xl !font-thin">
+                <div className="flex flex-col w-2/12">
+                    <div className="flex flex-col h-[40%] w-full !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-center !gap-3 !items-center !cursor-pointer !rounded-3xl !font-thin">
                         {
                             (!connection || !wallet) ?
                                 <WalletMultiButton
@@ -58,38 +58,38 @@ const Templates: FC<any> = ({ images }) => {
                                 "Get a soda for your template. Use this QR to mint your sodas"
                         }
                     </div>
-                    <div className="flex flex-col w-full h-1/2 justify-center">
+                    <div className="flex flex-col w-full h-[40%] justify-center">
                         <p className="text-white text-lg text-center">Full Access NFT</p>
                         <Carousel images={images} />
+                    </div>
+                    <div className="flex flex-col h-[10%] w-full !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-center !gap-3 !items-center justify-center  !rounded-3xl !font-thin">
+                        🌌🔧 Build templates like a pro with Soda. Craft templates that simplify the blockchain experience. Ping here 🚀🧩
                     </div>
                 </div>
                 <div className="flex flex-col w-full justify-between">
                     {
                         templates.length ?
-                        <div
-                            className={`grid grid-cols-4 gap-4 w-full h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar`}
-                        >
-                            {
+                            <div
+                                className={`grid grid-cols-4 gap-4 w-full h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar`}
+                            >
+                                {
 
-                                templates.map((template: any, i: number) => {
-                                    const includeWallet = templateIncludesWallet?.find((temp) => temp.template === template.name )
-                                    const addImage = { ...template, image: `/${template.name.replace(" ", "")}.png`, includeWallet: !!includeWallet }
-                                    console.log(includeWallet)
-                                    return (
-                                        <CardTemplate key={template.name} template={addImage} indexTemplate={i} />
-                                    )
-                                })
-                            }
-                        </div>
+                                    templates.map((template: any, i: number) => {
+                                        const includeWallet = templateIncludesWallet?.find((temp) => temp.template === template.name)
+                                        const addImage = { ...template, image: `/${template.name.replace(" ", "")}.png`, includeWallet: !!includeWallet }
+                                        console.log(includeWallet)
+                                        return (
+                                            <CardTemplate key={template.name} template={addImage} indexTemplate={i} />
+                                        )
+                                    })
+                                }
+                            </div>
                             :
                             <div className=" flex justify-center items-center w-full h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar">
                                 <Loading />
                             </div>
                     }
                 </div>
-            </div>
-            <div className="self-center text-xs text-white p-5">
-                🌌🔧 Build templates like a pro with Soda. Craft templates that simplify the blockchain experience. Ping here 🚀🧩
             </div>
         </div>
     )
@@ -108,8 +108,8 @@ export async function getStaticProps() {
 
     const results = await cloudinary.v2.search.expression(
         'folder:can/*' // add your folder
-    ).sort_by('public_id', 'desc').execute()    
-    
+    ).sort_by('public_id', 'desc').execute()
+
     return {
         props: {
             images: results.resources
