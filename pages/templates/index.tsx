@@ -3,17 +3,34 @@ import { Carousel } from "@/components/Carousel"
 import { Loading } from "@/components/Loading"
 import { useIDL } from "@/context/IDL"
 import { useTemplates } from "@/context/templates"
-import { useConnection, useWallet } from "@solana/wallet-adapter-react"
+import checkNFTaccess from "@/helpers/checkNFTaccess"
+import { useAnchorWallet, useConnection, useWallet } from "@solana/wallet-adapter-react"
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
 import { FC, useEffect, useState } from "react"
 import cloudinary from 'cloudinary';
 
+type NFTAccess = {
+    address: string,
+    template: string,
+}
 const Templates: FC<any> = ({ images }) => {
     const { IDL } = useIDL()
     const { templates } = useTemplates()
     const { wallet } = useWallet()
     const { connection } = useConnection()
     const [canCollection, setCanCollection] = useState()
+    const anchorwallet = useAnchorWallet();
+    const [ templateIncludesWallet, setTemplateIncludesWallet ] = useState<NFTAccess[]>()
+    
+    useEffect(() => {
+        (async () => {
+            const accessNFTs = await checkNFTaccess(connection, anchorwallet);
+            setTemplateIncludesWallet(accessNFTs)
+        })()
+    }, [connection, anchorwallet])
+    
+
+    console.log("template",templateIncludesWallet)
 
     return (
         <div className="flex flex-col h-full ">
@@ -49,18 +66,21 @@ const Templates: FC<any> = ({ images }) => {
                 <div className="flex flex-col w-full justify-between">
                     {
                         templates.length ?
-                            <div
-                                className={`grid grid-cols-4 gap-4 w-full h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar`}
-                            >
-                                {
+                        <div
+                            className={`grid grid-cols-4 gap-4 w-full h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar`}
+                        >
+                            {
 
-                                    templates.map((template: any, i: number) => {
-                                        return (
-                                            <CardTemplate key={template.name} template={template} indexTemplate={i} />
-                                        )
-                                    })
-                                }
-                            </div>
+                                templates.map((template: any, i: number) => {
+                                    const includeWallet = templateIncludesWallet?.find((temp) => temp.template === template.name )
+                                    const addImage = { ...template, image: `/${template.name.replace(" ", "")}.png`, includeWallet: !!includeWallet }
+                                    console.log(includeWallet)
+                                    return (
+                                        <CardTemplate key={template.name} template={addImage} indexTemplate={i} />
+                                    )
+                                })
+                            }
+                        </div>
                             :
                             <div className=" flex justify-center items-center w-full h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar">
                                 <Loading />

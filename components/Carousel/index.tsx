@@ -88,8 +88,8 @@ export const Carousel = ({ images }: { images: any }) => {
       <div className="carousel !h-full">
         {/* {sliderControl(true)} */}
         {images.map((img: any, i: number) => (
-          <div className=" flex-shrink-0 mx-4 w-full h-full" key={img + i} ref={refs[i]}>
-            <Image alt="" width={277} height={400} src={img.url} className="h-full" />
+          <div className=" flex-shrink-0 flex justify-center mx-4 w-full h-full" key={img + i} ref={refs[i]}>
+            <Image alt="" width={277} height={400} src={img.url} className="h-full w-11/12" />
           </div>
         ))}
         {/* {sliderControl()} */}

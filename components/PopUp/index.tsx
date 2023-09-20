@@ -20,7 +20,6 @@ const PopUp: FC<any> = ({ children, title, closePopUp, icon, iconClassName, aler
     useEffect(() => {
         const handleClickOutside = (event: any) => {
             if (popUpRef.current && !popUpRef.current.contains(event.target)) {
-                console.log("close")
                 closePopUp()
             }
         };
@@ -35,7 +34,7 @@ const PopUp: FC<any> = ({ children, title, closePopUp, icon, iconClassName, aler
             <div ref={popUpRef} className=" flex flex-col absolute top-10 -translate-x-1/2 left-1/2 overflow-auto rounded-lg bg-backg [&::-webkit-scrollbar]:hidden">
                 <div className="flex h-5 bg-backg p-3 justify-between gap-2 w-full items-center">
                     <ArrowLeftIcon
-                        className="w-5 h-5 mt-2 cursor-pointer text-chok cursor-pointer hover:text-green-custom" onClick={closePopUp} />
+                        className="w-5 h-5 mt-2 cursor-pointer text-chok hover:text-green-custom" onClick={closePopUp} />
 
                     <div className="flex text-white gap-4 font-semibold w-full items-center overflow-hidden">
                         {title}

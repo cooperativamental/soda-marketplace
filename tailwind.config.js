@@ -34,6 +34,14 @@ module.exports = {
       backgroundImage: {
         'bubble': "url('../public/bluebubble.svg')"
       },
+      animationDuration: {
+        '300ms': '300ms',
+        '900ms': '900ms',
+      },
+      animationDelay: {
+        '300ms': '300ms',
+        '900ms': '900ms',
+      },
       keyframes: {
         bubble: {
           '0%': { backgroundPosition: "0 100vh" },
