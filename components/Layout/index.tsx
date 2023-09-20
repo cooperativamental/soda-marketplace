@@ -3,13 +3,17 @@ import { FC, useState } from 'react'
 import { useIDL } from '@/context/IDL'
 import { ArrowDownTrayIcon, FolderArrowDownIcon, FolderOpenIcon, PencilSquareIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { openIDLFile, saveIDLFile } from "@/helpers";
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { Bubbles } from '../Bubbles';
 import { Tooltip } from '@material-tailwind/react';
 import Image from 'next/image';
 
 const Layout: FC<any> = ({ children }) => {
+    const WalletMultiButton = dynamic(
+        async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+        { ssr: false }
+    );
     const router = useRouter()
     const [tooltip, setTooltip] = useState<{ type: string | false, content: string }>({
         type: false,
