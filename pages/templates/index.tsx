@@ -5,23 +5,25 @@ import { useIDL } from "@/context/IDL"
 import { useTemplates } from "@/context/templates"
 import { useConnection, useWallet } from "@solana/wallet-adapter-react"
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
+import { FC, useEffect, useState } from "react"
+import cloudinary from 'cloudinary';
 
-
-const Templates = () => {
+const Templates: FC<any> = ({ images }) => {
     const { IDL } = useIDL()
     const { templates } = useTemplates()
     const { wallet } = useWallet()
     const { connection } = useConnection()
+    const [canCollection, setCanCollection] = useState()
 
     return (
         <div className="flex flex-col h-full ">
             <div className="h-20">
-            <h4 className="text-md text-chok text-center font-light ml-5">Export project:</h4>
-            <h1 className="text-2xl text-chok text-center font-bold ml-5">{IDL.name || "Import or create IDL"}</h1>
+                <h4 className="text-md text-chok text-center font-light ml-5">Export project:</h4>
+                <h1 className="text-2xl text-chok text-center font-bold ml-5">{IDL.name || "Import or create IDL"}</h1>
             </div>
             <div className=" flex gap-4 px-4 w-full h-[calc(100%-6rem)] rounded-3xl border-border">
                 <div className="flex flex-col gap-10 w-2/12">
-                    <div className="flex flex-col h-96 w-full !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-center !gap-3 !items-center !cursor-pointer !rounded-3xl !font-thin">
+                    <div className="flex flex-col h-1/2 w-full !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-center !gap-3 !items-center !cursor-pointer !rounded-3xl !font-thin">
                         {
                             (!connection || !wallet) ?
                                 <WalletMultiButton
@@ -39,9 +41,9 @@ const Templates = () => {
                                 "Get a soda for your template. Use this QR to mint your sodas"
                         }
                     </div>
-                    <div className="flex flex-col w-full justify-center">
-                        <p className="text-white text-xl text-center">Full Access NFT</p>
-                        <Carousel />
+                    <div className="flex flex-col w-full h-1/2 justify-center">
+                        <p className="text-white text-lg text-center">Full Access NFT</p>
+                        <Carousel images={images} />
                     </div>
                 </div>
                 <div className="flex flex-col w-full justify-between">
@@ -67,10 +69,30 @@ const Templates = () => {
                 </div>
             </div>
             <div className="self-center text-xs text-white p-5">
-            🌌🔧 Build templates like a pro with Soda. Craft templates that simplify the blockchain experience. Ping here 🚀🧩
+                🌌🔧 Build templates like a pro with Soda. Craft templates that simplify the blockchain experience. Ping here 🚀🧩
             </div>
         </div>
     )
 }
 
 export default Templates
+
+export async function getStaticProps() {
+
+    cloudinary.v2.config({
+        cloud_name: "test-can", // add your cloud_name
+        api_key: "212968211892683", // add your api_key
+        api_secret: "_5nG8g_W5KOffvqmylSd5x8gVm4", // add your api_secret
+        secure: true
+    });
+
+    const results = await cloudinary.v2.search.expression(
+        'folder:can/*' // add your folder
+    ).sort_by('public_id', 'desc').execute()    
+    
+    return {
+        props: {
+            images: results.resources
+        }
+    }
+}
