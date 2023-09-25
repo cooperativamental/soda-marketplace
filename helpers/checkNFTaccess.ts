@@ -18,8 +18,8 @@ const checkNFTaccess = async (connection: any , wallet: AnchorWallet | undefined
     const metaplex = new Metaplex(connection);
     const keypair = Keypair.generate();
     metaplex.use(keypairIdentity(keypair));
-  
-    const owner = {owner:wallet?.publicKey ?? new PublicKey("")}
+    if (!connection || !wallet?.publicKey) return [];
+    const owner = {owner:wallet?.publicKey}
     const allNFTs = await metaplex.nfts().findAllByOwner(owner)
     return accessNFTS.filter((access: NFTAccess)=>allNFTs.some((NFT: Metadata | Nft | Sft)=>NFT.updateAuthorityAddress.toString() === access.address))
 }

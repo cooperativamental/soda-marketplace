@@ -4,7 +4,7 @@ import { useIDL } from "@/context/IDL"
 import { useTemplates } from "@/context/templates"
 import checkNFTaccess from "@/helpers/checkNFTaccess"
 import { useAnchorWallet, useConnection, useWallet } from "@solana/wallet-adapter-react"
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from "react"
 import Link from 'next/link'
 
@@ -14,22 +14,26 @@ type NFTAccess = {
 }
 
 const Templates = () => {
+    const WalletMultiButton = dynamic(
+        async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+        { ssr: false }
+    );
     const { IDL } = useIDL()
     const { templates } = useTemplates()
     const { wallet } = useWallet()
     const { connection } = useConnection()
     const anchorwallet = useAnchorWallet();
-    const [ templateIncludesWallet, setTemplateIncludesWallet ] = useState<NFTAccess[]>()
-    
+    const [templateIncludesWallet, setTemplateIncludesWallet] = useState<NFTAccess[]>()
+
     useEffect(() => {
         (async () => {
             const accessNFTs = await checkNFTaccess(connection, anchorwallet);
             setTemplateIncludesWallet(accessNFTs)
         })()
     }, [connection, anchorwallet])
-    
 
-    console.log("template",templateIncludesWallet)
+
+    console.log("template", templateIncludesWallet)
 
     return (
         <div className="flex flex-col h-full ">
@@ -65,6 +69,7 @@ const Templates = () => {
                                 </p>
                                 </div>
                         }
+
                     </div>
                     <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-left justify-center  !rounded-3xl !font-thin">
                         <div>
@@ -101,7 +106,7 @@ const Templates = () => {
                             {
 
                                 templates.map((template: any, i: number) => {
-                                    const includeWallet = templateIncludesWallet?.find((temp) => temp.template === template.name )
+                                    const includeWallet = templateIncludesWallet?.find((temp) => temp.template === template.name)
                                     const addImage = { ...template, image: `/${template.name.replace(" ", "")}.png`, includeWallet: !!includeWallet }
                                     console.log(includeWallet)
                                     return (
