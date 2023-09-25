@@ -45,11 +45,11 @@ const Templates = () => {
             <div className=" flex gap-4 px-4 w-full h-[calc(100%-6rem)] rounded-3xl border-border">
                 <div className=" flex flex-col gap-4">
                     <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-center !rounded-3xl !font-normal">
-                        {
-                            (!connection || !wallet) ?
+                        
+                            
                                 <WalletMultiButton
                                     style={{
-                                        display: "flex",
+                                        display: (!connection || !wallet) ? "flex" : "none",
                                         border: "solid 1px #334155",
                                         borderRadius: "1.5rem",
                                         height: "min-content",
@@ -59,8 +59,8 @@ const Templates = () => {
                                     }}
 
                                 />
-                                :
-                                <div>
+                                
+                                <div className={` ${(!connection || !wallet) ? "hidden" : "block"}`}>
                                 <h2 className="text-3xl font-bold leading-7 mb-4">Mint a soda can NFT for unlock export services.</h2>
                                 <p className="text-lg leading-5 mb-4">
                                 Each of these NFTs on your wallet grants you permission to export in that specific template. Pick one or pick them all!
@@ -68,7 +68,7 @@ const Templates = () => {
                                 <p className="text-xs"> (Free for limited time only)
                                 </p>
                                 </div>
-                        }
+                        
                     </div>
                     <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-left justify-center  !rounded-3xl !font-thin">
                         <div>
