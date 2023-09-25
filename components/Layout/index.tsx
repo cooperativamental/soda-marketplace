@@ -24,7 +24,7 @@ const Layout: FC<any> = ({ children }) => {
     const [upload, setUpload] = useState(false)
     return (
         <div className='h-screen'>
-            <div className="sticky top-0 z-40 h-24 flex items-center justify-between gap-x-6 bg-backg  shadow-sm px-6">
+            <div className="sticky top-0 z-40 h-24 flex items-center justify-between gap-x-6 bg-backg shadow-sm px-6">
                 <div className="flex gap-8 justify-center items-center">
                     <Image className="h-20 w-20" width={5} height={2} src={"/soda.svg"} alt="soda app" />
 
@@ -45,7 +45,7 @@ const Layout: FC<any> = ({ children }) => {
                             router.asPath === "/templates" &&
                             <Tooltip
                                 content="IDL Generator"
-                                className=" bg-black p-2"
+                                className=" bg-border p-2"
                                 animate={{
                                     mount: { scale: 1, y: 0, zIndex: 100 },
                                     unmount: { scale: 0, y: 25, zIndex: 100 },
@@ -53,7 +53,7 @@ const Layout: FC<any> = ({ children }) => {
                             >
                                 <button
                                     type="button"
-                                    className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
+                                    className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-full border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                                     onClick={() => {
                                         router.push("/")
                                     }}
@@ -63,8 +63,8 @@ const Layout: FC<any> = ({ children }) => {
                             </Tooltip>
                         }
                         <Tooltip
-                            content="Import IDL"
-                            className=" bg-black p-2"
+                            content="Open an IDL from your computer idl.json"
+                            className=" bg-border p-2"
                             animate={{
                                 mount: { scale: 1, y: 0, zIndex: 100 },
                                 unmount: { scale: 0, y: 25, zIndex: 100 },
@@ -72,7 +72,7 @@ const Layout: FC<any> = ({ children }) => {
                         >
                             <label
                                 htmlFor="file"
-                                className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border cursor-pointer"
+                                className="-m-2.5 p-4 h-16 text-blue-custom text-sm inline-flex items-center gap-x-1.5 rounded-full shadow-md shadow-blue-custom border border-border text-green-custom hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:shadow-lg active:shadow-export duration-200 cursor-pointer"
                             >
                                 <FolderOpenIcon className="h-5 w-5" aria-hidden="true" />
                                 Import IDL
@@ -81,8 +81,8 @@ const Layout: FC<any> = ({ children }) => {
                         {
                             router.asPath !== "/templates" &&
                             <Tooltip
-                                content="Export Project"
-                                className=" bg-black p-2"
+                                content="Export your project to multiple templates"
+                                className=" bg-border p-2"
                                 animate={{
                                     mount: { scale: 1, y: 0, zIndex: 100 },
                                     unmount: { scale: 0, y: 25, zIndex: 100 },
@@ -90,7 +90,7 @@ const Layout: FC<any> = ({ children }) => {
                             >
                                 <button
                                     type="button"
-                                    className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-lg border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
+                                    className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 bg-export shadow-md shadow-blue-custom rounded-full border border-border hover:bg-sky hover:text-export hover:shadow-md hover:shadow-export  focus:bg-inputs active:shadow-lg active:shadow-export duration-200"
                                     onClick={() => {
                                         router.push("/templates")
                                     }}

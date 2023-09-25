@@ -6,6 +6,7 @@ import checkNFTaccess from "@/helpers/checkNFTaccess"
 import { useAnchorWallet, useConnection, useWallet } from "@solana/wallet-adapter-react"
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from "react"
+import Link from 'next/link'
 
 type NFTAccess = {
     address: string,
@@ -36,40 +37,70 @@ const Templates = () => {
 
     return (
         <div className="flex flex-col h-full ">
-            <div className="h-20">
-                <h4 className="text-md text-chok text-center font-light ml-5">Export project:</h4>
-                <h1 className="text-2xl text-chok text-center font-bold ml-5">{IDL.name || "Import or create IDL"}</h1>
+            <div className="h-20 ml-6 flex align-center items-center">
+                <h4 className="text-md text-chok text-left font-light ml-5">Export project:</h4>
+                <h1 className="text-2xl text-red-custom text-left font-bold ml-5">{IDL.name || "Import or create IDL"}</h1>
 
             </div>
             <div className=" flex gap-4 px-4 w-full h-[calc(100%-6rem)] rounded-3xl border-border">
                 <div className=" flex flex-col gap-4">
-                    <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-center !gap-3 !items-center !rounded-3xl !font-thin">
+                    <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-center !rounded-3xl !font-normal">
+                        {
+                            (!connection || !wallet) ?
+                                <WalletMultiButton
+                                    style={{
+                                        display: "flex",
+                                        border: "solid 1px #334155",
+                                        borderRadius: "1.5rem",
+                                        height: "min-content",
+                                        width: "100%",
+                                        alignSelf: "center",
+                                        boxShadow: "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important"
+                                    }}
 
-                        <WalletMultiButton
-                            style={{
-                                display: (!connection || !wallet) ? "flex" : "none",
-                                border: "solid 1px #334155",
-                                borderRadius: "1.5rem",
-                                height: "min-content",
-                                width: "100%",
-                                alignSelf: "center",
-                                boxShadow: "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important"
-                            }}
-
-                        />
-                        <p style={{
-                            display: (!connection || !wallet) ? "none" : "block"
-                        }}>Get a soda for your template. Use this QR to mint your sodas"</p>
-
+                                />
+                                :
+                                <div>
+                                <h2 className="text-3xl font-bold leading-7 mb-4">Mint a soda can NFT for unlock export services.</h2>
+                                <p className="text-lg leading-5 mb-4">
+                                Each of these NFTs on your wallet grants you permission to export in that specific template. Pick one or pick them all!
+                                </p>
+                                <p className="text-xs"> (Free for limited time only)
+                                </p>
+                                </div>
+                        }
                     </div>
-                    <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-center !gap-3 !items-center justify-center  !rounded-3xl !font-thin">
-                        🌌🔧 Build templates like a pro with Soda. Craft templates that simplify the blockchain experience. Ping here 🚀🧩
+                    <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-left justify-center  !rounded-3xl !font-thin">
+                        <div>
+                        <Link href="https://github.com/Web3-Builders-Alliance/soda/tags"  target="_blank"><h5 className="font-bold hover:text-green-custom">Download Soda Desktop app.</h5></Link>
+                            <p>Free for students and community courses</p>
+                        </div>
+                        <div>
+                        <h5 className="font-bold">Soda is open-source.</h5>
+                        <Link href="https://github.com/Web3-Builders-Alliance/soda/"  target="_blank"> <p className="hover:text-green-custom">Contribute here.</p></Link>
+                        </div>
+                        <div>
+                        <Link href="https://x.com/use_soda"  target="_blank"><h5 className="font-bold hover:text-green-custom">Send us your feedback</h5></Link>
+                            <p>Your experience using Soda is a valuable asset for our dev team.</p>
+                        </div>
+                    </div>
+                    <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-left justify-center  !rounded-3xl !font-thin">
+                        <div>
+                        <Link href="https://solana.stackexchange.com/"  target="_blank"><h5 className="font-bold hover:text-green-custom">Questions?</h5>
+                            <p>solana.stackexchange.com</p>
+                            </Link>
+                        </div>
+                        
+                        <div>
+                        <Link href="https://github.com/solana-developers/solana-tools"  target="_blank"><h5 className="font-bold hover:text-green-custom">Solana Tools</h5></Link>
+                            <p>🦀 List of all Solana dev tools 🪓</p>
+                        </div>
                     </div>
                 </div>
                 {
                     templates.length ?
                         <div
-                            className={`grid grid-cols-4 gap-4 w-full h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar`}
+                            className={`grid grid-cols-4 gap-4 w-full h-full rounded-2xl overflow-y-auto border border-border p-4 mini-scrollbar`}
                         >
                             {
 
