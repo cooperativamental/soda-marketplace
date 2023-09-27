@@ -4,8 +4,6 @@ import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
 import JSZip from "jszip";
 import Image from "next/image"
 import { FC, useState } from "react";
-import { Bubbles } from "../Bubbles";
-import { r } from "@tauri-apps/api/fs-4bb77382";
 
 const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const { IDL } = useIDL()
