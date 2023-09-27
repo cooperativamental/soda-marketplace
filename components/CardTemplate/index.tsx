@@ -5,6 +5,7 @@ import JSZip from "jszip";
 import Image from "next/image"
 import { FC, useState } from "react";
 import { Bubbles } from "../Bubbles";
+import { r } from "@tauri-apps/api/fs-4bb77382";
 
 const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const { IDL } = useIDL()
@@ -20,12 +21,13 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             const response = await fetch(`https://soda.shuttleapp.rs/get_project_files/${indexTemplate}`, {
                 method: "POST",
                 body: JSON.stringify({ idl: IDL })
-            })
-            const { files } = await response.json()
+            }).then((res) => { return res.json() })
+
+            const { files } = response
             const zip = new JSZip();
 
             // Iterate over each file in the response
-            files.forEach((file: any) => {
+            files.Ok.forEach((file: any) => {
                 const { path, content } = file;
 
                 // Create folders and file in memory
