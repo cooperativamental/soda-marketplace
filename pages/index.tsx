@@ -6,7 +6,7 @@ import { ArrowDownTrayIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { CodeBracketIcon } from "@heroicons/react/24/solid";
 import { useIDL } from "@/context/IDL";
 import { saveIDLFile } from "@/helpers";
-import { Tooltip, Typography } from "@material-tailwind/react";
+import { Button, Tooltip, Typography } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { PopoverComponent } from "@/components/PopOver";
 
@@ -104,47 +104,42 @@ export default function Home() {
 
           <PopoverComponent
             content={
-              <div className="w-80">
-                <Typography color="white" className="font-medium leading-5 mb-2">
+              <div className="p-4">
+                <Typography color="blue-gray" className="text-green-custom mb-2 font-medium">
                   Solana IDLs provide a standardized way for applications to communicate with Solana programs.
                 </Typography>
-                <Typography
-                  variant="small"
-                  color="white"
-                  className="font-normal opacity-80"
-                >
+                <Typography variant="small" color="gray" className="text-chok mb-4 font-normal">
                   An Interface Definition Language (IDL) specifies a program's public interface. It defines a Solana program's account structures, instructions, and error codes. IDLs are .json files used to generate client-side code, allowing users to easily interact with a Solana program.
                 </Typography>
+                <a href="#" className="inline-block">
+                  <Button
+                    size="sm"
+                    variant="text"
+                    className="flex items-center gap-1 capitalize text-blue-custom"
+                  >
+                    Read More
+                    <svg
+                      xmlns="https://www.quicknode.com/guides/solana-development/anchor/what-is-an-idl"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="h-3.5 w-3.5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                      />
+                    </svg>
+                  </Button>
+                </a>
               </div>
             }
           >
             <InformationCircleIcon className="h-6 w-6 text-border hover:text-chok" />
           </PopoverComponent>
 
-          {/* <Tooltip
-            content={
-              <div className="w-80">
-                <Typography color="white" className="font-medium leading-5 mb-2">
-                  Solana IDLs provide a standardized way for applications to communicate with Solana programs.
-                </Typography>
-                <Typography
-                  variant="small"
-                  color="white"
-                  className="font-normal opacity-80"
-                >
-                  An Interface Definition Language (IDL) specifies a program's public interface. It defines a Solana program's account structures, instructions, and error codes. IDLs are .json files used to generate client-side code, allowing users to easily interact with a Solana program.
-                </Typography>
-              </div>
-            }
-            className=" bg-border p-2"
-            animate={{
-              mount: { scale: 1, y: 0, zIndex: 100 },
-              unmount: { scale: 0, y: 25, zIndex: 100 },
-            }}
-            placement="left-end"
-          >
-            <InformationCircleIcon className="h-6 w-6 text-border hover:text-chok" />
-          </Tooltip> */}
         </div>
 
         <div className="flex items-center text-border gap-1">
