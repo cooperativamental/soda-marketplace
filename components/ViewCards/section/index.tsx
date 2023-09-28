@@ -5,6 +5,7 @@ import EditItem from "../EditItem";
 import { useIDL } from "@/context/IDL";
 import { Tooltip, Typography } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { PopoverComponent } from "@/components/PopOver";
 
 export const Section: FC<any> = ({ instruction, content, initExpanded = false }) => {
   const { clear } = useIDL()
@@ -24,7 +25,7 @@ export const Section: FC<any> = ({ instruction, content, initExpanded = false })
 
   useEffect(() => {
     setEdit(false)
-  },[clear])
+  }, [clear])
   const rederWithToolTip = (nameInstruction: string) => {
     const contentToolTip = {
       instructions: "To execute your on chain program, you must send a transaction to it. Each transaction submitted to the Solana blockchain contains a listing of instructions (and the program's that instruction will interact with). Each instruction must include all the keys involved in the operation and the program ID we want to execute.",
@@ -33,25 +34,34 @@ export const Section: FC<any> = ({ instruction, content, initExpanded = false })
       events: "Program Events",
       errors: "Errors"
     }
-    return <Tooltip
-      content={contentToolTip[nameInstruction as keyof typeof contentToolTip]}
-      className=" bg-border p-2"
-      placement="right-end"
-      animate={{
-        mount: { scale: 1, y: 0, zIndex: 100 },
-        unmount: { scale: 0, y: 25, zIndex: 100 },
-      }}
-    >
-      <InformationCircleIcon className="h-4 w-4 fill-border text-chok hover:text-chok" />
-    </Tooltip>
+    return (
+      <PopoverComponent
+        content={contentToolTip[nameInstruction as keyof typeof contentToolTip]}
+
+      >
+        <InformationCircleIcon className="h-6 w-6 text-border hover:text-chok" />
+      </PopoverComponent>
+    )
+
+    // <Tooltip
+    //   content={contentToolTip[nameInstruction as keyof typeof contentToolTip]}
+    //   className=" bg-border p-2"
+    //   placement="right-end"
+    //   animate={{
+    //     mount: { scale: 1, y: 0, zIndex: 100 },
+    //     unmount: { scale: 0, y: 25, zIndex: 100 },
+    //   }}
+    // >
+    //   <InformationCircleIcon className="h-4 w-4 fill-border text-chok hover:text-chok" />
+    // </Tooltip>
   }
   return (
     <section className={`flex p-5 m-5 border border-border bg-backg rounded-md relative`}>
       <div
         className="absolute gap-2 flex left-5 top-0 transform -translate-y-1/2 text-chok justify-center items-center font-mono font-thin"
       >
-         {instruction.charAt(0).toUpperCase() + instruction.slice(1)}
-        {rederWithToolTip(instruction) }
+        {instruction.charAt(0).toUpperCase() + instruction.slice(1)}
+        {rederWithToolTip(instruction)}
       </div>
       <div className={`flex items-center w-full mini-scrollbar transition-all duration-500 overflow-y-hidden ${expanded ? "overflow-x-auto h-80" : " overflow-x-hidden h-0"}`}>
         {
