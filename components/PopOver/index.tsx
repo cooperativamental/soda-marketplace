@@ -11,7 +11,7 @@ import { FC } from "react";
         <PopoverHandler>
           { !!children && children}
         </PopoverHandler>
-        <PopoverContent className="w-96">
+        <PopoverContent className="w-96 bg-border text-white">
             {
                 !!content && content
             }
