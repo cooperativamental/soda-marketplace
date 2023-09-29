@@ -6,7 +6,7 @@ import { ArrowDownTrayIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { CodeBracketIcon } from "@heroicons/react/24/solid";
 import { useIDL } from "@/context/IDL";
 import { saveIDLFile } from "@/helpers";
-import { Tooltip, Popover, PopoverHandler, PopoverContent, Button, Typography} from "@material-tailwind/react";
+import { Button, Tooltip, Typography } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { PopoverComponent } from "@/components/PopOver";
 
@@ -101,44 +101,46 @@ export default function Home() {
               <ArrowDownTrayIcon className="h-5 w-5" aria-hidden="true" /> Download IDL
             </button>
           </Tooltip>
-          <Popover placement="left-end">
-              <PopoverHandler>
-               <InformationCircleIcon className="h-6 w-6 text-border hover:text-chok cursor-pointer" />
-              </PopoverHandler>
-              <PopoverContent className="z-[999] flex w-[28rem] bg-border border border-yellow-custom overflow-hidden p-0">
-                <div className="p-4">
-                  <Typography color="blue-gray" className="text-green-custom mb-2 font-medium">
-                  Solana IDLs provide a standardized way for applications to communicate with Solana programs.
-                  </Typography>
-                  <Typography variant="small" color="gray" className="text-chok mb-4 font-normal">
-                  An Interface Definition Language (IDL) specifies a program's public interface. It defines a Solana program's account structures, instructions, and error codes. IDLs are .json files used to generate client-side code, allowing users to easily interact with a Solana program.
-                  </Typography>
-                  <a href="#" className="inline-block">
-                    <Button
-                      size="sm"
-                      variant="text"
-                      className="flex items-center gap-1 capitalize text-blue-custom"
+
+          <PopoverComponent
+            content={
+              <div className="p-4">
+                <Typography color="blue-gray" className="text-green-custom mb-2 font-medium leading-tight">
+                Solana's IDL (Interface Definition Language) is a tool for defining and documenting the interface of smart contracts on the Solana blockchain.
+                </Typography>
+                <Typography variant="small" color="gray" className="text-chok mb-4 font-normal leading-snug">
+                    It allows developers to specify the structure and functions of a program in a human-readable format, making it easier for different programs to communicate and interact with each other on the Solana network. IDL plays a crucial role in enabling the seamless integration of decentralized applications and services within the Solana ecosystem, promoting interoperability and fostering innovation within the blockchain space.
+                    The Solana IDL provides a standardized, language-agnostic way to represent the interface of on-chain Solana programs, bridging the gap between the Rust-centric Solana world and other development environments.       
+                </Typography>
+                <a href="https://www.quicknode.com/guides/solana-development/anchor/what-is-an-idl" className="inline-block">
+                  <Button
+                    size="sm"
+                    variant="text"
+                    className="flex items-center gap-1 capitalize text-blue-custom"
+                  >
+                    Read More
+                    <svg
+                      xmlns=""
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="h-3.5 w-3.5"
                     >
-                      Read More
-                      <svg
-                        xmlns="https://www.quicknode.com/guides/solana-development/anchor/what-is-an-idl"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                        className="h-3.5 w-3.5"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                        />
-                      </svg>
-                    </Button>
-                  </a>
-                </div>
-              </PopoverContent>
-            </Popover>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                      />
+                    </svg>
+                  </Button>
+                </a>
+              </div>
+            }
+          >
+            <InformationCircleIcon className="h-6 w-6 text-border hover:text-chok cursor-pointer" />
+          </PopoverComponent>
+
         </div>
 
         <div className="flex items-center text-border gap-1">
