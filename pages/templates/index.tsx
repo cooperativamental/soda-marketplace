@@ -107,7 +107,7 @@ const Templates = () => {
                                 templates.map((template: any, i: number) => {
                                     const includeWallet = templateIncludesWallet?.find((temp) => temp.template === template.name)
                                     const addImage = { ...template, image: `/${template.name.replace(" ", "")}.png`, includeWallet: !!includeWallet }
-                                    console.log(includeWallet)
+                                 
                                     return (
                                         <CardTemplate key={template.name} template={addImage} indexTemplate={i} />
                                     )

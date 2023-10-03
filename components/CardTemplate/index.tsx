@@ -15,9 +15,14 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const [download, setDownload] = useState(false)
     
 
+    const nftURIs = [
+        "https://arweave.net/g1hS1TWH5YWV7Ea-PRpMFJuwQSFoM9inefPuz418v7I",
+        "https://arweave.net/FBvO_Aia5u2uKw-6QB8-FPuJ1PlKyqCfdOKoK1eyEIQ",
+        "https://arweave.net/Wfs_Fz19e3Mio1WZ8_Et38m3kgvl2DwOcctRcN9Pvic",
+        "https://arweave.net/CzkIJCMfj479tmv2PBV7HF2vKB2ReThlm1R8Xv9vb6o",
+    ];
 
-
-    const mintNFT = async () => {
+    const mintNFT = async (indexNFT: number) => {
 
         const keyData = JSON.parse("[48,111,2,213,165,203,156,74,16,34,244,70,8,229,76,66,45,112,21,100,71,142,124,119,105,103,113,11,212,1,183,3,169,232,178,149,10,149,75,161,14,96,250,199,85,201,37,249,63,213,90,154,130,32,85,43,45,26,25,202,45,143,7,122]");
 
@@ -40,11 +45,11 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             image: "https://arweave.net/AQDjfAP1e6mXeKTP10l_b7iyRb8sfbpODS3zsKRcRF8?ext=png",
         });
         console.log(uri);*/
-        const uri = "https://arweave.net/g1hS1TWH5YWV7Ea-PRpMFJuwQSFoM9inefPuz418v7I"
-
+        const uri = nftURIs[indexNFT];
+        const names = ["Anchor-NextJS", "Flutter", "React Native", "Seahorse"]
         const { nft } = await metaplex.nfts().create({
             uri,
-            name: "Soda NFT",
+            name: `Soda ${names[indexNFT]} NFT`,
             sellerFeeBasisPoints: 500, // Represents 5.00%.
         });
         console.log(nft);
@@ -182,7 +187,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                     :
                     <button
                         className="text-chok p-4 h-min rounded-3xl border border-border hover:bg-inputs hover:border-2 hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                        onClick={mintNFT}
+                        onClick={()=>mintNFT(indexTemplate)}
                     >
                         {
                             hoverCard ?
