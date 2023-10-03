@@ -19,7 +19,7 @@ const JSONEditor: FC<any> = ({ noeditable }) => {
 
     }
     return (
-        <div className='h-full border-t-1 border-border'>
+        <div className='h-full border-t-1 border-border mt-8'>
             <p className='text-red'>{errorIDL}</p>
             <Monaco
                 options={{readOnly: noeditable}}

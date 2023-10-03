@@ -1,141 +1,123 @@
-import { FC, Fragment, useEffect, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import {
-    Bars3Icon,
-    XMarkIcon
-} from '@heroicons/react/24/outline'
-import { readTextFile } from "@tauri-apps/api/fs";
-import { open } from "@tauri-apps/api/dialog";
-import { invoke } from "@tauri-apps/api/tauri";
-import { emit, listen } from '@tauri-apps/api/event'
+import { FC, useState } from 'react'
 
-import Image from 'next/image'
 import { useIDL } from '@/context/IDL'
+import { ArrowDownTrayIcon, FolderArrowDownIcon, FolderOpenIcon, PencilSquareIcon, PlusIcon } from '@heroicons/react/24/solid';
+import { openIDLFile, saveIDLFile } from "@/helpers";
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+import { Bubbles } from '../Bubbles';
+import { Tooltip } from '@material-tailwind/react';
+import Image from 'next/image';
 
-
-
-function classNames(...classes: any) {
-    return classes.filter(Boolean).join(' ')
-}
-
-const Layout: FC<any> = ({ children, openIDL, newProject, generateIDL, handleTemplateFolder, exportData }) => {
+const Layout: FC<any> = ({ children }) => {
+    const WalletMultiButton = dynamic(
+        async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+        { ssr: false }
+    );
+    const router = useRouter()
+    const [tooltip, setTooltip] = useState<{ type: string | false, content: string }>({
+        type: false,
+        content: ""
+    })
     const [sidebarOpen, setSidebarOpen] = useState(false)
-
-    const navigation = [
-        {
-            name: 'Open IDL file',
-            href: '#',
-            event: openIDL
-        },
-        {
-            name: 'New IDL',
-            href: '#',
-            event: newProject
-        },
-        {
-            name: 'Save IDL',
-            href: '#',
-            event: generateIDL
-        },
-        {
-            name: 'Select a template',
-            href: '#',
-            event: handleTemplateFolder
-        },
-        {
-            name: 'Create Project',
-            href: '#',
-            event: exportData
-        },
-    ]
-
+    const { IDL, setIDL, cleanProject } = useIDL()
+    const [upload, setUpload] = useState(false)
     return (
-        <>
-            <div className='h-screen'>
-                <Transition.Root show={sidebarOpen} as={Fragment}>
-                    <Dialog as="div" className="relative z-50" onClose={setSidebarOpen}>
-                        <Transition.Child
-                            as={Fragment}
-                            enter="transition-opacity ease-linear duration-300"
-                            enterFrom="opacity-0"
-                            enterTo="opacity-100"
-                            leave="transition-opacity ease-linear duration-300"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                        >
-                            <div className="fixed inset-0 bg-blue-custom-custom" />
-                        </Transition.Child>
+        <div className='h-screen'>
+            <div className="sticky top-0 z-40 h-24 flex items-center justify-between gap-x-6 bg-backg shadow-sm px-6">
+                <div className="flex gap-8 justify-center items-center">
+                    <Image className="h-20 w-20" width={5} height={2} src={"/soda.svg"} alt="soda app" />
 
-                        <div className="fixed inset-0 flex ">
-                            <Transition.Child
-                                as={Fragment}
-                                enter="transition ease-in-out duration-300 transform"
-                                enterFrom="-translate-x-full"
-                                enterTo="translate-x-0"
-                                leave="transition ease-in-out duration-300 transform"
-                                leaveFrom="translate-x-0"
-                                leaveTo="-translate-x-full"
+                    <div className="absolute flex left-[40%] gap-8">
+                        <input
+                            type="file"
+                            id="file"
+                            onChange={(e) => {
+                                setUpload(true)
+                                openIDLFile(e, setIDL)
+                                setTimeout(() => {
+                                    setUpload(false)
+                                }, 3000)
+                            }}
+                            className="hidden"
+                        />
+                        {
+                            router.asPath === "/templates" &&
+                            <Tooltip
+                                content="IDL Generator"
+                                className=" bg-border p-2"
+                                animate={{
+                                    mount: { scale: 1, y: 0, zIndex: 100 },
+                                    unmount: { scale: 0, y: 25, zIndex: 100 },
+                                }}
                             >
-                                <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
-                                    <Transition.Child
-                                        as={Fragment}
-                                        enter="ease-in-out duration-300"
-                                        enterFrom="opacity-0"
-                                        enterTo="opacity-100"
-                                        leave="ease-in-out duration-300"
-                                        leaveFrom="opacity-100"
-                                        leaveTo="opacity-0"
-                                    >
-                                        <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
-                                            <button type="button" className="-m-2.5 p-2.5" onClick={() => setSidebarOpen(false)}>
-                                                <span className="sr-only">Close sidebar</span>
-                                                <XMarkIcon className="h-6 w-6 text-chok" aria-hidden="true" />
-                                            </button>
-                                        </div>
-                                    </Transition.Child>
-                                    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-backg px-6 pb-2">
+                                <button
+                                    type="button"
+                                    className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-full border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
+                                    onClick={() => {
+                                        router.push("/")
+                                    }}
+                                >
+                                    <PencilSquareIcon className="h-5oko w-5" aria-hidden="true" />IDL Generator
+                                </button>
+                            </Tooltip>
+                        }
+                        <Tooltip
+                            content="Open an IDL from your computer idl.json"
+                            className=" bg-border p-2"
+                            animate={{
+                                mount: { scale: 1, y: 0, zIndex: 100 },
+                                unmount: { scale: 0, y: 25, zIndex: 100 },
+                            }}
+                        >
+                            <label
+                                htmlFor="file"
+                                className="-m-2.5 p-4 h-16 text-blue-custom text-sm inline-flex items-center gap-x-1.5 rounded-full shadow-md shadow-blue-custom border border-border text-green-custom hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:shadow-lg active:shadow-export duration-200 cursor-pointer"
+                            >
+                                <FolderOpenIcon className="h-5 w-5" aria-hidden="true" />
+                                Import IDL
+                            </label>
+                        </Tooltip>
+                        {
+                            router.asPath !== "/templates" &&
+                            <Tooltip
+                                content="Export your project to multiple templates"
+                                className=" bg-border p-2"
+                                animate={{
+                                    mount: { scale: 1, y: 0, zIndex: 100 },
+                                    unmount: { scale: 0, y: 25, zIndex: 100 },
+                                }}
+                            >
+                                <button
+                                    type="button"
+                                    className="-m-2.5 p-4 h-16 text-chok text-sm inline-flex items-center gap-x-1.5 bg-export shadow-md shadow-blue-custom rounded-full border border-border hover:bg-sky hover:text-export hover:shadow-md hover:shadow-export  focus:bg-inputs active:shadow-lg active:shadow-export duration-200"
+                                    onClick={() => {
+                                        router.push("/templates")
+                                    }}
+                                    onMouseOver={() => { setTooltip({ type: "EXPORT_PROJECT", content: "Export Project" }) }}
+                                    onMouseOut={() => { setTooltip({ type: false, content: "" }) }}
+                                >
+                                    <FolderArrowDownIcon className="h-5oko w-5" aria-hidden="true" />
+                                    Export project
+                                </button>
 
-                                        <div className="flex h-16 shrink-0 items-center">
-                                        </div>
-                                        <nav className="flex flex-1 flex-col">
-                                            <ul role="list" className="flex flex-1 flex-col gap-y-7">
-                                                <li>
-                                                    <ul role="list" className="-mx-2 space-y-1">
-                                                        {navigation.map((item) => (
-                                                            <li
-                                                                key={item.name}
-                                                                onClick={item?.event}
-                                                            >
-                                                                <a
-                                                                    href={item.href}
-                                                                    className={'text-chok hover:text-chok hover:bg-sky group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'}
-                                                                >
-                                                                    {item.name}
-                                                                </a>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </Dialog.Panel>
-                            </Transition.Child>
+                            </Tooltip>
+                        }
+
                         </div>
-                    </Dialog>
-                </Transition.Root>
 
-                <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-backg px-4 py-4 shadow-sm sm:px-6">
-                    <button type="button" className="-m-2.5 p-2.5 text-white" onClick={() => setSidebarOpen(true)}>
-                        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-                    </button>
                 </div>
-
-                <main className="pb-10 h-full bg-backg">
-                    {children}
-                </main>
+                <WalletMultiButton className='!z-10 !h-full !w-max !bg-[#1e1e1e] hover:!bg-backg !rounded-full !font-thin' />
             </div>
-        </>
+
+            <main className=" h-[calc(100%-6rem)] mini-scroll overflow-y-auto bg-backg">
+                {children}
+            </main>
+            {
+                upload &&
+                <Bubbles />
+            }
+        </div>
     )
 }
 

@@ -2,11 +2,15 @@ import { ReactNode, createContext, useContext, useState, useEffect } from "react
 import SeahorseIcon from "@/public/seahorse.png"
 import AnchorImg from "@/public/anchor.png"
 import SolanaFundationIcon from "@/public/solanafundation.png"
-import SelectTemplate from "@/components/SelectTemplate";
+import SolanaIcon from "@/public/SolanaIcon.png"
+import PopUp from "@/components/PopUp";
+import CardTemplate from "@/components/CardTemplate";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useConnection, useWallet } from '@solana/wallet-adapter-react'
 
 const TemplateContext = createContext<any>({
     templates: [],
-    handlerPopUp: () => {},
+    handlerPopUp: () => { },
     popUpTemplates: false
 });
 
@@ -23,11 +27,7 @@ const TemplatesProvider = ({ children }: { children: ReactNode }) => {
     }, [])
 
     return (
-        <TemplateContext.Provider value={{ templates, handlerPopUpTemplate: () => {setPopUpTemplates(!popUpTemplates)}, popUpTemplates }}>
-            {
-                popUpTemplates &&
-                <SelectTemplate templates={templates} closePopUp={()=>setPopUpTemplates(false)} />
-            }
+        <TemplateContext.Provider value={{ templates, handlerPopUpTemplate: () => { setPopUpTemplates(!popUpTemplates) }, popUpTemplates }}>
             {children}
         </TemplateContext.Provider>
     );

@@ -6,6 +6,8 @@ import {
 } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import { message } from "@tauri-apps/api/dialog";
+import PopUp from "@/components/PopUp";
+import EventEmitter from "events";
 
 const IDLContext = createContext<any>({
   IDL: {
@@ -31,28 +33,44 @@ const IDLProvider = ({ children }: { children: ReactNode }) => {
     metadata: undefined,
   });
   const [clear, setClear] = useState(false)
+  const [confirmation, setConfirmation] = useState(false)
 
   const cleanProject = () => {
-    if (confirm('Are you sure? This will close your previus project')) {
-      setIDL({
-        name: "",
-        version: "0.1.0",
-        instructions: [],
-        accounts: [],
-        types: [],
-        events: [],
-        errors: [],
-        metadata: undefined
-      })
-    };
+    setIDL({
+      name: "",
+      version: "0.1.0",
+      instructions: [],
+      accounts: [],
+      types: [],
+      events: [],
+      errors: [],
+      metadata: undefined
+    })
     setClear(true)
   }
 
 
 
   return (
-    <IDLContext.Provider value={{ IDL, setIDL, cleanProject, setClear, clear }}>
+    <IDLContext.Provider value={{ IDL, setIDL, cleanProject: () => { setConfirmation(true) }, setClear, clear }}>
       {children}
+      {
+        confirmation &&
+        <PopUp
+          closePopUp={() => setConfirmation(false)}
+          alert={{
+            text: "Overwrite IDL?",
+            cancel: () => setConfirmation(
+              false
+            ),
+            confirm: (e: EventEmitter) => {
+              cleanProject()
+              setConfirmation(false)
+            }
+          }}
+        />
+      }
+
     </IDLContext.Provider>
   );
 };
