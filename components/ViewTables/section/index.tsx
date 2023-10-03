@@ -8,7 +8,7 @@ export const Section: FC<any> = ({ instruction }) => {
   const { IDL, setIDL } = useIDL()
   const [newInstructionName, setNewIntructionName] = useState<string>("");
   const [editingItem, setEditingItem] = useState(0);
-
+  
   return (
     <>
       <section className={`flex flex-col p-5 relative gap-5 h-[calc(100%_-_3.5rem)]`}>

@@ -2,12 +2,25 @@ import { FC, useState } from "react";
 import { Section } from "@/components/ViewTables/section";
 import { useIDL } from "@/context/IDL";
 import { Tooltip } from '@material-tailwind/react';
+import { PopoverComponent } from "@/components/PopOver";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { contentToolTip } from "@/const/popover";
 
 export const NewEditor: FC<any> = () => {
 
     const [select, setSelect] = useState("instructions")
     const { IDL, setIDL } = useIDL()
-
+    const rederWithToolTip = (nameInstruction: string) => {
+  
+        return (
+          <PopoverComponent
+            content={contentToolTip[nameInstruction as keyof typeof contentToolTip]}
+    
+          >
+            <InformationCircleIcon className="h-6 w-6 text-chok fill-border hover:text-green-custom cursor-pointer" />
+          </PopoverComponent>
+        )
+      }
     return (
         <div className="flex flex-col h-full p-5 gap-5 font-mono">
               <Tooltip
@@ -45,9 +58,12 @@ export const NewEditor: FC<any> = () => {
 
                                             onClick={() => setSelect(name)}
                                         >
+                                            <div className="flex gap-2">
                                             <p>
                                                 {name}
                                             </p>
+                                            {rederWithToolTip(name)}
+                                            </div>
                                         </div>
                                     </div>
                                 )

@@ -90,7 +90,10 @@ const Templates = () => {
                             <p>solana.stackexchange.com</p>
                             </Link>
                         </div>
-                        
+                        <div>
+                        <Link href="https://solanacookbook.com/"  target="_blank"><h5 className="font-bold hover:text-green-custom">Solana Cookbook</h5></Link>
+                            <p>Read the Solana Cookbook</p>
+                        </div>
                         <div>
                         <Link href="https://github.com/solana-developers/solana-tools"  target="_blank"><h5 className="font-bold hover:text-green-custom">Solana Tools</h5></Link>
                             <p>🦀 List of all Solana dev tools 🪓</p>
