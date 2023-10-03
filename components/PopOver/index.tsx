@@ -7,7 +7,7 @@ import { FC } from "react";
    
   export const PopoverComponent:FC<any> = ({ children, content }) => {
     return (
-      <Popover placement="right-start">
+      <Popover placement="right-start z-60">
         <PopoverHandler>
           { !!children && children}
         </PopoverHandler>
