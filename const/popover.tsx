@@ -12,7 +12,7 @@ export const contentToolTip = {
               <Typography variant="paragraph" color="gray" className="text-chok mb-4 font-normal leading-snug">
               <h5>Each instruction in the IDL will typically have:</h5> {'\u2022'} A name, defining the method's identifier. <br></br> {'\u2022'} Arguments, which detail the expected input parameters for the function. This can include both simple data types and complex custom types defined elsewhere in the IDL. <br></br> {'\u2022'} Accounts, indicating which Solana accounts the instruction expects to interact with and the roles or permissions required for each. <br></br> {'\u2022'}  Returns, possible events or errors that can be emitted or returned upon the instruction's execution.       
               </Typography>
-              <a href="https://docs.solana.com/developing/programming-model/transactions#instructions" className="inline-block">
+              <a href="https://docs.solana.com/developing/programming-model/transactions#instructions" target="_blank" className="inline-block">
                 <Button
                   size="sm"
                   variant="text"
@@ -52,7 +52,7 @@ export const contentToolTip = {
                <br></br>
                Account Attributes in IDL: <br></br>{'\u2022'} Name: A descriptive identifier for the account. <br></br>{'\u2022'} isMut: A boolean indicating if the account data can be modified (mutable) during the instruction. <br></br>{'\u2022'} isSigner: A boolean that signifies if the account is required to sign the transaction. <br></br>{'\u2022'} isOptional: (If applicable) Indicates if the account is optional for the instruction.
               </Typography>
-              <a href="https://docs.solana.com/developing/programming-model/accounts" className="inline-block">
+              <a href="https://docs.solana.com/developing/programming-model/accounts" target="_blank" className="inline-block">
                 <Button
                   size="sm"
                   variant="text"

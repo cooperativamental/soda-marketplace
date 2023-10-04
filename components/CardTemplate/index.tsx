@@ -129,7 +129,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                 setDownload(false)
             }, 2000)
         } else {
-            alert("need to be coneected with a wallet with the Soda NFT")
+            alert("need to be connected with a wallet with the Soda NFT")
         }
     }
 
@@ -178,26 +178,17 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                         className="text-chok p-4 h-min rounded-3xl border border-border hover:bg-inputs hover:border-2 hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                         onClick={exportProject}
                     >
-                        {
-                            hoverCard && !download ?
-                                "Export"
+                        
+                                Export
 
-                                :
-                                template.name
-                        }
                     </button>
                     :
                     <button
                         className="text-chok p-4 h-min rounded-3xl border border-border hover:bg-inputs hover:border-2 hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                         onClick={()=>mintNFT(indexTemplate)}
                     >
-                        {
-                            hoverCard ?
-                                "Mint NFT"
-
-                                :
-                                template.name
-                        }
+                                Mint NFT
+                    
 
                     </button>
             }
