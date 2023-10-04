@@ -30,7 +30,7 @@ const Templates = () => {
             const accessNFTs = await checkNFTaccess(connection, anchorwallet);
             setTemplateIncludesWallet(accessNFTs)
         })()
-    }, [connection, anchorwallet])
+    }, [connection, anchorwallet, templates])
 
 
     console.log("template", templateIncludesWallet)
