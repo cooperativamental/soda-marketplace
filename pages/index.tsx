@@ -120,7 +120,7 @@ export default function Home() {
               <br></br> {'\u2022'} Enhanced Interoperability: With a standardized IDL, it's easier for multiple applications, platforms, and tools within the Solana ecosystem to work together seamlessly, fostering a more integrated and robust network.
               <br></br> {'\u2022'} Trust: For end-users and developers, having a well-defined IDL can instill confidence. They can trust that the program will behave as described, and third-party platforms can trust that they're interacting with the program correctly.
               </Typography>
-              <a href="https://www.quicknode.com/guides/solana-development/anchor/what-is-an-idl" className="inline-block">
+              <a  target="_blank" rel="noopener noreferrer" href="https://www.quicknode.com/guides/solana-development/anchor/what-is-an-idl" className="inline-block">
                   <Button
                     size="sm"
                     variant="text"
@@ -144,7 +144,7 @@ export default function Home() {
                   </Button>
                 </a>
                 
-                <a href="https://solanacookbook.com/" className="inline-block">
+                <a href="https://solanacookbook.com/" target="_blank" rel="noopener noreferrer" className="inline-block">
                   <Button
                     size="sm"
                     variant="text"
