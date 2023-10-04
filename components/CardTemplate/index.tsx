@@ -6,9 +6,11 @@ import Image from "next/image"
 import { FC, useState } from "react";
 import { Metaplex, keypairIdentity, bundlrStorage, token, walletAdapterIdentity } from "@metaplex-foundation/js";
 import { Keypair } from "@solana/web3.js";
+import { useTemplates } from "@/context/templates";
 
 const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const { IDL } = useIDL()
+    const { handlerMint } = useTemplates()
     const { connection } = useConnection()
     const wallet = useAnchorWallet();
     const [hoverCard, setHover] = useState(false)
@@ -73,7 +75,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
         //const txHash = await connection.sendTransaction(txBuilder);
 
         //console.log("Transaction submitted: ", txHash);
-
+        handlerMint()
         
 };
 
