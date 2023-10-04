@@ -4,7 +4,7 @@ import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
 import JSZip from "jszip";
 import Image from "next/image"
 import { FC, useState } from "react";
-import { Metaplex, keypairIdentity, bundlrStorage, token } from "@metaplex-foundation/js";
+import { Metaplex, keypairIdentity, bundlrStorage, token, walletAdapterIdentity } from "@metaplex-foundation/js";
 import { Keypair } from "@solana/web3.js";
 
 const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
@@ -25,12 +25,14 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const mintNFT = async (indexNFT: number) => {
 
         const keyData = JSON.parse("[48,111,2,213,165,203,156,74,16,34,244,70,8,229,76,66,45,112,21,100,71,142,124,119,105,103,113,11,212,1,183,3,169,232,178,149,10,149,75,161,14,96,250,199,85,201,37,249,63,213,90,154,130,32,85,43,45,26,25,202,45,143,7,122]");
-
+        if (!wallet) {
+            return;
+        }
         const sodaWallet = await Keypair.fromSecretKey(Buffer.from(keyData, 'base64'));
         //const otherwallet = Keypair.generate();
         const rpcUrl = "https://api.devnet.solana.com";
         const metaplex = Metaplex.make(connection)
-        .use(keypairIdentity(sodaWallet))
+        .use(walletAdapterIdentity(wallet))
         .use(bundlrStorage({
             address: 'https://devnet.bundlr.network',
             providerUrl: rpcUrl,
