@@ -70,7 +70,7 @@ export default function Home() {
       <div className="sticky flex-col top-0 h-20 flex gap-4 px-6">
         <div className='flex gap-2'>
           <Tooltip
-            content="Create new Solana IDL. Will overwrite data on actual screen"
+            content="Create new Solana IDL. Will overwrite current IDL."
             className=" bg-border p-2"
             animate={{
               mount: { scale: 1, y: 0, zIndex: 100 },
@@ -104,7 +104,7 @@ export default function Home() {
 
           <PopoverComponent
             content={
-              <div className="p-4">
+              <div className="p-4 z-40">
                 <Typography color="blue-gray" className="text-green-custom mb-2 font-medium leading-tight">
                 IDL (Interface Definition Language)
                 </Typography>
@@ -120,13 +120,13 @@ export default function Home() {
               <br></br> {'\u2022'} Enhanced Interoperability: With a standardized IDL, it's easier for multiple applications, platforms, and tools within the Solana ecosystem to work together seamlessly, fostering a more integrated and robust network.
               <br></br> {'\u2022'} Trust: For end-users and developers, having a well-defined IDL can instill confidence. They can trust that the program will behave as described, and third-party platforms can trust that they're interacting with the program correctly.
               </Typography>
-              <a  target="_blank" rel="noopener noreferrer" href="https://www.quicknode.com/guides/solana-development/anchor/what-is-an-idl" className="inline-block">
+              <a  target="_blank" rel="noopener noreferrer" href="https://www.anchor-lang.com/" className="inline-block">
                   <Button
                     size="sm"
                     variant="text"
                     className="flex items-center gap-1 capitalize text-blue-custom"
                   >
-                    What is an IDL
+                    Anchor Framework
                     <svg
                       xmlns=""
                       fill="none"

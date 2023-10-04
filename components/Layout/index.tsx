@@ -113,6 +113,9 @@ const Layout: FC<any> = ({ children }) => {
             <main className=" h-[calc(100%-6rem)] mini-scroll overflow-y-auto bg-backg">
                 {children}
             </main>
+            <footer>
+            
+            </footer>
             {
                 upload &&
                 <Bubbles />

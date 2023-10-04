@@ -7,11 +7,11 @@ import { FC } from "react";
    
   export const PopoverComponent:FC<any> = ({ children, content }) => {
     return (
-      <Popover placement="right-start">
+      <Popover placement="bottom-start">
         <PopoverHandler>
           { !!children && children}
         </PopoverHandler>
-        <PopoverContent className="w-2/3 bg-border text-white">
+        <PopoverContent className="w-1/3 bg-border text-white">
             {
                 !!content && content
             }
