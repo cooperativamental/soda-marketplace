@@ -3,7 +3,7 @@ import { TrashIcon } from "@heroicons/react/24/solid"
 import { useIDL } from "@/context/IDL";
 import PopUp from "@/components/PopUp";
 
-export const Card: FC<any> = ({ prop, item, onClick, index, setEdit, explanationText }) => {
+export const Card: FC<any> = ({ prop, item, index, setEdit, explanationText }) => {
   const { IDL, setIDL } = useIDL()
   const [confirmation, setConfirmation] = useState(false)
 
