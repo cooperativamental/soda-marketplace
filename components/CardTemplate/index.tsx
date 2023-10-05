@@ -143,10 +143,10 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             onMouseOut={() => { setHover(false) }}
         >
             <div
-                className={`relative h-96 w-52 flex justify-center  ${download && "animate-[rotateCan_2s_ease-in-out]"}`}
+                className={`relative h-96 w-44 flex justify-center ${download && "animate-[rotateCan_2s_ease-in-out]"}`}
             >
                 <Image
-                    className={`absolute h-full w-full ${hoverCard ? "blur-sm" : ""} transition-all duration-200 ${download ? "fixed z-50 !blur-none" : ""} `}
+                    className={`absolute h-full w-full ${hoverCard ? "blur-lg" : ""} transition-all duration-200 ${download ? "fixed z-50 !blur-none" : ""} `}
                     unoptimized
                     src={template.image}
                     alt="can"
