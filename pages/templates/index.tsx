@@ -65,38 +65,39 @@ const Templates = () => {
                                 <p className="text-lg leading-5 mb-4">
                                 Each of these NFTs on your wallet grants you permission to export in that specific template. Pick one or pick them all!
                                 </p>
-                                <p className="text-green-custom"> Set your wallet on Devnet
+                                <p className="text-green-custom"> Set your wallet on Solana Devnet
                                 </p>
                                 </div>
                         
                     </div>
                     <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-left justify-center  !rounded-3xl !font-thin">
                         <div>
-                        <Link href="https://github.com/Web3-Builders-Alliance/soda/tags"  target="_blank"><h5 className="font-bold hover:text-green-custom">Download Soda Desktop app.</h5></Link>
+                        <Link href="https://github.com/Web3-Builders-Alliance/soda/tags"  target="_blank"><h5 className="font-bold hover:text-green-custom">
+                            🖥️  Download Soda Desktop app </h5></Link>
                             <p>Free for students and community courses</p>
                         </div>
                         <div>
-                        <h5 className="font-bold">Soda is open-source.</h5>
+                        <h5 className="font-bold">🥤 Soda is open-source.</h5>
                         <Link href="https://github.com/Web3-Builders-Alliance/soda/"  target="_blank"> <p className="hover:text-green-custom">Contribute here.</p></Link>
                         </div>
                         <div>
-                        <Link href="https://x.com/use_soda"  target="_blank"><h5 className="font-bold hover:text-green-custom">Send us your feedback</h5></Link>
+                        <Link href="https://x.com/use_soda"  target="_blank"><h5 className="font-bold hover:text-green-custom">🚀 Send us your feedback</h5></Link>
                             <p>Your experience using Soda is a valuable asset for our dev team.</p>
                         </div>
                     </div>
                     <div className="flex flex-col h-96 w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-left justify-center  !rounded-3xl !font-thin">
                         <div>
-                        <Link href="https://solana.stackexchange.com/"  target="_blank"><h5 className="font-bold hover:text-green-custom">Questions?</h5>
+                        <Link href="https://solana.stackexchange.com/"  target="_blank"><h5 className="font-bold hover:text-green-custom">🤔 Questions?</h5>
                             <p>solana.stackexchange.com</p>
                             </Link>
                         </div>
                         <div>
-                        <Link href="https://solanacookbook.com/"  target="_blank"><h5 className="font-bold hover:text-green-custom">Solana Cookbook</h5></Link>
+                        <Link href="https://solanacookbook.com/"  target="_blank"><h5 className="font-bold hover:text-green-custom">📖 Solana Cookbook</h5></Link>
                             <p>Read the Solana Cookbook</p>
                         </div>
                         <div>
-                        <Link href="https://github.com/solana-developers/solana-tools"  target="_blank"><h5 className="font-bold hover:text-green-custom">Solana Tools</h5></Link>
-                            <p>🦀 List of all Solana dev tools 🪓</p>
+                        <Link href="https://github.com/solana-developers/solana-tools"  target="_blank"><h5 className="font-bold hover:text-green-custom">🦀  Solana Tools 🪓</h5></Link>
+                            <p>List of all Solana dev tools </p>
                         </div>
                     </div>
                 </div>
