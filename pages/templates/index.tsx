@@ -32,9 +32,6 @@ const Templates = () => {
         })()
     }, [connection, anchorwallet, templates])
 
-
-    console.log("template", templateIncludesWallet)
-
     return (
         <div className="flex flex-col h-full ">
             <div className="h-20 ml-6 flex align-center items-center">
