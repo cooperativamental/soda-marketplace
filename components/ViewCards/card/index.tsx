@@ -30,11 +30,7 @@ export const Card: FC<any> = ({ prop, item, onClick, index, setEdit, explanation
           setConfirmation(true)
         }} className="absolute z-20 text-border bottom-2 right-2 w-4 h-4 hover:text-yellow-custom" />
         <div className=" flex flex-col items-center justify-around h-[75%] w-11/12">
-          <p 
-            className="text-justify text-xl overflow-x-hidden w-full hover:overflow-visible hover:bg-slate-700 hover:w-auto hover:p-2 hover:rounded-lg  "
-          >
-            {item.name}
-            </p>
+          <p className="text-justify text-xl break-words">{item.name}</p>
           <p className="overflow-y-auto mini-scrollbar text-sm text-chok">
             {explanationText}
           </p>
