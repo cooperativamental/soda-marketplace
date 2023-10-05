@@ -38,9 +38,7 @@ const checkNFTaccess = async (connection: any, wallet: AnchorWallet | undefined)
     const owner = { owner: wallet?.publicKey }
     try {
         const allNFTs = await metaplex.nfts().findAllByOwner(owner)
-        console.log(allNFTs)
         return accessNFTS.filter((access: NFTAccess) => allNFTs.some((NFT: Metadata | Nft | Sft) => {
-            console.log(NFT.name, access.address)
             return NFT.name === access.address}))
     } catch (error) {
         console.log(error)
