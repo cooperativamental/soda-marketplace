@@ -9,20 +9,24 @@ type NFTAccess = {
 
 const accessNFTS: Array<NFTAccess> = [
     {
-        address: "Soda Anchor-NextJS NFT",
-        template: "Anchor-NextJs-Tailwind",
+        address: "Soda Anchor",
+        template: "⚓ Anchor",
     },
     {
-        address: "Soda Flutter NFT",
-        template: "Flutter Client",
+        address: "Soda Flutter",
+        template: "🦋 Flutter",
     },
     {
-        address: "Soda React Native NFT",
-        template: "React Native",
+        address: "Soda React Native",
+        template: "📱 React Native",
     },
     {
-        address: "Soda Seahorse NFT",
-        template: "Seahorse",
+        address: "Soda Seahorse",
+        template: "🌊 Seahorse",
+    },
+    {
+        address: "Soda Nextjs",
+        template: "🌐 NextJS",
     },
 ]
 
@@ -34,7 +38,10 @@ const checkNFTaccess = async (connection: any, wallet: AnchorWallet | undefined)
     const owner = { owner: wallet?.publicKey }
     try {
         const allNFTs = await metaplex.nfts().findAllByOwner(owner)
-        return accessNFTS.filter((access: NFTAccess) => allNFTs.some((NFT: Metadata | Nft | Sft) => NFT.name === access.address))
+        console.log(allNFTs)
+        return accessNFTS.filter((access: NFTAccess) => allNFTs.some((NFT: Metadata | Nft | Sft) => {
+            console.log(NFT.name, access.address)
+            return NFT.name === access.address}))
     } catch (error) {
         console.log(error)
         return []
