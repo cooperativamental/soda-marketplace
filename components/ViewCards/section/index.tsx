@@ -55,7 +55,7 @@ export const Section: FC<any> = ({ instruction, content, initExpanded = false })
                 prop={instruction}
               />
               {
-                content.map((item: any, index: number) => (
+                content?.map((item: any, index: number) => (
                   <Card
                     explanationText={"add / edit"}
                     prop={instruction}
