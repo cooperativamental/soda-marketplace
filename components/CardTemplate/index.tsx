@@ -18,10 +18,11 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     
 
     const nftURIs = [
-        "https://arweave.net/g1hS1TWH5YWV7Ea-PRpMFJuwQSFoM9inefPuz418v7I",
-        "https://arweave.net/FBvO_Aia5u2uKw-6QB8-FPuJ1PlKyqCfdOKoK1eyEIQ",
-        "https://arweave.net/Wfs_Fz19e3Mio1WZ8_Et38m3kgvl2DwOcctRcN9Pvic",
-        "https://arweave.net/CzkIJCMfj479tmv2PBV7HF2vKB2ReThlm1R8Xv9vb6o",
+        "https://arweave.net/bpl3VOvenShDy-4XIRFxDwBmZNCzN1zk-U8zOojiWGY",
+        "https://arweave.net/ZS1RT_QpfseshEKFlQD7mpUYNoy5yR4CGYeZGDsSrlc",
+        "https://arweave.net/Z_hmKkrEA0guKbzE_vlRu5CQhkvqHkKqtT5aFdppT8s",
+        "https://arweave.net/O_e8Xh6mUtxE8erYy1Sgv1sH4-iRxS7QoJe3Zx9Cpjg",
+        "https://arweave.net/iLpeXFr882B5R_hW4Jyn-CpzYkC45GqjjqwieMYxCKg",
     ];
 
     const mintNFT = async (indexNFT: number) => {
@@ -50,10 +51,10 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
         });
         console.log(uri);*/
         const uri = nftURIs[indexNFT];
-        const names = ["Anchor-NextJS", "Flutter", "React Native", "Seahorse"]
+        const names = ["Anchor", "Flutter", "React Native", "Seahorse", "Nextjs"]
         const { nft } = await metaplex.nfts().create({
             uri,
-            name: `Soda ${names[indexNFT]} NFT`,
+            name: `Soda ${names[indexNFT]}`,
             sellerFeeBasisPoints: 500, // Represents 5.00%.
         });
         console.log(nft);
