@@ -65,7 +65,7 @@ const Templates = () => {
                                 <p className="text-lg leading-5 mb-4">
                                 Each of these NFTs on your wallet grants you permission to export in that specific template. Pick one or pick them all!
                                 </p>
-                                <p className="text-green-custom"> Set your wallet on Devnet
+                                <p className="text-green-custom"> Set your wallet on Solana Devnet
                                 </p>
                                 </div>
                         
