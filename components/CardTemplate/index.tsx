@@ -15,7 +15,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const wallet = useAnchorWallet();
     const [hoverCard, setHover] = useState(false)
     const [download, setDownload] = useState(false)
-    
+
 
     const nftURIs = [
         "https://arweave.net/bpl3VOvenShDy-4XIRFxDwBmZNCzN1zk-U8zOojiWGY",
@@ -25,31 +25,38 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
         "https://arweave.net/iLpeXFr882B5R_hW4Jyn-CpzYkC45GqjjqwieMYxCKg",
     ];
 
+    const airdropToWallet = async () => {
+        try {
+            if (wallet) {
+                const signature = await connection.requestAirdrop(
+                    wallet.publicKey,
+                    1000000000
+                );
+
+                const tx = await connection.confirmTransaction(signature);
+                alert(`Airdrop sent to ${wallet.publicKey}`);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const mintNFT = async (indexNFT: number) => {
 
-        const keyData = JSON.parse("[48,111,2,213,165,203,156,74,16,34,244,70,8,229,76,66,45,112,21,100,71,142,124,119,105,103,113,11,212,1,183,3,169,232,178,149,10,149,75,161,14,96,250,199,85,201,37,249,63,213,90,154,130,32,85,43,45,26,25,202,45,143,7,122]");
         if (!wallet) {
             return;
         }
-        const sodaWallet = await Keypair.fromSecretKey(Buffer.from(keyData, 'base64'));
-        //const otherwallet = Keypair.generate();
+
+        airdropToWallet()
         const rpcUrl = "https://api.devnet.solana.com";
         const metaplex = Metaplex.make(connection)
-        .use(walletAdapterIdentity(wallet))
-        .use(bundlrStorage({
-            address: 'https://devnet.bundlr.network',
-            providerUrl: rpcUrl,
-            timeout: 60000,
-        }));
+            .use(walletAdapterIdentity(wallet))
+            .use(bundlrStorage({
+                address: 'https://devnet.bundlr.network',
+                providerUrl: rpcUrl,
+                timeout: 60000,
+            }));
 
-        
-        
-        /*const { uri } = await metaplex.nfts().uploadMetadata({
-            name: "Soda NFT",
-            description: "Soda NFT",
-            image: "https://arweave.net/AQDjfAP1e6mXeKTP10l_b7iyRb8sfbpODS3zsKRcRF8?ext=png",
-        });
-        console.log(uri);*/
         const uri = nftURIs[indexNFT];
         const names = ["Anchor", "Flutter", "React Native", "Seahorse", "Nextjs"]
         const { nft } = await metaplex.nfts().create({
@@ -57,28 +64,10 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             name: `Soda ${names[indexNFT]}`,
             sellerFeeBasisPoints: 500, // Represents 5.00%.
         });
-        console.log(nft);
 
-        const txBuilder = metaplex.nfts().builders().transfer({
-            nftOrSft: nft,
-            fromOwner: sodaWallet.publicKey,
-            toOwner: wallet?.publicKey ?? sodaWallet.publicKey,
-            amount: token(1),
-            authority: sodaWallet,
-        });
-
-        console.log(txBuilder);
-
-        const blockhash = await connection.getLatestBlockhash();
-        txBuilder.toTransaction(blockhash).sign(sodaWallet);
-
-        // Submit the transaction to the Solana network.
-        //const txHash = await connection.sendTransaction(txBuilder);
-
-        //console.log("Transaction submitted: ", txHash);
         handlerMint()
-        
-};
+
+    };
 
 
     const exportProject = async () => {
@@ -181,17 +170,17 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                         className="text-chok p-4 h-min rounded-3xl border border-border hover:bg-inputs hover:border-2 hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                         onClick={exportProject}
                     >
-                        
-                                Export
+
+                        Export
 
                     </button>
                     :
                     <button
                         className="text-chok p-4 h-min rounded-3xl border border-border hover:bg-inputs hover:border-2 hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                        onClick={()=>mintNFT(indexTemplate)}
+                        onClick={() => mintNFT(indexTemplate)}
                     >
-                                Mint NFT
-                    
+                        Mint NFT
+
 
                     </button>
             }
