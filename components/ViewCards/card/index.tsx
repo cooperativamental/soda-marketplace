@@ -29,9 +29,9 @@ export const Card: FC<any> = ({ prop, item, index, setEdit, explanationText }) =
           e.stopPropagation()
           setConfirmation(true)
         }} className="absolute z-20 text-border bottom-2 right-2 w-4 h-4 hover:text-yellow-custom" />
-        <div className=" flex flex-col items-center justify-around h-[75%] w-11/12">
+        <div className=" flex flex-col items-center justify-around h-[75%]">
           <p
-            className="text-justify text-xl overflow-x-hidden w-full hover:overflow-visible hover:bg-slate-700 hover:w-auto hover:p-2 hover:rounded-lg  "
+            className="text-center overflow-x-hidden w-full hover:overflow-visible hover:bg-slate-700 hover:w-auto hover:p-2 hover:rounded-lg hover:z-40 "
           >
             {item.name}
           </p>
