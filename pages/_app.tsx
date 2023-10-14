@@ -13,9 +13,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Soda</title>
-        <meta name="description" content="Solana dApp Generator" />
+        <meta name="description" content="Solana Fast Code Generator" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://machine.usesoda.dev/favicon.ico" />
       </Head>
          <Script async src="https://www.googletagmanager.com/gtag/js?id=G-EJB99T5E0X"></Script>
         <Script>
