@@ -49,7 +49,7 @@ export default function Home() {
 
                   }
                 }}
-                className="absolute top-2 right-0 w-12 h-12 bg-[#1e1e1e] text-chok hover:bg-inputs border-y rounded-l-2xl border-l border-border p-2 z-20 cursor-pointer hover:text-green-custom "
+                className="absolute hidden md:block top-2 right-0 w-12 h-12 bg-[#1e1e1e] text-chok hover:bg-inputs border-y rounded-l-2xl border-l border-border p-2 z-20 cursor-pointer hover:text-green-custom "
               />
             </Tooltip>
             {view[selectedUI as keyof typeof render]}
@@ -67,8 +67,8 @@ export default function Home() {
 
   return (
     <div className='h-full flex flex-col gap-2'>
-      <div className="sticky flex-col top-0 h-20 flex gap-4 px-6">
-        <div className='flex gap-2'>
+      <div className="sticky flex-col top-0 h-24 flex gap-4 px-6">
+        <div className='flex justify-center gap-2'>
           <Tooltip
             content="Create new Solana IDL. Will overwrite current IDL."
             className=" bg-border p-2"
@@ -104,7 +104,7 @@ export default function Home() {
 
           <PopoverComponent
             content={
-              <div className="p-4 z-40">
+              <div className="p-4 z-40 ">
                 <Typography color="blue-gray" className="text-green-custom mb-2 font-medium leading-tight">
                 IDL (Interface Definition Language)
                 </Typography>
@@ -170,7 +170,7 @@ export default function Home() {
               </div>
             }
           >
-            <InformationCircleIcon className="h-6 w-6 text-border hover:text-chok cursor-pointer" />
+            <InformationCircleIcon className="h-6 w-6 text-border hover:text-chok cursor-pointer hidden md:block" />
           </PopoverComponent>
 
         </div>
@@ -186,13 +186,13 @@ export default function Home() {
           >
             <div className="flex border-1 p-2">
               <button onClick={() => setSelectedUI("cards")} className={`hover:underline hover:bg-inputs p-2 rounded-full ${selectedUI === "cards" && "underline text-chok bg-inputs"}`}>cards</button>
-              <button onClick={() => setSelectedUI("tables")} className={`hover:underline hover:bg-inputs p-2 rounded-full ${selectedUI === "tables" && "underline text-chok bg-inputs"}`}>tables</button>
+              <button onClick={() => setSelectedUI("tables")} className={`hidden md:block hover:underline hover:bg-inputs p-2 rounded-full ${selectedUI === "tables" && "underline text-chok bg-inputs"}`}>tables</button>
               <button onClick={() => setSelectedUI("json")} className={`hover:underline hover:bg-inputs p-2 rounded-full ${selectedUI === "json" && "underline text-chok bg-inputs"}`}>JSON</button>
             </div>
           </Tooltip>
         </div>
       </div>
-      <div className=" h-[calc(100%_-_5rem)] ">
+      <div className=" h-[calc(100%_-_6rem)] ">
         {render()}
       </div>
     </div>
