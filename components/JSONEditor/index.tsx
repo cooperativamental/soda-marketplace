@@ -19,9 +19,10 @@ const JSONEditor: FC<any> = ({ noeditable }) => {
 
     }
     return (
-        <div className='h-full border-t-1 border-border mt-8'>
+        <div className=' border-t-1 border-border'>
             <p className='text-red'>{errorIDL}</p>
             <Monaco
+                className='h-[calc(100vh_-_17rem)]'
                 options={{readOnly: noeditable}}
                 language='json'
                 value={JSON.stringify(IDL, null, "\t")}

@@ -106,21 +106,21 @@ export default function Home() {
             content={
               <div className="p-4 z-40 ">
                 <Typography color="blue-gray" className="text-green-custom mb-2 font-medium leading-tight">
-                IDL (Interface Definition Language)
+                  IDL (Interface Definition Language)
                 </Typography>
                 <Typography variant="small" color="gray" className="text-chok mb-4 font-normal leading-snug">
-                Solana's IDL is a standardized format used for defining and documenting the interface of Solana programs (aka smart contracts) on the Solana blockchain. It allows developers to specify the structure and functions of a program in a human-readable format, making it easier for different programs to communicate and interact with each other on the Solana network. 
+                  Solana's IDL is a standardized format used for defining and documenting the interface of Solana programs (aka smart contracts) on the Solana blockchain. It allows developers to specify the structure and functions of a program in a human-readable format, making it easier for different programs to communicate and interact with each other on the Solana network.
 
-                Solana's IDL is a bridge between on-chain programs and off-chain systems, ensuring clear, efficient, and standardized interactions. Bridging the gap between the Rust-centric Solana world and other development environments.
+                  Solana's IDL is a bridge between on-chain programs and off-chain systems, ensuring clear, efficient, and standardized interactions. Bridging the gap between the Rust-centric Solana world and other development environments.
                 </Typography>
                 <Typography variant="small" color="gray" className="text-chok mb-4 font-normal leading-snug">
-              <h5>Benefits of Solana IDL:</h5> {'\u2022'} Clear Documentation: IDL serves as a transparent and detailed documentation of the program's interface, which is beneficial not only for the original developers but also for any third party wishing to interact with the program. <br></br> {'\u2022'} Consistency Across Platforms: Since IDL is language-agnostic, it provides a consistent way for various platforms and languages to interact with the Solana program, ensuring uniformity.
-              <br></br> {'\u2022'} Error Handling: By defining potential errors in the IDL, developers give clients a roadmap to anticipate and handle potential problems, leading to better user experiences.
-              <br></br> {'\u2022'} Rapid Development: The ability to auto-generate client libraries from the IDL accelerates the development process. Instead of manually crafting client interactions, developers can leverage these libraries to save time and reduce errors.
-              <br></br> {'\u2022'} Enhanced Interoperability: With a standardized IDL, it's easier for multiple applications, platforms, and tools within the Solana ecosystem to work together seamlessly, fostering a more integrated and robust network.
-              <br></br> {'\u2022'} Trust: For end-users and developers, having a well-defined IDL can instill confidence. They can trust that the program will behave as described, and third-party platforms can trust that they're interacting with the program correctly.
-              </Typography>
-              <a  target="_blank" rel="noopener noreferrer" href="https://www.anchor-lang.com/" className="inline-block">
+                  <h5>Benefits of Solana IDL:</h5> {'\u2022'} Clear Documentation: IDL serves as a transparent and detailed documentation of the program's interface, which is beneficial not only for the original developers but also for any third party wishing to interact with the program. <br></br> {'\u2022'} Consistency Across Platforms: Since IDL is language-agnostic, it provides a consistent way for various platforms and languages to interact with the Solana program, ensuring uniformity.
+                  <br></br> {'\u2022'} Error Handling: By defining potential errors in the IDL, developers give clients a roadmap to anticipate and handle potential problems, leading to better user experiences.
+                  <br></br> {'\u2022'} Rapid Development: The ability to auto-generate client libraries from the IDL accelerates the development process. Instead of manually crafting client interactions, developers can leverage these libraries to save time and reduce errors.
+                  <br></br> {'\u2022'} Enhanced Interoperability: With a standardized IDL, it's easier for multiple applications, platforms, and tools within the Solana ecosystem to work together seamlessly, fostering a more integrated and robust network.
+                  <br></br> {'\u2022'} Trust: For end-users and developers, having a well-defined IDL can instill confidence. They can trust that the program will behave as described, and third-party platforms can trust that they're interacting with the program correctly.
+                </Typography>
+                <a target="_blank" rel="noopener noreferrer" href="https://www.anchor-lang.com/" className="inline-block">
                   <Button
                     size="sm"
                     variant="text"
@@ -143,7 +143,7 @@ export default function Home() {
                     </svg>
                   </Button>
                 </a>
-                
+
                 <a href="https://solanacookbook.com/" target="_blank" rel="noopener noreferrer" className="inline-block">
                   <Button
                     size="sm"
@@ -192,9 +192,7 @@ export default function Home() {
           </Tooltip>
         </div>
       </div>
-      <div className=" h-[calc(100%_-_6rem)] ">
-        {render()}
-      </div>
+      {render()}
     </div>
   );
 }
