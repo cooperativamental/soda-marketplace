@@ -22,7 +22,7 @@ export const NewEditor: FC<any> = () => {
         )
       }
     return (
-        <div className="flex flex-col h-full p-5 gap-5 font-mono">
+        <div className="flex flex-col h-[calc(100vh_-_17rem)] p-5 gap-5 font-mono">
               <Tooltip
                 content="project name"
                 className=" bg-border p-2"
