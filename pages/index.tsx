@@ -67,7 +67,7 @@ export default function Home() {
 
   return (
     <div className='h-full flex flex-col gap-2'>
-      <div className="sticky flex-col top-0 h-24 flex gap-4 px-6">
+      <div className="flex-col top-0 h-24 flex gap-4 px-6">
         <div className='flex justify-center gap-2'>
           <Tooltip
             content="Create new Solana IDL. Will overwrite current IDL."
