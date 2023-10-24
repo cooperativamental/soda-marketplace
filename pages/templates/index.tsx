@@ -40,7 +40,7 @@ const Templates = () => {
 
             </div>
             <div className=" grid grid-cols-1 md:grid-cols-[max-content_1fr] gap-4 px-4 w-full rounded-3xl  border-border">
-                <div className=" col-start-1 md:col-end-2 md:row-start-1 md:row-end-2 flex flex-col h-76 w-full md:w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-center !rounded-3xl !font-normal">
+                <div className=" col-start-1 md:col-end-2 md:row-start-1 md:row-end-2 flex flex-col h-76 w-full md:w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 self-center !rounded-3xl !font-normal">
 
 
                     <WalletMultiButton
@@ -66,7 +66,7 @@ const Templates = () => {
                     </div>
 
                 </div>
-                <div className="md:col-start-1 md:col-end-2 row-start-3 md:row-start-2 md:row-end-3 flex flex-col h-76 w-full md:w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-left justify-center  !rounded-3xl !font-thin">
+                <div className="md:col-start-1 md:col-end-2 row-start-3 md:row-start-2 md:row-end-3 flex flex-col h-76 w-full md:w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3  self-center !rounded-3xl !font-thin">
                     <div>
                         <Link href="https://github.com/Web3-Builders-Alliance/soda/tags" target="_blank"><h5 className="font-bold hover:text-green-custom">
                             🖥️  Download Soda Desktop app </h5></Link>
@@ -81,7 +81,7 @@ const Templates = () => {
                         <p>Your experience using Soda is a valuable asset for our dev team.</p>
                     </div>
                 </div>
-                <div className="md:col-start-1 md:col-end-2 row-start-4 md:row-start-3 md:row-end-4 flex flex-col h-76 w-full md:w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 !items-left justify-center  !rounded-3xl !font-thin">
+                <div className="md:col-start-1 md:col-end-2 row-start-4 md:row-start-3 md:row-end-4 flex flex-col h-76 w-full md:w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 self-center justify-center  !rounded-3xl !font-thin">
                     <div>
                         <Link href="https://solana.stackexchange.com/" target="_blank"><h5 className="font-bold hover:text-green-custom">🤔 Questions?</h5>
                             <p>solana.stackexchange.com</p>
@@ -99,7 +99,7 @@ const Templates = () => {
                 {
                     templates.length ?
                         <div
-                            className={`col-start-1 col-end-2 row-start-2 md:col-start-2 md:col-end-3  md:row-start-1 md:row-end-4 flex flex-wrap gap-4 w-full rounded-2xl overflow-y-auto border border-border p-4 mini-scrollbar`}
+                            className={`col-start-1 col-end-2 row-start-2 md:col-start-2 md:col-end-3  md:row-start-1 md:row-end-4 flex flex-wrap justify-around gap-4 w-full rounded-2xl overflow-y-auto border border-border p-4 mini-scrollbar`}
                         >
                             {
 

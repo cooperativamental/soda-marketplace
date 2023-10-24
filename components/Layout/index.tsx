@@ -23,12 +23,10 @@ const Layout: FC<any> = ({ children }) => {
     const { IDL, setIDL, cleanProject } = useIDL()
     const [upload, setUpload] = useState(false)
     return (
-        <div className='h-screen bg-backg'>
-            <div className="sticky top-0 z-40 gap-x-6 h-20 bg-backg shadow-sm flex px-6 items-center w-full justify-between">
-                    <Image className="w-20" width={5} height={2} src={"/soda.svg"} alt="soda app" />
-                    <WalletMultiButton className='!z-10 !h-full !w-max !bg-[#1e1e1e] hover:!bg-backg !rounded-full !font-thin' />
-
-
+        <div className=' min-h-screen bg-backg'>
+            <div className="top-0 z-40 gap-x-6 h-20 bg-backg shadow-sm flex px-6 items-center w-full justify-between">
+                <Image className="w-20" width={5} height={2} src={"/soda.svg"} alt="soda app" />
+                <WalletMultiButton className='!z-10 !h-full !w-max !bg-[#1e1e1e] hover:!bg-backg !rounded-full !font-thin' />
             </div>
             <div className="flex gap-8 h-16 justify-center items-center">
                 <input
@@ -108,7 +106,7 @@ const Layout: FC<any> = ({ children }) => {
 
             </div>
 
-            <main className=" h-[calc(100%-9.5rem)] pt-4 mini-scroll ">
+            <main className="h-min pt-4 ">
                 {children}
             </main>
 
