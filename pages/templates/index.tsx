@@ -13,11 +13,11 @@ type NFTAccess = {
     template: string,
 }
 
+const WalletMultiButton = dynamic(
+    async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+    { ssr: false }
+);
 const Templates = () => {
-    const WalletMultiButton = dynamic(
-        async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
-        { ssr: false }
-    );
     const { IDL } = useIDL()
     const { templates } = useTemplates()
     const { wallet } = useWallet()
@@ -43,9 +43,9 @@ const Templates = () => {
                 <div className=" col-start-1 md:col-end-2 md:row-start-1 md:row-end-2 flex flex-col h-76 w-full md:w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 self-center !rounded-3xl !font-normal">
 
 
-                    <WalletMultiButton
+                    {/* <WalletMultiButton
                         style={{
-                            display: (!connection || !wallet) ? "flex" : "none",
+                            // display: (!wallet) ? "flex" : "none",
                             border: "solid 1px #334155",
                             borderRadius: "1.5rem",
                             height: "min-content",
@@ -54,9 +54,9 @@ const Templates = () => {
                             boxShadow: "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important"
                         }}
 
-                    />
+                    /> */}
 
-                    <div className={` ${(!connection || !wallet) ? "hidden" : "block"}`}>
+                    <div className={`block`}>
                         <h2 className="text-3xl font-bold leading-7 mb-4">Mint a soda can NFT for unlock export services.</h2>
                         <p className="text-lg leading-5 mb-4">
                             Each of these NFTs on your wallet grants you permission to export in that specific template. Pick one or pick them all!
@@ -99,11 +99,11 @@ const Templates = () => {
                 {
                     templates.length ?
                         <div
-                            className={`col-start-1 col-end-2 row-start-2 md:col-start-2 md:col-end-3  md:row-start-1 md:row-end-4 flex flex-wrap justify-around gap-4 w-full rounded-2xl overflow-y-auto border border-border p-4 mini-scrollbar`}
+                            className={`col-start-1 col-end-2 row-start-2 md:col-start-2 md:col-end-3  md:row-start-1 md:row-end-4 max-h-[40rem] flex flex-wrap justify-around gap-4 w-full rounded-2xl overflow-y-auto border border-border p-4 mini-scrollbar`}
                         >
                             {
 
-                                templates.map((template: any, i: number) => {
+                                [...templates, ...templates].map((template: any, i: number) => {
                                     const includeWallet = templateIncludesWallet?.find((temp) => temp.template === template.name)
                                     const addImage = { ...template, image: `/${i}.png`, includeWallet: !!includeWallet }
 
