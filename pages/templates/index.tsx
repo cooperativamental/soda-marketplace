@@ -24,6 +24,7 @@ const Templates = () => {
     const { connection } = useConnection()
     const anchorwallet = useAnchorWallet();
     const [templateIncludesWallet, setTemplateIncludesWallet] = useState<NFTAccess[]>()
+    const [renderButtonWallet, setRenderButtonWallet] = useState<boolean>(false)
 
     useEffect(() => {
         (async () => {
@@ -31,6 +32,13 @@ const Templates = () => {
             setTemplateIncludesWallet(accessNFTs)
         })()
     }, [connection, anchorwallet, templates])
+
+
+    useEffect(() => {
+        setRenderButtonWallet(!connection || !wallet)
+    }, [connection, wallet])
+
+    console.log(wallet)
 
     return (
         <div className="flex flex-col h-full gap-4 overflow-y-auto">
@@ -42,10 +50,9 @@ const Templates = () => {
             <div className=" grid grid-cols-1 md:grid-cols-[max-content_1fr] gap-4 px-4 w-full rounded-3xl  border-border">
                 <div className=" col-start-1 md:col-end-2 md:row-start-1 md:row-end-2 flex flex-col h-76 w-full md:w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3 self-center !rounded-3xl !font-normal">
 
-
-                    {/* <WalletMultiButton
+                    <WalletMultiButton
                         style={{
-                            // display: (!wallet) ? "flex" : "none",
+                            display: renderButtonWallet ? "block" : "none",
                             border: "solid 1px #334155",
                             borderRadius: "1.5rem",
                             height: "min-content",
@@ -54,9 +61,8 @@ const Templates = () => {
                             boxShadow: "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important"
                         }}
 
-                    /> */}
-
-                    <div className={`block`}>
+                    />
+                    <div className={renderButtonWallet ? "hidden" : "block"}>
                         <h2 className="text-3xl font-bold leading-7 mb-4">Mint a soda can NFT for unlock export services.</h2>
                         <p className="text-lg leading-5 mb-4">
                             Each of these NFTs on your wallet grants you permission to export in that specific template. Pick one or pick them all!
@@ -64,6 +70,7 @@ const Templates = () => {
                         <p className="text-green-custom"> Set your wallet on Solana Devnet
                         </p>
                     </div>
+
 
                 </div>
                 <div className="md:col-start-1 md:col-end-2 row-start-3 md:row-start-2 md:row-end-3 flex flex-col h-76 w-full md:w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3  self-center !rounded-3xl !font-thin">
@@ -119,7 +126,7 @@ const Templates = () => {
                         </div>
                 }
             </div>
-        </div>
+        </div >
     )
 }
 
