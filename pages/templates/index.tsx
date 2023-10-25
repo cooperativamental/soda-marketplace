@@ -103,7 +103,7 @@ const Templates = () => {
                         >
                             {
 
-                                [...templates, ...templates].map((template: any, i: number) => {
+                                templates.map((template: any, i: number) => {
                                     const includeWallet = templateIncludesWallet?.find((temp) => temp.template === template.name)
                                     const addImage = { ...template, image: `/${i}.png`, includeWallet: !!includeWallet }
 
