@@ -33,7 +33,7 @@ export const Section: FC<any> = ({ instruction, content, initExpanded = false })
         content={contentToolTip[nameInstruction as keyof typeof contentToolTip]}
 
       >
-        <InformationCircleIcon className="h-6 w-6 text-chok fill-border hover:text-green-custom cursor-pointer" />
+        <InformationCircleIcon className="hidden md:block h-6 w-6 text-chok fill-border hover:text-green-custom cursor-pointer" />
       </PopoverComponent>
     )
   }

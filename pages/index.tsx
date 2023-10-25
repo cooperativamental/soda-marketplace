@@ -49,7 +49,7 @@ export default function Home() {
 
                   }
                 }}
-                className="absolute top-2 right-0 w-12 h-12 bg-[#1e1e1e] text-chok hover:bg-inputs border-y rounded-l-2xl border-l border-border p-2 z-20 cursor-pointer hover:text-green-custom "
+                className="absolute hidden md:block top-2 right-0 w-12 h-12 bg-[#1e1e1e] text-chok hover:bg-inputs border-y rounded-l-2xl border-l border-border p-2 z-20 cursor-pointer hover:text-green-custom "
               />
             </Tooltip>
             {view[selectedUI as keyof typeof render]}
@@ -67,8 +67,8 @@ export default function Home() {
 
   return (
     <div className='h-full flex flex-col gap-2'>
-      <div className="sticky flex-col top-0 h-20 flex gap-4 px-6">
-        <div className='flex gap-2'>
+      <div className="flex-col top-0 h-24 flex gap-4 px-6">
+        <div className='flex justify-center gap-2'>
           <Tooltip
             content="Create new Solana IDL. Will overwrite current IDL."
             className=" bg-border p-2"
@@ -104,23 +104,23 @@ export default function Home() {
 
           <PopoverComponent
             content={
-              <div className="p-4 z-40">
+              <div className="p-4 z-40 ">
                 <Typography color="blue-gray" className="text-green-custom mb-2 font-medium leading-tight">
-                IDL (Interface Definition Language)
+                  IDL (Interface Definition Language)
                 </Typography>
                 <Typography variant="small" color="gray" className="text-chok mb-4 font-normal leading-snug">
-                Solana's IDL is a standardized format used for defining and documenting the interface of Solana programs (aka smart contracts) on the Solana blockchain. It allows developers to specify the structure and functions of a program in a human-readable format, making it easier for different programs to communicate and interact with each other on the Solana network. 
+                  Solana's IDL is a standardized format used for defining and documenting the interface of Solana programs (aka smart contracts) on the Solana blockchain. It allows developers to specify the structure and functions of a program in a human-readable format, making it easier for different programs to communicate and interact with each other on the Solana network.
 
-                Solana's IDL is a bridge between on-chain programs and off-chain systems, ensuring clear, efficient, and standardized interactions. Bridging the gap between the Rust-centric Solana world and other development environments.
+                  Solana's IDL is a bridge between on-chain programs and off-chain systems, ensuring clear, efficient, and standardized interactions. Bridging the gap between the Rust-centric Solana world and other development environments.
                 </Typography>
                 <Typography variant="small" color="gray" className="text-chok mb-4 font-normal leading-snug">
-              <h5>Benefits of Solana IDL:</h5> {'\u2022'} Clear Documentation: IDL serves as a transparent and detailed documentation of the program's interface, which is beneficial not only for the original developers but also for any third party wishing to interact with the program. <br></br> {'\u2022'} Consistency Across Platforms: Since IDL is language-agnostic, it provides a consistent way for various platforms and languages to interact with the Solana program, ensuring uniformity.
-              <br></br> {'\u2022'} Error Handling: By defining potential errors in the IDL, developers give clients a roadmap to anticipate and handle potential problems, leading to better user experiences.
-              <br></br> {'\u2022'} Rapid Development: The ability to auto-generate client libraries from the IDL accelerates the development process. Instead of manually crafting client interactions, developers can leverage these libraries to save time and reduce errors.
-              <br></br> {'\u2022'} Enhanced Interoperability: With a standardized IDL, it's easier for multiple applications, platforms, and tools within the Solana ecosystem to work together seamlessly, fostering a more integrated and robust network.
-              <br></br> {'\u2022'} Trust: For end-users and developers, having a well-defined IDL can instill confidence. They can trust that the program will behave as described, and third-party platforms can trust that they're interacting with the program correctly.
-              </Typography>
-              <a  target="_blank" rel="noopener noreferrer" href="https://www.anchor-lang.com/" className="inline-block">
+                  <h5>Benefits of Solana IDL:</h5> {'\u2022'} Clear Documentation: IDL serves as a transparent and detailed documentation of the program's interface, which is beneficial not only for the original developers but also for any third party wishing to interact with the program. <br></br> {'\u2022'} Consistency Across Platforms: Since IDL is language-agnostic, it provides a consistent way for various platforms and languages to interact with the Solana program, ensuring uniformity.
+                  <br></br> {'\u2022'} Error Handling: By defining potential errors in the IDL, developers give clients a roadmap to anticipate and handle potential problems, leading to better user experiences.
+                  <br></br> {'\u2022'} Rapid Development: The ability to auto-generate client libraries from the IDL accelerates the development process. Instead of manually crafting client interactions, developers can leverage these libraries to save time and reduce errors.
+                  <br></br> {'\u2022'} Enhanced Interoperability: With a standardized IDL, it's easier for multiple applications, platforms, and tools within the Solana ecosystem to work together seamlessly, fostering a more integrated and robust network.
+                  <br></br> {'\u2022'} Trust: For end-users and developers, having a well-defined IDL can instill confidence. They can trust that the program will behave as described, and third-party platforms can trust that they're interacting with the program correctly.
+                </Typography>
+                <a target="_blank" rel="noopener noreferrer" href="https://www.anchor-lang.com/" className="inline-block">
                   <Button
                     size="sm"
                     variant="text"
@@ -143,7 +143,7 @@ export default function Home() {
                     </svg>
                   </Button>
                 </a>
-                
+
                 <a href="https://solanacookbook.com/" target="_blank" rel="noopener noreferrer" className="inline-block">
                   <Button
                     size="sm"
@@ -170,7 +170,7 @@ export default function Home() {
               </div>
             }
           >
-            <InformationCircleIcon className="h-6 w-6 text-border hover:text-chok cursor-pointer" />
+            <InformationCircleIcon className="h-6 w-6 text-border hover:text-chok cursor-pointer hidden md:block" />
           </PopoverComponent>
 
         </div>
@@ -186,15 +186,13 @@ export default function Home() {
           >
             <div className="flex border-1 p-2">
               <button onClick={() => setSelectedUI("cards")} className={`hover:underline hover:bg-inputs p-2 rounded-full ${selectedUI === "cards" && "underline text-chok bg-inputs"}`}>cards</button>
-              <button onClick={() => setSelectedUI("tables")} className={`hover:underline hover:bg-inputs p-2 rounded-full ${selectedUI === "tables" && "underline text-chok bg-inputs"}`}>tables</button>
+              <button onClick={() => setSelectedUI("tables")} className={`hidden md:block hover:underline hover:bg-inputs p-2 rounded-full ${selectedUI === "tables" && "underline text-chok bg-inputs"}`}>tables</button>
               <button onClick={() => setSelectedUI("json")} className={`hover:underline hover:bg-inputs p-2 rounded-full ${selectedUI === "json" && "underline text-chok bg-inputs"}`}>JSON</button>
             </div>
           </Tooltip>
         </div>
       </div>
-      <div className=" h-[calc(100%_-_5rem)] ">
-        {render()}
-      </div>
+      {render()}
     </div>
   );
 }
