@@ -9,7 +9,7 @@ import { saveIDLFile } from "@/helpers";
 import { Button, Tooltip, Typography } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { PopoverComponent } from "@/components/PopOver";
-import { track } from "@vercel/analytics/*";
+import { track } from "@vercel/analytics";
 
 
 export default function Home() {

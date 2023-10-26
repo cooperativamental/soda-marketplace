@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { Bubbles } from '../Bubbles';
 import { Tooltip } from '@material-tailwind/react';
 import Image from 'next/image';
-import { track } from '@vercel/analytics/*';
+import { track } from '@vercel/analytics';
 
 const Layout: FC<any> = ({ children }) => {
     const WalletMultiButton = dynamic(
