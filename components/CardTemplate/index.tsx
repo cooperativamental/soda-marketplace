@@ -169,7 +169,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
 
                     <button
                         className="text-chok p-4 h-min rounded-3xl border border-border hover:bg-inputs hover:border-2 hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                        onClick={() => {track('export'); exportProject()}}
+                        onClick={() => {track(`${template.name}-export`); exportProject()}}
                     >
 
                         Export
@@ -178,7 +178,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                     :
                     <button
                         className="text-chok p-4 h-min rounded-3xl border border-border hover:bg-inputs hover:border-2 hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                        onClick={() => {track('mintNFT'); mintNFT(indexTemplate)}}
+                        onClick={() => {track(`${template.name}-mintNFT`); mintNFT(indexTemplate)}}
                     >
                         Mint NFT
 

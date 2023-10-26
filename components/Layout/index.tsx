@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { Bubbles } from '../Bubbles';
 import { Tooltip } from '@material-tailwind/react';
 import Image from 'next/image';
+import { track } from '@vercel/analytics';
 
 const Layout: FC<any> = ({ children }) => {
     const WalletMultiButton = dynamic(
@@ -33,6 +34,7 @@ const Layout: FC<any> = ({ children }) => {
                     type="file"
                     id="file"
                     onChange={(e) => {
+                        track('importIDL');
                         setUpload(true)
                         openIDLFile(e, setIDL)
                         setTimeout(() => {
@@ -55,6 +57,7 @@ const Layout: FC<any> = ({ children }) => {
                             type="button"
                             className="-m-2.5 p-4 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-full border border-border hover:bg-inputs hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
                             onClick={() => {
+                                track('IDLGenerator')
                                 router.push("/")
                             }}
                         >
@@ -92,6 +95,7 @@ const Layout: FC<any> = ({ children }) => {
                             type="button"
                             className="-m-2.5 p-4 text-chok text-sm inline-flex items-center gap-x-1.5 bg-export shadow-md shadow-blue-custom rounded-full border border-border hover:bg-sky hover:text-export hover:shadow-md hover:shadow-export  focus:bg-inputs active:shadow-lg active:shadow-export duration-200"
                             onClick={() => {
+                                track('TemplateMachine')
                                 router.push("/templates")
                             }}
                             onMouseOver={() => { setTooltip({ type: "EXPORT_PROJECT", content: "Export Project" }) }}

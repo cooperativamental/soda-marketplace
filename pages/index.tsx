@@ -9,6 +9,8 @@ import { saveIDLFile } from "@/helpers";
 import { Button, Tooltip, Typography } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { PopoverComponent } from "@/components/PopOver";
+import { track } from "@vercel/analytics";
+
 
 export default function Home() {
   const { IDL, cleanProject } = useIDL()
@@ -80,7 +82,7 @@ export default function Home() {
             <button
               type="button"
               className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-              onClick={cleanProject}
+              onClick={() => {track('NewIDL');cleanProject()}}
             >
               <PlusIcon className="h-5 w-5" aria-hidden="true" />New IDL
             </button>
@@ -96,7 +98,7 @@ export default function Home() {
             <button
               type="button"
               className="-m-2.5 p-2.5 text-chok text-sm inline-flex items-center gap-x-1.5 rounded-md hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-              onClick={() => saveIDLFile(IDL)}
+              onClick={() => {track('DownloadIDL'); saveIDLFile(IDL)}}
             >
               <ArrowDownTrayIcon className="h-5 w-5" aria-hidden="true" /> Download IDL
             </button>
