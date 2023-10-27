@@ -5,6 +5,7 @@ import about from "./about";
 import nameSetter from "./nameSetter";
 import handleBaseFolder from "./handleBaseFolder";
 import checkNFT from "./checkNFTaccess";
+import rustCliGen from "./rust-cli";
 
 export {
     generateProjectFiles,
@@ -14,5 +15,5 @@ export {
     nameSetter,
     handleBaseFolder,
     checkNFT,
-
+    rustCliGen,
 };
