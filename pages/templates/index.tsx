@@ -39,8 +39,6 @@ const Templates = () => {
         setRenderButtonWallet(!connection || !wallet)
     }, [connection, wallet])
 
-    console.log(wallet)
-
     return (
         <div className="flex flex-col h-full gap-4 overflow-y-auto">
             <div className="h-20 ml-6 flex align-center items-center">
@@ -71,8 +69,6 @@ const Templates = () => {
                         <p className="text-green-custom"> Set your wallet on Solana Devnet
                         </p>
                     </div>
-
-
                 </div>
                 <div className="md:col-start-1 md:col-end-2 row-start-3 md:row-start-2 md:row-end-3 flex flex-col h-76 w-full md:w-72 !border !border-border !p-5 !shadow-md !shadow-black  !text-chok !text-left !gap-3  self-center !rounded-3xl !font-thin">
                     <div onClick={() => track("deskApp")}>
@@ -104,7 +100,7 @@ const Templates = () => {
                         <p>List of all Solana dev tools </p>
                     </div>
                 </div>
-                {
+                {   
                     templates.length ?
                         <div
                             className={`col-start-1 col-end-2 row-start-2 md:col-start-2 md:col-end-3  md:row-start-1 md:row-end-4 max-h-[40rem] flex flex-wrap justify-around gap-4 w-full rounded-2xl overflow-y-auto border border-border p-4 mini-scrollbar`}
@@ -120,7 +116,7 @@ const Templates = () => {
                                     )
                                 })
                             }
-                            <CardTemplate key={"Rust CLI"} template={{ name: "Rust CLI", image: "/rust.png", description: "Rust CLI template", price: 0, currency: "SOL", version: "0.1.0", includeWallet: true }} indexTemplate={5} />
+                            <CardTemplate key={"Rust CLI"} template={{ name: "🦀 Rust CLI", image: "/5.png", description: "Go for a command-line interface Rust project with Soda, perfect for backend-focused Solana applications.", price: 0, currency: "SOL", version: "0.0.1", includeWallet: !!(templateIncludesWallet?.find((temp) => temp.template === "Rust CLI")) }} indexTemplate={5} />
                         </div>
                         :
                         <div className="flex justify-center items-center w-10/12 h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar">

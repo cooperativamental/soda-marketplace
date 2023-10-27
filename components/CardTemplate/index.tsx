@@ -23,6 +23,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
         "https://arweave.net/Z_hmKkrEA0guKbzE_vlRu5CQhkvqHkKqtT5aFdppT8s",
         "https://arweave.net/O_e8Xh6mUtxE8erYy1Sgv1sH4-iRxS7QoJe3Zx9Cpjg",
         "https://arweave.net/iLpeXFr882B5R_hW4Jyn-CpzYkC45GqjjqwieMYxCKg",
+        "https://arweave.net/n0QRCksg7SWk826jmaCJAPyZ8VIQ8LI7Qw_EbtjCvGs",
     ];
 
     const airdropToWallet = async () => {
@@ -58,7 +59,7 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             }));
 
         const uri = nftURIs[indexNFT];
-        const names = ["Anchor", "Flutter", "React Native", "Seahorse", "Nextjs"]
+        const names = ["Anchor", "Flutter", "React Native", "Seahorse", "Nextjs", "Rust CLI"]
         const { nft } = await metaplex.nfts().create({
             uri,
             name: `Soda ${names[indexNFT]}`,
@@ -79,7 +80,6 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                 method: "POST",
                 body: JSON.stringify({ idl: IDL })
             }).then((res) => { return res.json() })
-            console.log(response)
             const { files } = response
             const zip = new JSZip();
 
