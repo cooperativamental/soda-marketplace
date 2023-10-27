@@ -1,11 +1,10 @@
 import { useIDL } from "@/context/IDL";
-import { checkNFT } from "@/helpers";
+import { checkNFT, rustCliGen } from "@/helpers";
 import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
 import JSZip from "jszip";
 import Image from "next/image"
 import { FC, useState } from "react";
-import { Metaplex, keypairIdentity, bundlrStorage, token, walletAdapterIdentity } from "@metaplex-foundation/js";
-import { Keypair } from "@solana/web3.js";
+import { Metaplex, bundlrStorage, walletAdapterIdentity } from "@metaplex-foundation/js";
 import { useTemplates } from "@/context/templates";
 import { track } from '@vercel/analytics';
 
@@ -75,11 +74,12 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
 
         if (await checkNFT(connection, wallet)) {
             setDownload(true)
-            const response = await fetch(`https://soda.shuttleapp.rs/get_project_files/${indexTemplate}`, {
+            
+            const response = indexTemplate == 5 ? rustCliGen(IDL): await fetch(`https://soda.shuttleapp.rs/get_project_files/${indexTemplate}`, {
                 method: "POST",
                 body: JSON.stringify({ idl: IDL })
             }).then((res) => { return res.json() })
-
+            console.log(response)
             const { files } = response
             const zip = new JSZip();
 

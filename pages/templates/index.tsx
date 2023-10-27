@@ -120,9 +120,10 @@ const Templates = () => {
                                     )
                                 })
                             }
+                            <CardTemplate key={"Rust CLI"} template={{ name: "Rust CLI", image: "/rust.png", description: "Rust CLI template", price: 0, currency: "SOL", version: "0.1.0", includeWallet: true }} indexTemplate={5} />
                         </div>
                         :
-                        <div className=" flex justify-center items-center w-10/12 h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar">
+                        <div className="flex justify-center items-center w-10/12 h-full rounded-2xl overflow-y-auto border-2 p-4 mini-scrollbar">
                             <Loading />
                         </div>
                 }
