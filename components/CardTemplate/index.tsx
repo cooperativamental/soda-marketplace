@@ -8,6 +8,7 @@ import { Metaplex, keypairIdentity, bundlrStorage, token, walletAdapterIdentity 
 import { Keypair } from "@solana/web3.js";
 import { useTemplates } from "@/context/templates";
 import { track } from '@vercel/analytics';
+import { trackEvent } from "@/helpers/gtagHelper";
 
 const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const { IDL } = useIDL()
@@ -169,7 +170,11 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
 
                     <button
                         className="text-chok p-4 h-min rounded-3xl border border-border hover:bg-inputs hover:border-2 hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                        onClick={() => {track(`${template.name}-export`); exportProject()}}
+                        onClick={() => {
+                            track(`${template.name}-export`)
+                            exportProject()
+                            trackEvent(`${template.name}-export`)
+                        }}
                     >
 
                         Export
@@ -178,7 +183,11 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
                     :
                     <button
                         className="text-chok p-4 h-min rounded-3xl border border-border hover:bg-inputs hover:border-2 hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                        onClick={() => {track(`${template.name}-mintNFT`); mintNFT(indexTemplate)}}
+                        onClick={() => {
+                            track(`${template.name}-mintNFT`)
+                            mintNFT(indexTemplate)
+                            trackEvent(`${template.name}-mintNFT`)
+                        }}
                     >
                         Mint NFT
 
