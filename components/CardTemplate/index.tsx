@@ -7,6 +7,7 @@ import { FC, useState } from "react";
 import { Metaplex, bundlrStorage, walletAdapterIdentity } from "@metaplex-foundation/js";
 import { useTemplates } from "@/context/templates";
 import { track } from '@vercel/analytics';
+import Export from "./PushGithub";
 
 const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
     const { IDL } = useIDL()
@@ -70,62 +71,6 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
 
     };
 
-
-    const exportProject = async () => {
-
-        if (await checkNFT(connection, wallet)) {
-            setDownload(true)
-            
-            const response = indexTemplate == 5 ? rustCliGen(IDL): await fetch(`https://soda.shuttleapp.rs/get_project_files/${indexTemplate}`, {
-                method: "POST",
-                body: JSON.stringify({ idl: IDL })
-            }).then((res) => { return res.json() })
-            const { files } = response
-            const zip = new JSZip();
-
-            // Iterate over each file in the response
-            files.Ok.forEach((file: any) => {
-                const { path, content } = file;
-
-                // Create folders and file in memory
-                const folders = path.split('/');
-                const fileName = folders.pop();
-
-                let folder = zip;
-                folders.forEach((folderName: any) => {
-                    folder = folder.folder(folderName) as JSZip
-                });
-
-                // Set the content of the file
-                if (typeof content.String != "undefined") {
-                    folder.file(fileName, content.String);
-                } else {
-                    folder.file(fileName, content.Vec)
-                }
-            });
-
-            // Generate the zip file asynchronously
-            zip.generateAsync({ type: 'blob' }).then(blob => {
-                // Provide a way for the user to download the zip file
-                const url = URL.createObjectURL(blob);
-                // Example: Create a download link and trigger the click event
-                const downloadLink = document.createElement('a');
-                downloadLink.href = url;
-                downloadLink.download = `${IDL.name || " "}.zip`;
-                downloadLink.click();
-
-                // Clean up the created URL object
-                URL.revokeObjectURL(url);
-            });
-
-            setTimeout(() => {
-                setDownload(false)
-            }, 2000)
-        } else {
-            alert("need to be connected with a wallet with the Soda NFT")
-        }
-    }
-
     return (
         <div
             className="flex flex-col items-center gap-4 h-min"
@@ -166,19 +111,11 @@ const CardTemplate: FC<any> = ({ template, indexTemplate }) => {
             </div>
             {
                 template.includeWallet ?
-
-                    <button
-                        className="text-chok p-4 h-min rounded-3xl border border-border hover:bg-inputs hover:border-2 hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                        onClick={() => {track(`${template.name}-export`); exportProject()}}
-                    >
-
-                        Export
-
-                    </button>
+                    <Export indexTemplate={indexTemplate} template={template} setDownload={setDownload} />
                     :
                     <button
                         className="text-chok p-4 h-min rounded-3xl border border-border hover:bg-inputs hover:border-2 hover:shadow-md hover:shadow-green-custom hover:text-green-custom focus:bg-inputs active:outline-none active:ring active:ring-border"
-                        onClick={() => {track(`${template.name}-mintNFT`); mintNFT(indexTemplate)}}
+                        onClick={() => { track(`${template.name}-mintNFT`); mintNFT(indexTemplate) }}
                     >
                         Mint NFT
 
